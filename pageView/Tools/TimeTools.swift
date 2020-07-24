@@ -25,5 +25,13 @@ class TimeTools {
         let date = formatter.string(from: twoDaysAgo)
         return date
     }
+    
+    func stringConvertDate(string:String) -> Date {
+            let dateFormatter = DateFormatter.init()
+            dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+            let date = dateFormatter.date(from: string)
+            return date!
+        }
+   
 
 }

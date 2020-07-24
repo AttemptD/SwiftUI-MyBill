@@ -13,8 +13,9 @@ struct HomeView: View {
     @State var scrollViewContentOffset : CGFloat = 0
     @State private var scale: CGFloat = 1.0
     @State var barTitle = "主页"
+    @State var updateBill = false
     @ObservedObject var appData = AppData()
-    
+    @State var billdata = Model()
     var body: some View {
         
         ZStack(alignment:.topTrailing){
@@ -26,8 +27,6 @@ struct HomeView: View {
                 .clipped()
                 .blur(radius: -scrollViewContentOffset/4,opaque:true)
                 .scaleEffect(-scrollViewContentOffset < 0 ? 1 + scrollViewContentOffset / 200 : 1)
-                
-                
                 .overlay(
                     
                     VStack{
@@ -61,11 +60,11 @@ struct HomeView: View {
             )
                 .cornerRadius(15)
                 .offset(x: 0, y:-scrollViewContentOffset <= 0 ? 0 : scrollViewContentOffset)
-            
+                .animation(.easeOut(duration: 0.3))
             
             TrackableScrollView(axis: .vertical, showIndicators: false, contentOffset: $scrollViewContentOffset){
                 Spacer().frame(width:width, height: height/3)
-                
+                 .animation(.none)
                 
                 VStack{
                     Image("MyImageBack")
@@ -119,7 +118,8 @@ struct HomeView: View {
                         .frame(width: width-60,  alignment: .center)
                     
                     
-                }.frame(width: width-60, height: 190, alignment: .center)
+                }
+                .frame(width: width-60, height: 190, alignment: .center)
                     .background(Color.white)
                     .shadow(radius: 10)
                     .cornerRadius(10)
@@ -148,7 +148,7 @@ struct HomeView: View {
                 
                 ForEach(appData.TodayBill){item in
                     
-                    //NavigationLink(destination:EmptyView()){
+                    NavigationLink(destination:DetailView(billData: item)){
                         
                         HStack{
                             VStack{
@@ -193,25 +193,23 @@ struct HomeView: View {
                             .contextMenu(){
                                 Button(action: {
                                     
+                                    self.updateBill.toggle()
+                                    self.billdata = item
+                                    
                                 }) {
                                     Text("修改")
                                     Image(systemName: "pencil")
                                 }
                                 
+                                
                                 Button(action: {
                                     
+                                    self.appData.TodayBill.remove(at: item.id)
                                     
-                                    
-                                   self.appData.TodayBill.remove(at: item.id)
-                                   
                                     DispatchQueue.main.async {
                                         RealmDB().delete(time: item.time)
-                                         self.appData.refreshTodayData()
+                                        self.appData.refreshData()
                                     }
-                                   
-                                        
-                                  
-                                    
                                     
                                 }) {
                                     Text("删除")
@@ -219,28 +217,21 @@ struct HomeView: View {
                                         .foregroundColor(.red)
                                 }
                                 
-                            }
-                            
-                            
+                            }.id(UUID())
+                        
                         }
-                        .frame(width: width-60, height: 65, alignment:Double(item.type).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
-                            
-                            //.offset(x:0,y: Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? 0 : -10)
-                            
-                            .shadow(radius: 5)
+                        .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                        .shadow(radius: 5)
+                        .animation(.none)
+                    
+                    }
+                    .buttonStyle(PlainButtonStyle())
                         
-                        
-                        
-                        
-                        
-                    //}.buttonStyle(PlainButtonStyle())
+                    
                 }
-                    
-                    
                 .offset(x:0,y:-height/20)
                 
             }
-            .animation(.interactiveSpring())
             
             
             
@@ -256,7 +247,10 @@ struct HomeView: View {
             self.appData.refreshData()
             
         }
-        
+        .sheet(isPresented: self.$updateBill) {
+            
+            NewAddBillView(appData:self.appData, billData:self.billdata ,OpenType: "修改")
+        }
         
         
     }

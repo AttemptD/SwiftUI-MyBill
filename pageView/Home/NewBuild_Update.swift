@@ -9,17 +9,21 @@
 import SwiftUI
 
 struct NewAddBillView: View {
-    var select = ["收入","支出"]
+    @State var select = ["收入","支出"]
     @State var type = 0
     @State var money = ""
     @State var time = Date()
     @State var doWhat = ""
     @State var showWarn = false
     @ObservedObject var appData : AppData
+    let billData : Model
+    @State var OpenType : String
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
+        
+        
         NavigationView{
-           
+            KeyboardHost{
                 Form{
                     
                     HStack{
@@ -38,14 +42,14 @@ struct NewAddBillView: View {
                     Section(header: Text("收入/支出费用")) {
                         HStack{
                             
-                            MyTextField(keyboardType: .decimalPad, text: $money, placeholder: "请输入数字")
-                           
+                            MyTextField(keyboardType: .decimalPad, text: $money, placeholder:  "请输入数字")
+                            
                             Text("元")
                         }
                     }
                     
                     Section(header: Text("花销原因")) {
-                         MyTextField(keyboardType: .default, text: $doWhat, placeholder: "例如发红包/收红包")
+                        MyTextField(keyboardType: .default, text: $doWhat, placeholder: "例如发红包/收红包")
                         
                     }
                     
@@ -64,21 +68,25 @@ struct NewAddBillView: View {
                         if self.money != ""{
                             let Money :Double = Double(self.money)!
                             
-                            DispatchQueue.main.async {
-                                self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select[self.type], doWhat: self.doWhat)
+                            if self.OpenType == "新建"{
                                 
-                                
-                                self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select[self.type], doWhat: self.doWhat)
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                     self.appData.refreshData()
+                                DispatchQueue.main.async {
+                                    self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select[self.type], doWhat: self.doWhat)
+                                    
+                                    
+                                    self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select[self.type], doWhat: self.doWhat)
                                     
                                     
                                 }
-                               
+                            }else{
+                                self.appData.updataBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select[self.type], doWhat: self.doWhat)
                             }
-                           
-                                self.presentationMode.wrappedValue.dismiss()
+                            
+                            DispatchQueue.main.async {
+                                self.appData.refreshData()
+                            }
+                            
+                            self.presentationMode.wrappedValue.dismiss()
                             
                             
                         }else{
@@ -92,16 +100,36 @@ struct NewAddBillView: View {
                               message: Text("请输入收入或支出费用"),
                               dismissButton: .default(Text("我知道了")))
                 }
-            .modifier(AdaptsToSoftwareKeyboard())
-        
-            
+                
+                
+                
+            }
         }
-        
+            
+        .onAppear(){
+            
+            if self.OpenType == "修改"{
+                self.doWhat = self.billData.doWhat
+                self.money = String(self.billData.money)
+                
+                
+                if self.billData.type == "支出"{
+                    
+                    self.select = ["支出","收入"]
+                }else{
+                     self.select = ["收入","支出"]
+                }
+                self.time = TimeTools().stringConvertDate(string: self.billData.time)
+            }
+        }
+        .onDisappear(){
+            self.doWhat = ""
+            self.money = ""
+            
+            self.time = Date()
+        }
     }
+    
 }
 
-struct NewAddBillView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewAddBillView(appData: AppData())
-    }
-}
+

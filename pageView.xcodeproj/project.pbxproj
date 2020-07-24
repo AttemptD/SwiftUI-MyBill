@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365A3C4D24CACF1D001E2328 /* DetailView.swift */; };
 		366E056124BC4D7E00AAA1DE /* AllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E056024BC4D7E00AAA1DE /* AllView.swift */; };
 		36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36825C3424AD71D1007134FA /* TrackableScrollView.swift */; };
 		3687A3E224BD40C2008A6194 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687A3E124BD40C2008A6194 /* SwiftUICharts */; };
@@ -36,7 +37,7 @@
 		36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667EC24AB205D00985192 /* HomeAnimation.swift */; };
 		36B667EF24AB2C1600985192 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667EE24AB2C1600985192 /* DropDownView.swift */; };
 		36CE697124B70BE60056737D /* MyNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CE697024B70BE60056737D /* MyNavigationBar.swift */; };
-		36F25DB124B8418D000428E0 /* NewAddBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB024B8418D000428E0 /* NewAddBillView.swift */; };
+		36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB024B8418D000428E0 /* NewBuild_Update.swift */; };
 		36F25DB324B85033000428E0 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB224B85033000428E0 /* DatePicker.swift */; };
 		36F25DB524B854AC000428E0 /* TimeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB424B854AC000428E0 /* TimeTools.swift */; };
 		36F25DB724B85794000428E0 /* KeyboardUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB624B85794000428E0 /* KeyboardUp.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		365A3C4D24CACF1D001E2328 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		366E056024BC4D7E00AAA1DE /* AllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllView.swift; sourceTree = "<group>"; };
 		36825C3424AD71D1007134FA /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		369E34F224A9940100074C20 /* StatusBarLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarLight.swift; sourceTree = "<group>"; };
@@ -93,7 +95,7 @@
 		36B667EE24AB2C1600985192 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		36CE697024B70BE60056737D /* MyNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNavigationBar.swift; sourceTree = "<group>"; };
 		36E8302924C933E20092A665 /* pageView copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "pageView copy-Info.plist"; path = "/Users/attempt/Downloads/SwiftUI/pageView/pageView copy-Info.plist"; sourceTree = "<absolute>"; };
-		36F25DB024B8418D000428E0 /* NewAddBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddBillView.swift; sourceTree = "<group>"; };
+		36F25DB024B8418D000428E0 /* NewBuild_Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuild_Update.swift; sourceTree = "<group>"; };
 		36F25DB224B85033000428E0 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		36F25DB424B854AC000428E0 /* TimeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTools.swift; sourceTree = "<group>"; };
 		36F25DB624B85794000428E0 /* KeyboardUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUp.swift; sourceTree = "<group>"; };
@@ -258,7 +260,7 @@
 			children = (
 				36B3371624A0A74F00B780ED /* MainView.swift */,
 				36B3371724A0A74F00B780ED /* child */,
-				36F25DB024B8418D000428E0 /* NewAddBillView.swift */,
+				36F25DB024B8418D000428E0 /* NewBuild_Update.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -271,6 +273,7 @@
 				369E34F924A9C93000074C20 /* HomeChildView */,
 				36B3371924A0A74F00B780ED /* MyCenterView.swift */,
 				369E350024A9DA0A00074C20 /* MyCenterchildView */,
+				365A3C4D24CACF1D001E2328 /* DetailView.swift */,
 			);
 			path = child;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				36B336E224A0A72D00B780ED /* AppDelegate.swift in Sources */,
 				36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */,
 				369E350924A9EF6900074C20 /* HomeView.swift in Sources */,
+				365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */,
 				36F25DB324B85033000428E0 /* DatePicker.swift in Sources */,
 				36CE697124B70BE60056737D /* MyNavigationBar.swift in Sources */,
 				369E350324A9E14A00074C20 /* RealmDb.swift in Sources */,
@@ -431,7 +435,7 @@
 				369E350524A9E21F00074C20 /* ModelApp.swift in Sources */,
 				36B667EF24AB2C1600985192 /* DropDownView.swift in Sources */,
 				369E34FB24A9C9C700074C20 /* EarningView.swift in Sources */,
-				36F25DB124B8418D000428E0 /* NewAddBillView.swift in Sources */,
+				36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */,
 				36B3371C24A0A74F00B780ED /* RememberView.swift in Sources */,
 				36B336E724A0A72D00B780ED /* pageView.xcdatamodeld in Sources */,
 				36B3371B24A0A74F00B780ED /* MainView.swift in Sources */,
