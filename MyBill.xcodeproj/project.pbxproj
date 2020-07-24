@@ -191,7 +191,7 @@
 		36B336D524A0A72D00B780ED = {
 			isa = PBXGroup;
 			children = (
-				36B336E024A0A72D00B780ED /* pageView */,
+				36B336E024A0A72D00B780ED /* MyBill */,
 				36B336FA24A0A72E00B780ED /* pageViewTests */,
 				36B3370524A0A72E00B780ED /* pageViewUITests */,
 				36B336DF24A0A72D00B780ED /* Products */,
@@ -210,7 +210,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		36B336E024A0A72D00B780ED /* pageView */ = {
+		36B336E024A0A72D00B780ED /* MyBill */ = {
 			isa = PBXGroup;
 			children = (
 				36B3371424A0A74F00B780ED /* Home */,
@@ -226,7 +226,7 @@
 				36B336E524A0A72D00B780ED /* pageView.xcdatamodeld */,
 				36B336EC24A0A72E00B780ED /* Preview Content */,
 			);
-			path = pageView;
+			path = MyBill;
 			sourceTree = "<group>";
 		};
 		36B336EC24A0A72E00B780ED /* Preview Content */ = {
@@ -281,9 +281,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		36B336DD24A0A72D00B780ED /* pageView */ = {
+		36B336DD24A0A72D00B780ED /* MyBill */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36B3370B24A0A72E00B780ED /* Build configuration list for PBXNativeTarget "pageView" */;
+			buildConfigurationList = 36B3370B24A0A72E00B780ED /* Build configuration list for PBXNativeTarget "MyBill" */;
 			buildPhases = (
 				36B336DA24A0A72D00B780ED /* Sources */,
 				36B336DB24A0A72D00B780ED /* Frameworks */,
@@ -293,7 +293,7 @@
 			);
 			dependencies = (
 			);
-			name = pageView;
+			name = MyBill;
 			packageProductDependencies = (
 				369E34EF24A98E5200074C20 /* RealmSwift */,
 				3687A3E124BD40C2008A6194 /* SwiftUICharts */,
@@ -362,7 +362,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 36B336D924A0A72D00B780ED /* Build configuration list for PBXProject "pageView" */;
+			buildConfigurationList = 36B336D924A0A72D00B780ED /* Build configuration list for PBXProject "MyBill" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -380,7 +380,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				36B336DD24A0A72D00B780ED /* pageView */,
+				36B336DD24A0A72D00B780ED /* MyBill */,
 				36B336F624A0A72E00B780ED /* pageViewTests */,
 				36B3370124A0A72E00B780ED /* pageViewUITests */,
 			);
@@ -469,12 +469,12 @@
 /* Begin PBXTargetDependency section */
 		36B336F924A0A72E00B780ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 36B336DD24A0A72D00B780ED /* pageView */;
+			target = 36B336DD24A0A72D00B780ED /* MyBill */;
 			targetProxy = 36B336F824A0A72E00B780ED /* PBXContainerItemProxy */;
 		};
 		36B3370424A0A72E00B780ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 36B336DD24A0A72D00B780ED /* pageView */;
+			target = 36B336DD24A0A72D00B780ED /* MyBill */;
 			targetProxy = 36B3370324A0A72E00B780ED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -610,10 +610,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"pageView/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MyBill/Preview Content\"";
 				DEVELOPMENT_TEAM = H2VUA2N5RN;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = pageView/Info.plist;
+				INFOPLIST_FILE = MyBill/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -630,10 +630,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"pageView/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MyBill/Preview Content\"";
 				DEVELOPMENT_TEAM = H2VUA2N5RN;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = pageView/Info.plist;
+				INFOPLIST_FILE = MyBill/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -732,7 +732,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		36B336D924A0A72D00B780ED /* Build configuration list for PBXProject "pageView" */ = {
+		36B336D924A0A72D00B780ED /* Build configuration list for PBXProject "MyBill" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36B3370924A0A72E00B780ED /* Debug */,
@@ -741,7 +741,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36B3370B24A0A72E00B780ED /* Build configuration list for PBXNativeTarget "pageView" */ = {
+		36B3370B24A0A72E00B780ED /* Build configuration list for PBXNativeTarget "MyBill" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36B3370C24A0A72E00B780ED /* Debug */,

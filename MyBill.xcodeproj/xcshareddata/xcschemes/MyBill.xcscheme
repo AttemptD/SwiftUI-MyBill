@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "36B336DD24A0A72D00B780ED"
                BuildableName = "&#x5c0f;&#x732a;&#x7f50;.app"
-               BlueprintName = "pageView"
-               ReferencedContainer = "container:pageView.xcodeproj">
+               BlueprintName = "MyBill"
+               ReferencedContainer = "container:MyBill.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "36B336F624A0A72E00B780ED"
-               BuildableName = "pageViewTests.xctest"
-               BlueprintName = "pageViewTests"
-               ReferencedContainer = "container:pageView.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "36B3370124A0A72E00B780ED"
-               BuildableName = "pageViewUITests.xctest"
-               BlueprintName = "pageViewUITests"
-               ReferencedContainer = "container:pageView.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -66,8 +46,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "36B336DD24A0A72D00B780ED"
             BuildableName = "&#x5c0f;&#x732a;&#x7f50;.app"
-            BlueprintName = "pageView"
-            ReferencedContainer = "container:pageView.xcodeproj">
+            BlueprintName = "MyBill"
+            ReferencedContainer = "container:MyBill.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -83,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "36B336DD24A0A72D00B780ED"
             BuildableName = "&#x5c0f;&#x732a;&#x7f50;.app"
-            BlueprintName = "pageView"
-            ReferencedContainer = "container:pageView.xcodeproj">
+            BlueprintName = "MyBill"
+            ReferencedContainer = "container:MyBill.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

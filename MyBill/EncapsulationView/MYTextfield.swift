@@ -67,20 +67,34 @@ struct MyTextField: UIViewRepresentable {
         func textFieldDidEndEditing(_ textField: UITextField) {
          
              self.text.wrappedValue = textField.text!
-             print("结束")
+            
         }
         
          //开始编辑
         func textFieldDidBeginEditing(_ textField: UITextField) {
         
            
-            print("开始")
+           
         }
         
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            self.text.wrappedValue = string
+           
 
-        
+            let pointRange = (textField.text! as NSString).range(of: ".")
+            
+            if textField.text == "" && string == "." {
+                return false
+            }
+            
+            if pointRange.length > 0 && pointRange.location > 0{//判断输入框内是否含有“.”。
+                if string == "." {
+                    return false
+                }
+                
+               
+            }
+            
+            self.text.wrappedValue = string
             return true
            
         }
