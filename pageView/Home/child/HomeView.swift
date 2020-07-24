@@ -1,0 +1,273 @@
+//
+//  HomeView.swift
+//  pageView
+//
+//  Created by Attempt D on 2020/6/29.
+//  Copyright © 2020 Frank D. All rights reserved.
+//
+
+import SwiftUI
+import SwiftUICharts
+
+struct HomeView: View {
+    @State var scrollViewContentOffset : CGFloat = 0
+    @State private var scale: CGFloat = 1.0
+    @State var barTitle = "主页"
+    @ObservedObject var appData = AppData()
+    
+    var body: some View {
+        
+        ZStack(alignment:.topTrailing){
+            
+            Image("IMG_0090")
+                .resizable()
+                .scaledToFill()
+                .frame(width: width, height: -scrollViewContentOffset <= 0 ? height/3+scrollViewContentOffset : height/3)
+                .clipped()
+                .blur(radius: -scrollViewContentOffset/4,opaque:true)
+                .scaleEffect(-scrollViewContentOffset < 0 ? 1 + scrollViewContentOffset / 200 : 1)
+                
+                
+                .overlay(
+                    
+                    VStack{
+                        
+                        HStack{
+                            Text(appData.TodayEarning - appData.TodayPay < 0 ? "支出" : "收入")
+                                .bold()
+                                .font(.system(size: 20))
+                                
+                                .foregroundColor(Color.init("FontColor"))
+                            
+                            Spacer()
+                            
+                            Text(appData.TodayEarning - appData.TodayPay < 0 ? "¥\(transer(value: appData.TodayPay - appData.TodayEarning))" : "¥\(transer(value: appData.TodayEarning - appData.TodayPay))")
+                                
+                                .font(.system(size: 25))
+                                .foregroundColor(Color.init("FontColor"))
+                            
+                            
+                            
+                        }
+                        .padding(.bottom,50)
+                        .foregroundColor(.black)
+                        
+                    }
+                        
+                    .frame(width: width-60, height: height/3.5,alignment: .center)
+                    
+                    
+                    
+            )
+                .cornerRadius(15)
+                .offset(x: 0, y:-scrollViewContentOffset <= 0 ? 0 : scrollViewContentOffset)
+            
+            
+            TrackableScrollView(axis: .vertical, showIndicators: false, contentOffset: $scrollViewContentOffset){
+                Spacer().frame(width:width, height: height/3)
+                
+                
+                VStack{
+                    Image("MyImageBack")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 60, height: 60, alignment: .center)
+                        .clipped()
+                        .cornerRadius(50)
+                    
+                    Text("Attempt")
+                        .bold()
+                        .foregroundColor(Color.init("FontColor"))
+                    
+                    HStack(alignment: .center){
+                        
+                        HStack{
+                            Image("收入-1")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                            VStack(alignment:.leading){
+                                Text("\(transer(value: appData.TodayEarning))元")
+                                    .font(.system(size: 16))
+                                    .bold()
+                                    .foregroundColor(Color.init("FontColor"))
+                                Text("收入")
+                                    .font(.system(size: 11))
+                                    .fontWeight(.thin)
+                                
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        HStack{
+                            Image("支出-1")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                            
+                            VStack(alignment:.leading){
+                                Text("\(transer(value: appData.TodayPay))元")
+                                    .font(.system(size: 16))
+                                    .bold()
+                                    .foregroundColor(Color.init("FontColor"))
+                                Text("支出")
+                                    .font(.system(size: 11))
+                                    .fontWeight(.thin)
+                                
+                            }
+                        }
+                    }.padding(.horizontal,width/10)
+                        .frame(width: width-60,  alignment: .center)
+                    
+                    
+                }.frame(width: width-60, height: 190, alignment: .center)
+                    .background(Color.white)
+                    .shadow(radius: 10)
+                    .cornerRadius(10)
+                    .offset(x:0,y:-height/8)
+                    .animation(.none)
+                
+                
+                
+                
+                
+                HStack{
+                    Text("今天的账单")
+                        .font(.system(size:20))
+                        .bold()
+                        .foregroundColor(Color.init("FontColor"))
+                    Spacer()
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "ellipsis")
+                            .foregroundColor(Color.init("FontColor"))
+                    }
+                } .frame(width: width-60,  alignment: .center)
+                    .offset(x:0,y:-height/10)
+                    .animation(.none)
+                
+                ForEach(appData.TodayBill){item in
+                    
+                    //NavigationLink(destination:EmptyView()){
+                        
+                        HStack{
+                            VStack{
+                                HStack{
+                                    if item.type == "收入"{
+                                        
+                                        Image("收入")
+                                            .resizable()
+                                            .frame(width:35,height:35)
+                                            .foregroundColor(.orange)
+                                    }else{
+                                        Image("支出")
+                                            .resizable()
+                                            .frame(width:35,height:35)
+                                            .foregroundColor(.gray)
+                                    }
+                                    Spacer()
+                                    Text(item.doWhat)
+                                        .font(.system(size:16))
+                                }.padding(.horizontal,10)
+                                    .shadow(radius: 0)
+                                
+                                Text("\(transer(value:item.money))元")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.heavy)
+                                    .padding(.bottom,15)
+                                    
+                                    .foregroundColor(Color.init("FontColor"))
+                                
+                                Text(item.blurTime)
+                                    .foregroundColor(.gray)
+                                    .fontWeight(.light)
+                                    .font(.system(size:14))
+                                
+                            }
+                            .padding(.vertical,15)
+                            .frame(width: (width-60)/2-10, alignment: .center)
+                                
+                            .background(Color.white)
+                            .cornerRadius(10)
+                                
+                            .contextMenu(){
+                                Button(action: {
+                                    
+                                }) {
+                                    Text("修改")
+                                    Image(systemName: "pencil")
+                                }
+                                
+                                Button(action: {
+                                    
+                                    
+                                    
+                                   self.appData.TodayBill.remove(at: item.id)
+                                   
+                                    DispatchQueue.main.async {
+                                        RealmDB().delete(time: item.time)
+                                         self.appData.refreshTodayData()
+                                    }
+                                   
+                                        
+                                  
+                                    
+                                    
+                                }) {
+                                    Text("删除")
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
+                                
+                            }
+                            
+                            
+                        }
+                        .frame(width: width-60, height: 65, alignment:Double(item.type).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                            
+                            //.offset(x:0,y: Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? 0 : -10)
+                            
+                            .shadow(radius: 5)
+                        
+                        
+                        
+                        
+                        
+                    //}.buttonStyle(PlainButtonStyle())
+                }
+                    
+                    
+                .offset(x:0,y:-height/20)
+                
+            }
+            .animation(.interactiveSpring())
+            
+            
+            
+            MyNavigationBar(scrollViewContentOffset: self.$scrollViewContentOffset, middle: self.$barTitle, right: "")
+            
+            
+        }
+        .edgesIgnoringSafeArea(.top)
+        .background(Color.init("MainCellSpacerColor"))
+        .navigationBarTitle("主页",displayMode: .inline)
+        .navigationBarHidden(true)
+        .onAppear(){
+            self.appData.refreshData()
+            
+        }
+        
+        
+        
+    }
+    
+}
+
+
+
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView(appData: AppData())
+    }
+}
