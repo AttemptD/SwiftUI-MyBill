@@ -82,7 +82,7 @@ struct MyCenterView: View {
                 
             }
             
-            MyNavigationBar(scrollViewContentOffset: self.$scrollViewContentOffset, middle: self.$barTitle, right: "")
+            MyNavigationBar(scrollViewContentOffset: self.$scrollViewContentOffset, middle: self.$barTitle, right: "透明")
             
         }
         .background(Color.init("MainCellSpacerColor"))

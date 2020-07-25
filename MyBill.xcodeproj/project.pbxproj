@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3646BD1724CBE4CA0016F9AD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3646BD1624CBE4CA0016F9AD /* RealmSwift */; };
 		365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365A3C4D24CACF1D001E2328 /* DetailView.swift */; };
 		366E056124BC4D7E00AAA1DE /* AllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E056024BC4D7E00AAA1DE /* AllView.swift */; };
 		36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36825C3424AD71D1007134FA /* TrackableScrollView.swift */; };
 		3687A3E224BD40C2008A6194 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687A3E124BD40C2008A6194 /* SwiftUICharts */; };
 		3687A3E524BD489D008A6194 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687A3E424BD489D008A6194 /* Charts */; };
-		369E34F024A98E5200074C20 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 369E34EF24A98E5200074C20 /* RealmSwift */; };
 		369E34F324A9940100074C20 /* StatusBarLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F224A9940100074C20 /* StatusBarLight.swift */; };
 		369E34F824A9B12100074C20 /* SrcSysystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F724A9B12100074C20 /* SrcSysystem.swift */; };
 		369E34FB24A9C9C700074C20 /* EarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34FA24A9C9C700074C20 /* EarningView.swift */; };
@@ -106,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				369E34F024A98E5200074C20 /* RealmSwift in Frameworks */,
+				3646BD1724CBE4CA0016F9AD /* RealmSwift in Frameworks */,
 				3687A3E524BD489D008A6194 /* Charts in Frameworks */,
 				3687A3E224BD40C2008A6194 /* SwiftUICharts in Frameworks */,
 			);
@@ -295,9 +295,9 @@
 			);
 			name = MyBill;
 			packageProductDependencies = (
-				369E34EF24A98E5200074C20 /* RealmSwift */,
 				3687A3E124BD40C2008A6194 /* SwiftUICharts */,
 				3687A3E424BD489D008A6194 /* Charts */,
+				3646BD1624CBE4CA0016F9AD /* RealmSwift */,
 			);
 			productName = pageView;
 			productReference = 36B336DE24A0A72D00B780ED /* 小猪罐.app */;
@@ -372,9 +372,9 @@
 			);
 			mainGroup = 36B336D524A0A72D00B780ED;
 			packageReferences = (
-				369E34EE24A98E5200074C20 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				3687A3E024BD40C1008A6194 /* XCRemoteSwiftPackageReference "ChartView" */,
 				3687A3E324BD489D008A6194 /* XCRemoteSwiftPackageReference "swiftui-charts" */,
+				3646BD1524CBE4CA0016F9AD /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 36B336DF24A0A72D00B780ED /* Products */;
 			projectDirPath = "";
@@ -771,6 +771,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3646BD1524CBE4CA0016F9AD /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.2;
+			};
+		};
 		3687A3E024BD40C1008A6194 /* XCRemoteSwiftPackageReference "ChartView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppPear/ChartView";
@@ -787,17 +795,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
-		369E34EE24A98E5200074C20 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-cocoa.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3646BD1624CBE4CA0016F9AD /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3646BD1524CBE4CA0016F9AD /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		3687A3E124BD40C2008A6194 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3687A3E024BD40C1008A6194 /* XCRemoteSwiftPackageReference "ChartView" */;
@@ -807,11 +812,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3687A3E324BD489D008A6194 /* XCRemoteSwiftPackageReference "swiftui-charts" */;
 			productName = Charts;
-		};
-		369E34EF24A98E5200074C20 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 369E34EE24A98E5200074C20 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

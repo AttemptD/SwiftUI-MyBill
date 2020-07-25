@@ -54,10 +54,10 @@ struct AllView: View {
                             Spacer()
                             
                             Image(item.type)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .padding(.horizontal)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .padding(.horizontal)
                             
                         }
                         
@@ -70,13 +70,10 @@ struct AllView: View {
                     .padding(.vertical,10)
                     .padding(.horizontal,20)
                 }
-            .buttonStyle(PlainButtonStyle())
-            }
+                .buttonStyle(PlainButtonStyle())
+            }.padding(.top,30)
         }.onAppear(){
-            
-               
-                self.appData.refreshData()
-            
+            self.appData.refreshData()
         }
         
         

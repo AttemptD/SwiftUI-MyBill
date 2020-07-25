@@ -12,7 +12,7 @@ struct RememberView: View {
     @State var pageType = 0
     @State var haveTo : CGFloat = -height
     @ObservedObject var appData : AppData
-    @State var barTitle = ["钱记","支出","收入"]
+    @State var barTitle = ["钱记","收入","支出"]
     
     var body: some View {
         
@@ -27,7 +27,7 @@ struct RememberView: View {
             
             
             
-            MyNavigationBar(scrollViewContentOffset: self.$haveTo, middle: self.$barTitle[pageType], right: "")
+            MyNavigationBar(scrollViewContentOffset: self.$haveTo, middle: self.$barTitle[pageType], right: "透明")
             
         }.edgesIgnoringSafeArea(.top)
         

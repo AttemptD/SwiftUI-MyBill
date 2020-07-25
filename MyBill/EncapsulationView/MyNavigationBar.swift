@@ -44,7 +44,7 @@ struct MyNavigationBar: View {
                     Button(action: {
                         
                     }) {
-                        Image(systemName: self.right)
+                        Image(self.right)
                     }
                         
                     .accentColor(.white)

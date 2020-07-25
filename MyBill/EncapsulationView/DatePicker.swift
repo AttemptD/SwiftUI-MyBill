@@ -20,6 +20,9 @@ struct DatePacker: View {
         VStack{
             HStack{
                 Text("\(title)")
+                    .font(.system(size: 13))
+                    .fontWeight(.light)
+                
                 Spacer()
                 Text("\(dateChanged(date: date))")
                     
@@ -41,7 +44,7 @@ struct DatePacker: View {
             }else{
                 withAnimation(.default){
                     self.isshow = true
-                    self.color = .orange
+                    self.color = Color.init("MainThemeColor")
                 }
                 
             }

@@ -68,6 +68,7 @@ struct EarningView: View {
                 }
                  .buttonStyle(PlainButtonStyle())
             }
+            .padding(.top,30)
         }
         .onAppear(){
             

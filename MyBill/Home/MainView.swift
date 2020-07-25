@@ -14,7 +14,7 @@ struct MainView: View {
     @State var scrollViewContentOffset : CGFloat = 0
     @State var newAddBill = false
     @ObservedObject var appData = AppData()
-
+    
     let Title = ["钱记","收入","支出"]
     var body: some View {
         ZStack(alignment:.bottomTrailing){
@@ -24,9 +24,12 @@ struct MainView: View {
                     
                     HomeView(appData:self.appData).tabItem
                         {
+                            
+                            
                             Image(systemName: "house.fill")
                                 .renderingMode(.template)
                             Text("主页")
+                            
                     }.tag(1)
                         .onAppear(){
                             let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController

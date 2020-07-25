@@ -70,6 +70,7 @@ struct PayView: View {
                 }
                  .buttonStyle(PlainButtonStyle())
             }
+            .padding(.top,30)
         }
         .onAppear(){
             self.appData.refreshData()
