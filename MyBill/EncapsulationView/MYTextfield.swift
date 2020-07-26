@@ -63,6 +63,7 @@ struct MyTextField: UIViewRepresentable {
             self.text.wrappedValue = textField.text!
             
             self.showLine.wrappedValue = false
+            
             return true
         }
         

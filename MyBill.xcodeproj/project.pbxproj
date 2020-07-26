@@ -196,6 +196,7 @@
 				36B3370524A0A72E00B780ED /* pageViewUITests */,
 				36B336DF24A0A72D00B780ED /* Products */,
 				36E8302924C933E20092A665 /* pageView copy-Info.plist */,
+				36F3EBD024CD5EF600CD8415 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -276,6 +277,13 @@
 				365A3C4D24CACF1D001E2328 /* DetailView.swift */,
 			);
 			path = child;
+			sourceTree = "<group>";
+		};
+		36F3EBD024CD5EF600CD8415 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,6 +621,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MyBill/Preview Content\"";
 				DEVELOPMENT_TEAM = H2VUA2N5RN;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyBill/EncapsulationView",
+				);
 				INFOPLIST_FILE = MyBill/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -633,6 +645,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MyBill/Preview Content\"";
 				DEVELOPMENT_TEAM = H2VUA2N5RN;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyBill/EncapsulationView",
+				);
 				INFOPLIST_FILE = MyBill/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

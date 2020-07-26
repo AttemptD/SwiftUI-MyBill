@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-//import SwiftUIPager
+
 
 struct MainView: View {
     @State var selection = 1
@@ -41,7 +41,7 @@ struct MainView: View {
                         {
                             Image(systemName: "tray.full.fill")
                                 .renderingMode(.template)
-                            Text("记账")
+                            Text("账单")
                     }.tag(2)
                         .onAppear(){
                             let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
@@ -92,6 +92,10 @@ struct ContentView_Previews: PreviewProvider {
         MainView()
     }
 }
+
+
+
+
 
 
 extension UIApplication {

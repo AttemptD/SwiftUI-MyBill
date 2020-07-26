@@ -104,6 +104,7 @@ class AppData: ObservableObject {
         RealmDB().update(model: billData)
     }
     
+    //所有账单
     func getBillData() {
         
         let bill = RealmDB().getDB().objects(Bill.self).sorted(byKeyPath: "time",ascending: false)
@@ -120,8 +121,11 @@ class AppData: ObservableObject {
             
             self.BillDatas.append(billData)
         }
+        
+        
     }
     
+    //所有收入账单
     func EarningData() {
         let earn = RealmDB().getDB().objects(Bill.self).filter(" type == '收入'").sorted(byKeyPath: "time", ascending: false)
         for Earn in earn{
@@ -136,6 +140,7 @@ class AppData: ObservableObject {
         }
     }
     
+    //所有支出账单
     func payData() {
         let payout = RealmDB().getDB().objects(Bill.self).filter(" type == '支出' ").sorted(byKeyPath: "time", ascending: false)
         for Pay in payout{
@@ -151,6 +156,7 @@ class AppData: ObservableObject {
         }
     }
     
+    //今天的账单
     func getTodayAllBills() {
         
         let todayBill = RealmDB().getDB().objects(Bill.self).filter(" blurTime == '\(TimeTools().getDay(value : 0,Timetype : "yyyy年MM月dd日"))' ").sorted(byKeyPath: "time", ascending: true)
@@ -168,6 +174,7 @@ class AppData: ObservableObject {
         }
     }
     
+    //今天的总收入/支出数据
     func getTodayPay_Earn()  {
         let TodayPayOut : Double = RealmDB().getDB().objects(Bill.self).filter(" blurTime == '\(TimeTools().getDay(value : 0,Timetype : "yyyy年MM月dd日"))' AND type == '支出' ").sum(ofProperty: "money")
         
@@ -178,6 +185,7 @@ class AppData: ObservableObject {
         self.TodayEarning = TodayEarn
     }
     
+    //限制查询
     func getAllBill_Ten() {
         let bill = RealmDB().getDB().objects(Bill.self).sorted(byKeyPath: "time",ascending: false)
         let bills = RealmDB().getDB().objects(Bill.self).sorted(byKeyPath: "time",ascending: false)
