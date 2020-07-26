@@ -14,6 +14,7 @@ struct MyTextField: UIViewRepresentable {
     @Binding var text: String
     @State var placeholder : String
     var paddingHor:CGFloat = 10
+    @Binding var showLine : Bool
     func makeUIView(context: Context) -> UITextField {
         
         
@@ -41,16 +42,18 @@ struct MyTextField: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self,text: self.$text)
+        Coordinator(self,text: self.$text,showLine: self.$showLine)
     }
     
     
     class Coordinator: NSObject, UITextFieldDelegate {
         var parent: MyTextField
         var text: Binding<String>
-        init(_ textField: MyTextField,text:Binding<String>) {
+        var showLine : Binding<Bool>
+        init(_ textField: MyTextField,text:Binding<String>,showLine:Binding<Bool>) {
             self.parent = textField
             self.text = text
+            self.showLine = showLine
         }
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -59,7 +62,7 @@ struct MyTextField: UIViewRepresentable {
            
             self.text.wrappedValue = textField.text!
             
-           
+            self.showLine.wrappedValue = false
             return true
         }
         
@@ -68,12 +71,13 @@ struct MyTextField: UIViewRepresentable {
          
              self.text.wrappedValue = textField.text!
             
+             self.showLine.wrappedValue = false
         }
         
          //开始编辑
         func textFieldDidBeginEditing(_ textField: UITextField) {
         
-           
+            self.showLine.wrappedValue = true
            
         }
         

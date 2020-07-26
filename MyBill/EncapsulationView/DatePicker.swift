@@ -78,7 +78,8 @@ struct Setting: UIViewRepresentable {
         }else{
             datePicker.datePickerMode = .time
         }
-        datePicker.minimumDate = Date.init()
+        datePicker.maximumDate = Date.init()
+      
         
         datePicker.addTarget(context.coordinator, action: #selector(Coordinator.changed(_:)), for: .valueChanged)
         return datePicker

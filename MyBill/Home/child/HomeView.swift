@@ -131,7 +131,7 @@ struct HomeView: View {
                 
                 
                 HStack{
-                    Text("今天的账单")
+                    Text(appData.TodayBill.count != 0 ? "今天的账单" : "往期的账单")
                         .font(.system(size:20))
                         .bold()
                         .foregroundColor(Color.init("FontColor"))
@@ -146,7 +146,7 @@ struct HomeView: View {
                     .offset(x:0,y:-height/10)
                     .animation(.none)
                 
-                ForEach(appData.TodayBill){item in
+                ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
                     
                     NavigationLink(destination:DetailView(billData: item)){
                         

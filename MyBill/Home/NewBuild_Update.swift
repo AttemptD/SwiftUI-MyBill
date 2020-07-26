@@ -19,6 +19,9 @@ struct NewAddBillView: View {
     @State var OpenType : String
     @State var showPay = true
     @State var showEarn = true
+    @State var showLine_money = false
+    @State var showLine_doWhat = false
+    
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         
@@ -30,7 +33,7 @@ struct NewAddBillView: View {
                     
                     
                     Text("新建")
-                        .font(.system(size: 24))
+                        .font(.system(size: 20))
                         .fontWeight(.light)
                         .padding(.leading,25)
                         .frame(width: width,alignment: .leading)
@@ -65,6 +68,12 @@ struct NewAddBillView: View {
                                             Text("修改")
                                                 .font(.system(size: 12))
                                                 .fontWeight(.light)
+                                                .frame(height: 20, alignment: .center)
+                                                .padding(.horizontal,5)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 5)
+                                                        .stroke(Color.init("MainThemeColor"), lineWidth: 1)
+                                            )
                                                 .padding([.trailing,.top],20)
                                         }
                                         
@@ -148,10 +157,17 @@ struct NewAddBillView: View {
                                     .padding(.leading,20)
                                     .padding(.bottom,10)
                                 HStack{
-                                    MyTextField(keyboardType: .decimalPad, text: $money, placeholder:  "请输入数字")
-                                    Spacer()
-                                    Text("元")
-                                }.padding(.horizontal,20)
+                                    MyTextField(keyboardType: .decimalPad, text: $money, placeholder:  "请输入数字",showLine:$showLine_money)
+                                        .frame( height: 40)
+                                    
+                                    
+                                }.overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.init("MainThemeColor"), lineWidth: showLine_money == true ? 1 : 0)
+                                        .animation(.linear)
+                                )
+                                    .padding(.horizontal,20)
+                                
                                 
                             }.frame(width: width-40,alignment:.leading)
                             
@@ -165,11 +181,19 @@ struct NewAddBillView: View {
                                     .fontWeight(.light)
                                     .padding(.leading,20)
                                     .padding(.bottom,10)
+                                
+                                
                                 HStack{
-                                    MyTextField(keyboardType: .default, text: $doWhat, placeholder:  "例如发红包/收红包")
-                                    Spacer()
+                                    MyTextField(keyboardType: .default, text: $doWhat, placeholder:  "例如发红包/收红包", showLine:$showLine_doWhat)
+                                        .frame( height: 40)
                                     
-                                }.padding(.horizontal,20)
+                                    
+                                }.overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.init("MainThemeColor"), lineWidth: showLine_doWhat == true ? 1 : 0)
+                                    .animation(.linear)
+                                )
+                                    .padding(.horizontal,20)
                                 
                             }.frame(width: width-40,alignment:.leading)
                             
@@ -185,7 +209,7 @@ struct NewAddBillView: View {
                         
                         
                         Button(action: {
-                            if self.money != "" || self.select != ""{
+                            if self.money != "" && self.select != ""{
                                 let Money :Double = Double(self.money)!
                                 
                                 if self.OpenType == "新建"{
@@ -239,7 +263,7 @@ struct NewAddBillView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "chevron.down")
-                        
+                            
                             .foregroundColor(Color.init("MainThemeColor"))
                             .scaleEffect(1.5)
                         
@@ -248,7 +272,7 @@ struct NewAddBillView: View {
                     .frame(width: width,height:50,alignment: .leading)
                 
             }
-            .edgesIgnoringSafeArea(.all)
+            
             .buttonStyle(PlainButtonStyle())
             .onAppear(){
                 
@@ -277,15 +301,9 @@ struct NewAddBillView: View {
                 
                 self.time = Date()
             }
-            //                .navigationBarItems(
-            //                    leading:
-            //                    Button(action: { }) {
-            //                        Text("取消").foregroundColor(.gray)
-            //                })
             
             
-            
-        }
+        }.edgesIgnoringSafeArea(.all)
         
     }
     

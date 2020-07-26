@@ -58,7 +58,7 @@ struct MainView: View {
                     }.tag(3)
                     
                 }
-                .accentColor(.orange)
+                .accentColor(Color.init("MainThemeColor"))
                 .sheet(isPresented: self.$newAddBill) {
                     NewAddBillView(appData:self.appData, billData: Model(), OpenType: "新建")
                 }
@@ -74,7 +74,7 @@ struct MainView: View {
                         .frame(width: 40, height: 40, alignment: .center)
                         .shadow(radius: 5)
                         
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color.init("MainThemeColor"))
                         .padding(.trailing,20)
                     
                 }
@@ -92,6 +92,33 @@ struct ContentView_Previews: PreviewProvider {
         MainView()
     }
 }
+
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+class AnyGestureRecognizer: UIGestureRecognizer {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+        //To prevent keyboard hide and show when switching from one textfield to another
+        if let textField = touches.first?.view, textField is UITextField {
+            state = .failed
+        } else {
+            state = .began
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        state = .ended
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+        state = .cancelled
+    }
+}
+
 
 //始终拥有滑动返回
 extension UINavigationController: UIGestureRecognizerDelegate {

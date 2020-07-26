@@ -30,12 +30,15 @@ class AppData: ObservableObject {
     var TodayPay : Double = 0
     var TodayEarning : Double = 0
     
+    var Bill_ten = [Model]()
+    
     init() {
         getBillData()
         EarningData()
         payData()
         getTodayAllBills()
         getTodayPay_Earn()
+        getAllBill_Ten()
     }
     
     //及时数据更新
@@ -55,34 +58,29 @@ class AppData: ObservableObject {
         
     }
     
-    func refreshTodayData(){
-        objectWillChange.send()
-        
-            self.TodayBill.removeAll()
-            self.getTodayAllBills()
-            self.getTodayPay_Earn()
-        
-    }
+    
     
     func refreshData() {
         
         objectWillChange.send()
-       
-        
-            self.BillDatas.removeAll()
-            self.EaringDatas.removeAll()
-            self.payDatas.removeAll()
-            self.TodayBill.removeAll()
-            
-            self.getBillData()
-            self.EarningData()
-            self.payData()
-            self.getTodayAllBills()
-            self.getTodayPay_Earn()
         
         
+        self.BillDatas.removeAll()
+        self.EaringDatas.removeAll()
+        self.payDatas.removeAll()
+        self.TodayBill.removeAll()
+        self.Bill_ten.removeAll()
         
-       
+        self.getBillData()
+        self.EarningData()
+        self.payData()
+        self.getTodayAllBills()
+        self.getTodayPay_Earn()
+        self.getAllBill_Ten()
+        
+        
+        
+        
     }
     
     func setBillData(time:String,money:Double,type:String,doWhat:String){
@@ -107,7 +105,7 @@ class AppData: ObservableObject {
     }
     
     func getBillData() {
-       
+        
         let bill = RealmDB().getDB().objects(Bill.self).sorted(byKeyPath: "time",ascending: false)
         
         for Bills in bill{
@@ -178,5 +176,41 @@ class AppData: ObservableObject {
         let TodayEarn : Double = RealmDB().getDB().objects(Bill.self).filter(" blurTime == '\(TimeTools().getDay(value : 0,Timetype : "yyyy年MM月dd日"))' AND type == '收入' ").sum(ofProperty: "money")
         
         self.TodayEarning = TodayEarn
+    }
+    
+    func getAllBill_Ten() {
+        let bill = RealmDB().getDB().objects(Bill.self).sorted(byKeyPath: "time",ascending: false)
+        let bills = RealmDB().getDB().objects(Bill.self).sorted(byKeyPath: "time",ascending: false)
+        
+    
+        if bills.count > 8 {
+            for i in 0 ..< 7{
+                let billData = Model()
+                let bill_ten = bills[i]
+                
+                
+                billData.id = self.Bill_ten.count
+                billData.doWhat = bill_ten.doWhat
+                billData.money = bill_ten.money
+                billData.type = bill_ten.type
+                billData.time = bill_ten.time
+                billData.time = String(bill_ten.blurTime.prefix(11))
+
+                self.Bill_ten.append(billData)
+            }
+        }else{
+            for Bills in bill{
+                
+                let billData = Model()
+                billData.id = self.Bill_ten.count
+                billData.doWhat = Bills.doWhat
+                billData.money = Bills.money
+                billData.type = Bills.type
+                billData.time = Bills.time
+                billData.blurTime = String(Bills.time.prefix(11))
+                
+                self.Bill_ten.append(billData)
+            }
+        }
     }
 }
