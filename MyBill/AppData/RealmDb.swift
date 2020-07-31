@@ -15,6 +15,8 @@ class RealmDB {
     func getDB() -> Realm {
         let docPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,FileManager.SearchPathDomainMask.userDomainMask, true)[0] as String
         let dbPath = docPath.appending("/MoneyR.realm")
+        
+        //print(dbPath)
         /// 传入路径会自动创建数据库
         let defaultRealm = try! Realm(fileURL: URL.init(string: dbPath)!)
         return defaultRealm
@@ -68,6 +70,18 @@ class RealmDB {
             defaultRealm.create(Bill.self, value: data, update: .modified)
         }
     }
+    
+    func insertFolder(fold:Folder)  {
+        let folderBill = FolderBill()
+        folderBill.folderTime = fold.folderTime
+        folderBill.bill = fold.folderDatas
+        
+        let defaultRealm = self.getDB()
+        try! defaultRealm.write {
+            
+            defaultRealm.add(folderBill,update: .modified)
+        }
+    }
 }
 
 class Bill: Object {
@@ -85,5 +99,20 @@ class Bill: Object {
     override static func ignoredProperties() -> [String] {
         return ["tempID"]
     }
+}
+
+class FolderBill :Object {
+    @objc dynamic var id : Int = 0
+    @objc dynamic var folderTime = ""
+    @objc dynamic var bill = ""
+    
+    override static func primaryKey() -> String? {
+        return "folderTime"
+    }
+    
+    override static func ignoredProperties() -> [String] {
+           return ["tempID"]
+       }
+    
 }
 

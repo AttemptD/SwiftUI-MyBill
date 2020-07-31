@@ -4,7 +4,6 @@
 //
 //  Created by Attempt D on 2020/7/10.
 //  Copyright © 2020 Frank D. All rights reserved.
-//
 
 import SwiftUI
 
@@ -32,16 +31,13 @@ struct NewAddBillView: View {
                 ZStack(alignment:.top){
                     
                     VStack{
-                        
-                        
+                    
                         Text("新建")
                             .font(.system(size: 20))
                             .fontWeight(.light)
                             .padding(.leading,25)
                             .frame(width: width,alignment: .leading)
                             .padding(.top,50)
-                        
-                        
                         
                         
                         Spacer().frame(height: 25)
@@ -220,7 +216,7 @@ struct NewAddBillView: View {
                                     if self.OpenType == "新建"{
                                         
                                         DispatchQueue.main.async {
-                                            self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
+                                            self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                             
                                             
                                             self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
@@ -242,15 +238,14 @@ struct NewAddBillView: View {
                                     self.showWarn.toggle()
                                 }
                             }) {
+                                
                                 Text("\(OpenType)账单")
                                     .foregroundColor(.white)
                                     .frame(width: 200, height: 50, alignment: .center)
                                     .background(Color.init("MainThemeColor"))
                                     .cornerRadius(15)
                                 
-                            }
-                                
-                            .alert(isPresented: $showWarn) {
+                            }.alert(isPresented: $showWarn) {
                                 Alert(title: Text("提示"),
                                       message: Text( self.select == "" ? "请选择账单类型":"请输入收入支出费用"),
                                       dismissButton: .default(Text("我知道了")))

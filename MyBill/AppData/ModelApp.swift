@@ -21,16 +21,16 @@ class Model: Identifiable {
 
 class AppData: ObservableObject {
     
-    var BillDatas = [Model]()
-    var EaringDatas = [Model]()
-    var payDatas = [Model]()
+    @Published var BillDatas = [Model]()
+    @Published var EaringDatas = [Model]()
+    @Published var payDatas = [Model]()
     
-    var TodayBill = [Model]()
+    @Published var TodayBill = [Model]()
     
-    var TodayPay : Double = 0
-    var TodayEarning : Double = 0
+    @Published var TodayPay : Double = 0
+    @Published var TodayEarning : Double = 0
     
-    var Bill_ten = [Model]()
+    @Published var Bill_ten = [Model]()
     
     init() {
         getBillData()
@@ -202,7 +202,7 @@ class AppData: ObservableObject {
                 billData.money = bill_ten.money
                 billData.type = bill_ten.type
                 billData.time = bill_ten.time
-                billData.time = String(bill_ten.blurTime.prefix(11))
+                billData.blurTime = String(bill_ten.time.prefix(11))
 
                 self.Bill_ten.append(billData)
             }

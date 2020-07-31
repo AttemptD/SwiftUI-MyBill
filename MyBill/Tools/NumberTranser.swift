@@ -17,3 +17,22 @@ func transer (value:Double) ->String{
     return numberFormatter.string(from: num) ?? ""
     
 }
+
+func getArrayFromJSONString(jsonString:String) ->NSArray{
+     
+    let jsonData:Data = jsonString.data(using: .utf8)!
+     
+    let array = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+    if array != nil {
+        return array as! NSArray
+    }
+    return array as! NSArray
+     
+}
+
+func getString(time :String ,min:Int,max:Int){
+    
+    let index1 = time.index(time.startIndex,offsetBy: min)
+    let index2 = time.index(time.startIndex,offsetBy: max)
+    
+}

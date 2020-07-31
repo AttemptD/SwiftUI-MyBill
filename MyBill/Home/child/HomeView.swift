@@ -204,9 +204,15 @@ struct HomeView: View {
                                 
                                 Button(action: {
                                     
-                                    self.appData.TodayBill.remove(at: item.id)
+                                    if(self.appData.TodayBill.count != 0){
+                                        self.appData.TodayBill.remove(at: item.id)
+                                    }else{
+                                        self.appData.Bill_ten.remove(at:item.id)
+                                    }
                                     
                                     DispatchQueue.main.async {
+                                        
+                                         
                                         RealmDB().delete(time: item.time)
                                         self.appData.refreshData()
                                     }

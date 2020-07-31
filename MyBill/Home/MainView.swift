@@ -14,6 +14,7 @@ struct MainView: View {
     @State var scrollViewContentOffset : CGFloat = 0
     @State var newAddBill = false
     @ObservedObject var appData = AppData()
+    @ObservedObject var folderData = FolderData()
     
     let Title = ["钱记","收入","支出"]
     var body: some View {
@@ -81,6 +82,8 @@ struct MainView: View {
                 .offset(y:-60)
                 
             }
+        }.onAppear(){
+            self.folderData.setFoloderBillData()
         }
         
         
