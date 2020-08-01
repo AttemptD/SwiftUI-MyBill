@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3646BD1724CBE4CA0016F9AD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3646BD1624CBE4CA0016F9AD /* RealmSwift */; };
+		364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C24BA24D5A6F3001EBD47 /* SearchView.swift */; };
 		365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365A3C4D24CACF1D001E2328 /* DetailView.swift */; };
 		366E056124BC4D7E00AAA1DE /* AllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E056024BC4D7E00AAA1DE /* AllView.swift */; };
 		36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36825C3424AD71D1007134FA /* TrackableScrollView.swift */; };
@@ -15,8 +16,6 @@
 		3687A3E524BD489D008A6194 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687A3E424BD489D008A6194 /* Charts */; };
 		369E34F324A9940100074C20 /* StatusBarLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F224A9940100074C20 /* StatusBarLight.swift */; };
 		369E34F824A9B12100074C20 /* SrcSysystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F724A9B12100074C20 /* SrcSysystem.swift */; };
-		369E34FB24A9C9C700074C20 /* EarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34FA24A9C9C700074C20 /* EarningView.swift */; };
-		369E34FD24A9C9D700074C20 /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34FC24A9C9D700074C20 /* PayView.swift */; };
 		369E350324A9E14A00074C20 /* RealmDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350224A9E14A00074C20 /* RealmDb.swift */; };
 		369E350524A9E21F00074C20 /* ModelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350424A9E21F00074C20 /* ModelApp.swift */; };
 		369E350724A9E65C00074C20 /* NumberTranser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350624A9E65C00074C20 /* NumberTranser.swift */; };
@@ -63,13 +62,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		364C24BA24D5A6F3001EBD47 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		365A3C4D24CACF1D001E2328 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		366E056024BC4D7E00AAA1DE /* AllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllView.swift; sourceTree = "<group>"; };
 		36825C3424AD71D1007134FA /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		369E34F224A9940100074C20 /* StatusBarLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarLight.swift; sourceTree = "<group>"; };
 		369E34F724A9B12100074C20 /* SrcSysystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SrcSysystem.swift; sourceTree = "<group>"; };
-		369E34FA24A9C9C700074C20 /* EarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningView.swift; sourceTree = "<group>"; };
-		369E34FC24A9C9D700074C20 /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		369E350224A9E14A00074C20 /* RealmDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDb.swift; sourceTree = "<group>"; };
 		369E350424A9E21F00074C20 /* ModelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelApp.swift; sourceTree = "<group>"; };
 		369E350624A9E65C00074C20 /* NumberTranser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTranser.swift; sourceTree = "<group>"; };
@@ -135,6 +133,7 @@
 		369E34ED24A9767800074C20 /* EncapsulationView */ = {
 			isa = PBXGroup;
 			children = (
+				364C24BA24D5A6F3001EBD47 /* SearchView.swift */,
 				36825C3424AD71D1007134FA /* TrackableScrollView.swift */,
 				36B3371524A0A74F00B780ED /* pageViewController.swift */,
 				36B667EC24AB205D00985192 /* HomeAnimation.swift */,
@@ -169,8 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				366E056024BC4D7E00AAA1DE /* AllView.swift */,
-				369E34FA24A9C9C700074C20 /* EarningView.swift */,
-				369E34FC24A9C9D700074C20 /* PayView.swift */,
 			);
 			path = HomeChildView;
 			sourceTree = "<group>";
@@ -440,6 +437,7 @@
 				36B336E224A0A72D00B780ED /* AppDelegate.swift in Sources */,
 				36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */,
 				369E350924A9EF6900074C20 /* HomeView.swift in Sources */,
+				364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */,
 				365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */,
 				36F25DB324B85033000428E0 /* DatePicker.swift in Sources */,
 				36CE697124B70BE60056737D /* MyNavigationBar.swift in Sources */,
@@ -448,7 +446,6 @@
 				36F25DB524B854AC000428E0 /* TimeTools.swift in Sources */,
 				369E350524A9E21F00074C20 /* ModelApp.swift in Sources */,
 				36B667EF24AB2C1600985192 /* DropDownView.swift in Sources */,
-				369E34FB24A9C9C700074C20 /* EarningView.swift in Sources */,
 				36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */,
 				36B3371C24A0A74F00B780ED /* RememberView.swift in Sources */,
 				36B336E724A0A72D00B780ED /* pageView.xcdatamodeld in Sources */,
@@ -456,7 +453,6 @@
 				36B336E424A0A72D00B780ED /* SceneDelegate.swift in Sources */,
 				369FAD7D24C83B670030EAF8 /* MYTextfield.swift in Sources */,
 				366E056124BC4D7E00AAA1DE /* AllView.swift in Sources */,
-				369E34FD24A9C9D700074C20 /* PayView.swift in Sources */,
 				36B3371A24A0A74F00B780ED /* pageViewController.swift in Sources */,
 				36B3371D24A0A74F00B780ED /* MyCenterView.swift in Sources */,
 			);

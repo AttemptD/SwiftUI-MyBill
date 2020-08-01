@@ -46,7 +46,7 @@ struct MainView: View {
                     }.tag(2)
                         .onAppear(){
                             let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-                            controller?.statusBarStyle = .lightContent
+                            controller?.statusBarStyle = .darkContent
                     }
                     
                     MyCenterView().tabItem
