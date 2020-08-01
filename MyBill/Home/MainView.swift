@@ -23,7 +23,7 @@ struct MainView: View {
                 TabView(selection: $selection) {
                     
                     
-                    HomeView(appData:self.appData).tabItem
+                    HomeView(appData:self.appData,folderData:self.folderData).tabItem
                         {
                             
                             
@@ -38,7 +38,7 @@ struct MainView: View {
                             
                     }
                     
-                    RememberView(appData:self.appData).tabItem
+                    AllView(folderData:self.folderData).tabItem
                         {
                             Image(systemName: "tray.full.fill")
                                 .renderingMode(.template)
@@ -82,8 +82,6 @@ struct MainView: View {
                 .offset(y:-60)
                 
             }
-        }.onAppear(){
-            self.folderData.setFoloderBillData()
         }
         
         

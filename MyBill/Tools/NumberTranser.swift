@@ -30,9 +30,13 @@ func getArrayFromJSONString(jsonString:String) ->NSArray{
      
 }
 
-func getString(time :String ,min:Int,max:Int){
+func getString(time :String ,min:Int,max:Int) -> String{
     
     let index1 = time.index(time.startIndex,offsetBy: min)
     let index2 = time.index(time.startIndex,offsetBy: max)
+    
+    let sub4 = time[index1..<index2]
+    
+    return String(sub4)
     
 }

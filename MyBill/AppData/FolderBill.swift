@@ -14,6 +14,8 @@ class Folder: Identifiable {
     var folderDatas = ""
     var folderTime = ""
     var folderBill = [Model]()
+    var open = true
+    var imagename = "arrow.down.right.and.arrow.up.left"
 }
 
 
@@ -32,6 +34,22 @@ class FolderData: ObservableObject {
         self.folderList.removeAll()
         self.bill.removeAll()
         self.getFolderBillData()
+      
+    }
+    
+    func transerStatus(folder:Folder) {
+        objectWillChange.send()
+        if folder.open == true{
+            
+           folder.open = false
+            folder.imagename = "arrow.up.left.and.arrow.down.right"
+            
+        }else{
+            folder.open=true
+             folder.imagename = "arrow.down.right.and.arrow.up.left"
+        }
+        
+       
     }
     
     func setFoloderBillData()  {
@@ -100,7 +118,6 @@ class FolderData: ObservableObject {
             
             let json = JSON(getArrayFromJSONString(jsonString: fold.bill))
             
-            print(json)
             
             for i in 0..<json.count{
                 let data = json[i]

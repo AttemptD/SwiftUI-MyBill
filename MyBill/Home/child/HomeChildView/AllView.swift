@@ -9,90 +9,120 @@
 import SwiftUI
 
 struct AllView: View {
-    @ObservedObject var appData : AppData
-    @ObservedObject var folderData = FolderData()
+    @ObservedObject var folderData : FolderData
+    
     var body: some View {
         
-        ScrollView{
-        ForEach(folderData.folderList){ item in
-            
-            VStack{
-               
-                Text("\(item.folderTime)")
-                    .frame(width: 50, height: 50, alignment: .center)
-                    .background(Color.orange)
+        ScrollView(.vertical, showsIndicators: false){
+            ForEach(folderData.folderList){ item in
                 
-                ForEach(item.folderBill){ child in
+                VStack(alignment:.leading){
+                    HStack{
+                        VStack(spacing:0){
+                            
+                            Text("\(getString(time: item.folderTime,min: 5,max: 7))")
+                                .bold()
+                                .fontWeight(.medium)
+                                .lineSpacing(2)
+                                .frame(width: 23, height: 23, alignment: .center)
+                            
+                            
+                            
+                            Text("\(getString(time: item.folderTime,min: 8,max: 10))")
+                                .bold()
+                                .lineSpacing(2)
+                                .frame(width: 23, height: 23, alignment: .center)
+                            
+                        }.frame(width: 55, height: 55, alignment: .center)
+                            .foregroundColor(.white)
+                            .background(Color.init("MainThemeColor"))
+                            .cornerRadius(15)
+                            .padding(.leading,30)
+                        
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            
+                            withAnimation(.spring()){
+                                self.folderData.transerStatus(folder:item)
+                            }
+                            
+                            
+                        }) {
+                            
+                            Image(systemName: item.imagename)
+                        }
+                          .padding(.trailing,20)
+                    }
                     
-                    Text("\(child.money)")
-                }
-            }.frame(width: width, alignment: .leading)
+                    
+                    
+                    ForEach(item.folderBill){ child in
+                        
+                        HStack(alignment:.top){
+                            VStack{
+                                Circle().frame(width: 20, height:20 )
+                                    .foregroundColor(Color.init("AllViewCircle"))
+                                    .overlay(Circle().frame(width: 5, height: 5)
+                                        .foregroundColor(.black))
+                                
+                                Spacer().frame(height:0)
+                                
+                                if(child.id != item.folderBill.count-1){
+                                    
+                                    Divider().frame(width:1, height: 100)
+                                        .background(Color.init("AllViewCircle"))
+                                    
+                                }
+                                
+                            }
+                            .frame(height: 120,alignment: .topLeading)
+                            
+                            VStack(alignment:.leading){
+                                Text("\(String(child.time.suffix(8)))")
+                                    .foregroundColor(.gray)
+                                    .fontWeight(.thin)
+                                    .frame(width: 100, alignment: .leading)
+                                
+                                
+                                HStack{
+                                    Image("\(child.type)")
+                                        .resizable()
+                                        .frame(width: 35, height: 35, alignment: .center)
+                                        .padding(.leading,10)
+                                    
+                                    Text(child.doWhat)
+                                    Spacer()
+                                    Text("¥\(transer(value: child.money))")
+                                        .padding(.trailing,20)
+                                }
+                                .frame(width: width-140, height: 70, alignment: .leading)
+                                .background(Color.init("AllViewCircle"))
+                                .cornerRadius(15)
+                                
+                            }.frame(height: 100)
+                            
+                        }
+                        .frame(height: item.open ? 100 : 0)
+                        
+                    }
+                    .opacity(item.open ? 1 : 0)
+                    .padding(.leading,80)
+                    
+                    
+                    
+                }.frame(width: width, alignment: .leading)
+            }
         }
-        }.padding(.top,30)
-//        ScrollView{
-//            ForEach(appData.BillDatas){item in
-//
-//                NavigationLink(destination:EmptyView()){
-//                    VStack(spacing:0){
-//
-//                        HStack{
-//                            Text("¥ \(transer(value:item.money))")
-//                                .padding()
-//                                .font(.system(size: 28))
-//                                .foregroundColor(.black)
-//                            Spacer()
-//                            Text(item.type)
-//                                .padding()
-//                                .foregroundColor(item.type == "支出" ? .gray:.orange)
-//                        }
-//
-//
-//                        HStack{
-//
-//                            VStack(spacing:8){
-//
-//                                HStack{
-//                                    Text(item.doWhat)
-//                                        .foregroundColor(.black)
-//                                        .font(.system(size: 15))
-//                                    Spacer()
-//                                } .padding(.horizontal)
-//
-//
-//
-//                                HStack{
-//                                    Text(item.time)
-//                                        .foregroundColor(.gray)
-//                                        .fontWeight(.light)
-//                                    Spacer()
-//                                }.padding(.horizontal)
-//
-//                            }
-//                            Spacer()
-//
-//                            Image(item.type)
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 30, height: 30)
-//                                .padding(.horizontal)
-//
-//                        }
-//
-//
-//                    }
-//                    .frame(width:width-20,height: height/6,alignment: .topLeading)
-//                    .background(Color.white)
-//                    .cornerRadius(5)
-//                    .shadow(radius: 5)
-//                    .padding(.vertical,10)
-//                    .padding(.horizontal,20)
-//                }
-//                .buttonStyle(PlainButtonStyle())
-//            }.padding(.top,30)
-//        }
+        .padding(.top,30)
+        .edgesIgnoringSafeArea(.top)
+        .navigationBarTitle("账单")
+        .navigationBarHidden(true)
         .onAppear(){
-            self.appData.refreshData()
+            
             self.folderData.refresh()
+            
         }
         
         
@@ -100,8 +130,3 @@ struct AllView: View {
     }
 }
 
-struct AllView_Previews: PreviewProvider {
-    static var previews: some View {
-        AllView(appData: AppData())
-    }
-}

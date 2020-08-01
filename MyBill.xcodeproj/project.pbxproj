@@ -97,7 +97,6 @@
 		36B667EE24AB2C1600985192 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		36CE697024B70BE60056737D /* MyNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNavigationBar.swift; sourceTree = "<group>"; };
 		36DDE87424CE5E48009FE4DE /* FolderBill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderBill.swift; sourceTree = "<group>"; };
-		36E8302924C933E20092A665 /* pageView copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "pageView copy-Info.plist"; path = "/Users/attempt/Downloads/SwiftUI/pageView/pageView copy-Info.plist"; sourceTree = "<absolute>"; };
 		36F25DB024B8418D000428E0 /* NewBuild_Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuild_Update.swift; sourceTree = "<group>"; };
 		36F25DB224B85033000428E0 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		36F25DB424B854AC000428E0 /* TimeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTools.swift; sourceTree = "<group>"; };
@@ -200,7 +199,6 @@
 				36B336FA24A0A72E00B780ED /* pageViewTests */,
 				36B3370524A0A72E00B780ED /* pageViewUITests */,
 				36B336DF24A0A72D00B780ED /* Products */,
-				36E8302924C933E20092A665 /* pageView copy-Info.plist */,
 				36F3EBD024CD5EF600CD8415 /* Frameworks */,
 			);
 			sourceTree = "<group>";

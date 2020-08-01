@@ -16,6 +16,7 @@ struct HomeView: View {
     @State var updateBill = false
     @ObservedObject var appData = AppData()
     @State var billdata = Model()
+    @ObservedObject var folderData : FolderData
     var body: some View {
         
         ZStack(alignment:.topTrailing){
@@ -251,6 +252,11 @@ struct HomeView: View {
         .navigationBarHidden(true)
         .onAppear(){
             self.appData.refreshData()
+            DispatchQueue.main.async {
+                self.folderData.setFoloderBillData()
+               
+            }
+            
             
         }
         .sheet(isPresented: self.$updateBill) {
@@ -264,10 +270,3 @@ struct HomeView: View {
 }
 
 
-
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(appData: AppData())
-    }
-}
