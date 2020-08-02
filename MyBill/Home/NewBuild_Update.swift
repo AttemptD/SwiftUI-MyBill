@@ -14,6 +14,7 @@ struct NewAddBillView: View {
     @State var doWhat = ""
     @State var showWarn = false
     @ObservedObject var appData : AppData
+    @ObservedObject var folderData : FolderData
     let billData : Model
     @State var OpenType : String
     @State var showPay = true
@@ -229,6 +230,7 @@ struct NewAddBillView: View {
                                     
                                     DispatchQueue.main.async {
                                         self.appData.refreshData()
+                                        self.folderData.refresh()
                                     }
                                     
                                     self.presentationMode.wrappedValue.dismiss()
@@ -318,6 +320,6 @@ struct NewAddBillView: View {
 
 struct NewBuild_Update_Previews: PreviewProvider {
     static var previews: some View {
-        NewAddBillView(appData: AppData(), billData: Model(), OpenType: "")
+        NewAddBillView(appData: AppData(),  folderData: FolderData(),billData: Model(), OpenType: "")
     }
 }

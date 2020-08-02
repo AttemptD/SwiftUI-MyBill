@@ -26,7 +26,7 @@ struct HomeView: View {
                 .scaledToFill()
                 .frame(width: width, height: -scrollViewContentOffset <= 0 ? height/3+scrollViewContentOffset : height/3)
                 .clipped()
-                .blur(radius: -scrollViewContentOffset/4,opaque:true)
+               // .blur(radius: -scrollViewContentOffset/4,opaque:true)
                 .scaleEffect(-scrollViewContentOffset < 0 ? 1 + scrollViewContentOffset / 200 : 1)
                 .overlay(
                     
@@ -55,9 +55,7 @@ struct HomeView: View {
                     }
                         
                     .frame(width: width-60, height: height/3.5,alignment: .center)
-                    
-                    
-                    
+            
             )
                 .cornerRadius(15)
                 .offset(x: 0, y:-scrollViewContentOffset <= 0 ? 0 : scrollViewContentOffset)
@@ -126,11 +124,7 @@ struct HomeView: View {
                     .cornerRadius(10)
                     .offset(x:0,y:-height/8)
                     .animation(.none)
-                
-                
-                
-                
-                
+              
                 HStack{
                     Text(appData.TodayBill.count != 0 ? "今天的账单" : "往期的账单")
                         .font(.system(size:20))
@@ -224,7 +218,8 @@ struct HomeView: View {
                                         .foregroundColor(.red)
                                 }
                                 
-                            }.id(UUID())
+                            }
+                            //.id(UUID())
                         
                         }
                         .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
@@ -235,7 +230,7 @@ struct HomeView: View {
                     .buttonStyle(PlainButtonStyle())
                         
                     
-                }
+                }.id(UUID())
                 .offset(x:0,y:-height/20)
                 
             }
@@ -252,16 +247,11 @@ struct HomeView: View {
         .navigationBarHidden(true)
         .onAppear(){
             self.appData.refreshData()
-            DispatchQueue.main.async {
-                self.folderData.setFoloderBillData()
-               
-            }
-            
             
         }
         .sheet(isPresented: self.$updateBill) {
             
-            NewAddBillView(appData:self.appData, billData:self.billdata ,OpenType: "修改")
+            NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.billdata ,OpenType: "修改")
         }
         
         

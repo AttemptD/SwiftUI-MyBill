@@ -61,7 +61,7 @@ struct MainView: View {
                 }
                 .accentColor(Color.init("MainThemeColor"))
                 .sheet(isPresented: self.$newAddBill) {
-                    NewAddBillView(appData:self.appData, billData: Model(), OpenType: "新建")
+                    NewAddBillView(appData:self.appData,folderData:self.folderData, billData: Model(), OpenType: "新建")
                 }
             }
             

@@ -71,12 +71,15 @@ class AppData: ObservableObject {
         self.TodayBill.removeAll()
         self.Bill_ten.removeAll()
         
-        self.getBillData()
-        self.EarningData()
-        self.payData()
-        self.getTodayAllBills()
-        self.getTodayPay_Earn()
-        self.getAllBill_Ten()
+        DispatchQueue.main.async {
+             self.getBillData()
+                   self.EarningData()
+                   self.payData()
+                   self.getTodayAllBills()
+                   self.getTodayPay_Earn()
+                   self.getAllBill_Ten()
+        }
+       
         
         
         
@@ -192,7 +195,7 @@ class AppData: ObservableObject {
         
     
         if bills.count > 8 {
-            for i in 0 ..< 7{
+            for i in 0 ..< 5{
                 let billData = Model()
                 let bill_ten = bills[i]
                 

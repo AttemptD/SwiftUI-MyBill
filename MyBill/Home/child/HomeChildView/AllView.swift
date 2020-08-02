@@ -20,7 +20,10 @@ struct AllView: View {
             
             
             ScrollView(.vertical, showsIndicators: false){
-                ForEach(folderData.folderList){ item in
+                ForEach(folderData.folderList.filter{value in
+                    self.searchText.isEmpty ? true : value.folderTime.lowercased().contains(self.searchText.lowercased())
+                    }
+                ){ item in
                     
                     VStack(alignment:.leading){
                         HStack{
@@ -32,112 +35,148 @@ struct AllView: View {
                                     .lineSpacing(2)
                                     .frame(width: 55, height: 20, alignment: .center)
                                 
-                                
-                                
                                 Text("\(getString(time: item.folderTime,min: 8,max: 10))")
                                     .bold()
                                     .lineSpacing(2)
                                     .frame(width: 55, height: 20, alignment: .center)
                                 
                                 
-                                
-                            }.frame(width:item.open ? 55 : width - 80,height: 55, alignment: item.open ? .center:.leading)
-                                .foregroundColor(.white)
-                                .background(Color.init("MainThemeColor"))
-                                .cornerRadius(15)
-                                .padding(.leading,30)
+                            }
+                            .frame(width:item.open ? 55 : width - 100,height: 55, alignment: item.open ? .center:.leading)
+                            .foregroundColor(.white)
+                            .background(Color.init("MainThemeColor"))
+                            .cornerRadius(15)
+                            .padding(.leading,30)
                             
                             
                             Spacer()
-                            
-                            
-                            
+                        
                             Button(action: {
                                 
                                 withAnimation(.spring()){
                                     
                                     self.folderData.transerStatus(folder:item)
-                                    
+
                                 }
-                                
                                 
                             }) {
-                                
+                    
                                 Image(systemName: item.imagename)
                             }.frame(height: 55, alignment: .center)
-                                
-                                
-                                .padding(.trailing,20)
+                             .padding(.trailing,30)
                             
                         }
+                    
                         
-                        
-                        
-                        
-                        ForEach(item.folderBill){ child in
-                            
-                            HStack(alignment:.top){
-                                VStack{
-                                    Circle().frame(width: 20, height:20 )
-                                        .foregroundColor(Color.init("AllViewCircle"))
-                                        .overlay(Circle().frame(width: 5, height: 5)
-                                            .foregroundColor(.black))
-                                    
-                                    Spacer().frame(height:0)
-                                    
-                                    if(child.id != item.folderBill.count-1){
+                        if item.open {
+                            ForEach(item.folderBill){ child in
+                                
+                                HStack(alignment:.top){
+                                    VStack{
+                                        Circle().frame(width: 20, height:20 )
+                                            .foregroundColor(Color.init("AllViewCircle"))
+                                            .overlay(Circle().frame(width: 5, height: 5)
+                                                .foregroundColor(Color.init("transerTime")))
                                         
-                                        Divider().frame(width:1, height: 100)
-                                            .background(Color.init("AllViewCircle"))
+                                        Spacer().frame(height:0)
+                                        
+                                        if(child.id != item.folderBill.count-1){
+                                            
+                                            Divider().frame(width:1, height: 100)
+                                                .background(Color.init("AllViewCircle"))
+                                            
+                                        }
                                         
                                     }
+                                    .frame(height: 120,alignment: .topLeading)
+                                    
+                                    VStack(alignment:.leading){
+                                        Text("\(String(child.time.suffix(8)))")
+                                            .foregroundColor(.gray)
+                                            .fontWeight(.thin)
+                                            .frame(width: 100, alignment: .leading)
+                                        
+                                        
+                                        HStack{
+                                            Image("\(child.type)")
+                                                .resizable()
+                                                .frame(width: 35, height: 35, alignment: .center)
+                                                .padding(.leading,10)
+                                            
+                                            Text(child.doWhat)
+                                                .font(.system(size: 14))
+                                            Spacer()
+                                            Text("¥\(transer(value: child.money))")
+                                                .padding(.trailing,20)
+                                        }
+                                        .frame(width: width-140, height: 70, alignment: .leading)
+                                        .background(Color.init("AllViewCircle"))
+                                        .cornerRadius(15)
+                                        
+                                    }.frame(height: 100)
                                     
                                 }
-                                .frame(height: 120,alignment: .topLeading)
                                 
-                                VStack(alignment:.leading){
-                                    Text("\(String(child.time.suffix(8)))")
-                                        .foregroundColor(.gray)
-                                        .fontWeight(.thin)
-                                        .frame(width: 100, alignment: .leading)
-                                    
-                                    
-                                    HStack{
-                                        Image("\(child.type)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35, alignment: .center)
-                                            .padding(.leading,10)
-                                        
-                                        Text(child.doWhat)
-                                        Spacer()
-                                        Text("¥\(transer(value: child.money))")
-                                            .padding(.trailing,20)
-                                    }
-                                    .frame(width: width-140, height: 70, alignment: .leading)
-                                    .background(Color.init("AllViewCircle"))
-                                    .cornerRadius(15)
-                                    
-                                }.frame(height: 100)
                                 
                             }
-                            .frame(height: item.open ? 100 : 0)
-                            
+                            .padding(.leading,80)
                         }
-                        .opacity(item.open ? 1 : 0)
-                        .padding(.leading,80)
+                       
                         
                         
                         
-                    }.frame(width: width, alignment: .leading)
+                    }
+                    .frame(width: width, height:item.open ? .none : 65, alignment: .leading)
                 }
                 
-            }
-            .padding(.top,height >= 812 ? 88 : 64)
+                }
+            .padding(.top,height >= 812 ? 108 : 84)
+          
             
             HStack{
-                 SearchBar(text: $searchText,clean: $searchBar)
-                    .animation(.default)
-            } .frame(width: width,height: height >= 812 ? 88 : 64,alignment: .bottom)
+                
+                HStack{
+                    
+                    Image(systemName: "magnifyingglass")
+                        .resizable()
+                       
+                        .frame(width:18,height:18)
+                        .foregroundColor(Color.init("transerTime"))
+                        .padding(.leading,20)
+                    
+                    
+                    MySearchBar(keyboardType: .default, text: $searchText, placeholder:"请输入搜索内容")
+                        
+                        .frame(height: 40)
+                    
+                    
+                }.frame(width: width-100, height: 50)
+                    .background(Color.init("AllViewCircle"))
+                    .cornerRadius(90)
+                    .padding(.top,height >= 812 ? 54 : 30)
+                    .padding(.leading,15)
+                
+                
+                
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Circle()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(Color.init("transerTime"))
+                        .padding(.top,height >= 812 ? 54 : 30)
+                        .overlay(
+                            Image(systemName: "line.horizontal.3.decrease")
+                                .resizable()
+                                .frame(width:18,height: 18)
+                                .padding(.top,height >= 812 ? 54 : 30)
+                                .foregroundColor(.white)
+                            
+                            
+                    )
+                }
+
+            }
+            .frame(width:width, height: height >= 812 ? 88 : 64)
+                .background(Color.clear)
             
         }
         .navigationBarTitle("账单")

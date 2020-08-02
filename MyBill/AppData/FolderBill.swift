@@ -34,6 +34,7 @@ class FolderData: ObservableObject {
         self.folderList.removeAll()
         self.bill.removeAll()
         self.getFolderBillData()
+        self.setFoloderBillData()
       
     }
     
