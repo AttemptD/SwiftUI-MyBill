@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct AllView: View {
     @ObservedObject var folderData : FolderData
@@ -47,6 +48,15 @@ struct AllView: View {
                             .background(Color.init("MainThemeColor"))
                             .cornerRadius(15)
                             .padding(.leading,30)
+                            .overlay(
+                                
+                                Chart(data:item.lineData)
+                                    .chartStyle( LineChartStyle(.quadCurve, lineColor: .white, lineWidth: 2)
+                                )
+                                    .frame(width: item.open ? 0 : width - 170, height: item.open ? 0 : 50,alignment:.center)
+                                    .padding(.leading,60)
+                                    .opacity(item.open ? 0:1)
+                            )
                             
                             
                             Spacer()
@@ -82,7 +92,7 @@ struct AllView: View {
                                         
                                         if(child.id != item.folderBill.count-1){
                                             
-                                            Divider().frame(width:1, height: 100)
+                                            Divider().frame(width:1, height: 110)
                                                 .background(Color.init("AllViewCircle"))
                                             
                                         }

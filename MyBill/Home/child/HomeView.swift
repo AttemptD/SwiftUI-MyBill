@@ -64,6 +64,7 @@ struct HomeView: View {
             TrackableScrollView(axis: .vertical, showIndicators: false, contentOffset: $scrollViewContentOffset){
                 Spacer().frame(width:width, height: height/3)
                  .animation(.none)
+                   
                 
                 VStack{
                     Image("MyImageBack")

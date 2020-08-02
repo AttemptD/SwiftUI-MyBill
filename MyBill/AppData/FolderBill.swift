@@ -16,6 +16,7 @@ class Folder: Identifiable {
     var folderBill = [Model]()
     var open = true
     var imagename = "arrow.down.right.and.arrow.up.left"
+    var lineData = [Double]()
 }
 
 
@@ -23,7 +24,9 @@ class FolderData: ObservableObject {
     
     @Published var folderList = [Folder]()
     
-    @Published var bill = [Model]()
+    var bill = [Model]()
+    var lineData = [0.0]
+    
     
     init() {
         getFolderBillData()
@@ -133,14 +136,38 @@ class FolderData: ObservableObject {
                 
                 
                 self.bill.append(bill)
+                
+                if data["money"].double! >= 10 && data["money"].double! < 100{
+                    self.lineData.append(data["money"].double! / 50)
+                }
+                
+                else if data["money"].double! >= 100 &&  data["money"].double! < 1000  {
+                    self.lineData.append(data["money"].double! / 500)
+                }
+                
+                else if data["money"].double! >= 1000 && data["money"].double! < 10000 {
+                    self.lineData.append(data["money"].double! / 5000)
+                }
+                else if data["money"].double! >= 10000 && data["money"].double! < 100000{
+                    self.lineData.append(data["money"].double! / 50000)
+                }
+                
+                else if data["money"].double! >= 100000{
+                    self.lineData.append(data["money"].double! / 500000)
+                }
             }
             
             folder.folderBill = self.bill
+            folder.lineData = self.lineData
             folder.folderTime = fold.folderTime
             
+            print(self.lineData)
             self.folderList.append(folder)
             
+            self.lineData.removeAll()
+            self.lineData.append(0.0)
             self.bill.removeAll()
+            
         }
     }
 }
