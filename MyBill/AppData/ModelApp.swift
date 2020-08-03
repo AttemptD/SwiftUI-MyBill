@@ -194,7 +194,7 @@ class AppData: ObservableObject {
         let bills = RealmDB().getDB().objects(Bill.self).sorted(byKeyPath: "time",ascending: false)
         
     
-        if bills.count > 8 {
+        if bills.count > 4 {
             for i in 0 ..< 5{
                 let billData = Model()
                 let bill_ten = bills[i]

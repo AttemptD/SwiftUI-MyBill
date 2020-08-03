@@ -26,7 +26,7 @@ struct HomeView: View {
                 .scaledToFill()
                 .frame(width: width, height: -scrollViewContentOffset <= 0 ? height/3+scrollViewContentOffset : height/3)
                 .clipped()
-               // .blur(radius: -scrollViewContentOffset/4,opaque:true)
+                .blur(radius: -scrollViewContentOffset/4,opaque:true)
                 .scaleEffect(-scrollViewContentOffset < 0 ? 1 + scrollViewContentOffset / 200 : 1)
                 .overlay(
                     
@@ -211,6 +211,7 @@ struct HomeView: View {
                                          
                                         RealmDB().delete(time: item.time)
                                         self.appData.refreshData()
+                                        self.folderData.refresh()
                                     }
                                     
                                 }) {

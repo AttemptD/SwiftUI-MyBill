@@ -79,7 +79,7 @@ class RealmDB {
         let defaultRealm = self.getDB()
         try! defaultRealm.write {
             
-            defaultRealm.add(folderBill,update: .modified)
+            defaultRealm.create(FolderBill.self,value: folderBill,update: .modified)
         }
     }
 }
