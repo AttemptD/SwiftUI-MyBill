@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+
 
 struct HomeView: View {
     @State var scrollViewContentOffset : CGFloat = 0

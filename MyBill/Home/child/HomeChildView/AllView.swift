@@ -15,17 +15,12 @@ struct AllView: View {
     @State var searchBar = true
     var body: some View {
         
-        
         ZStack(alignment:.top){
             
-            
-            
-            ScrollView(.vertical, showsIndicators: false){
-                ForEach(folderData.folderList.filter{value in
-                    self.searchText.isEmpty ? true : value.folderTime.lowercased().contains(self.searchText.lowercased())
-                    }
-                ){ item in
-                    
+            ScrollView(.vertical, showsIndicators: false) {
+                ForEach(folderData.folderList.filter{ value in
+                    self.searchText.isEmpty ? true :value.folderTime.lowercased().contains(self.searchText.lowercased())
+                }){ item in
                     VStack(alignment:.leading){
                         HStack{
                             VStack(spacing:0){
@@ -58,25 +53,25 @@ struct AllView: View {
                                     .opacity(item.open ? 0:1)
                             )
                             
-                            
                             Spacer()
-                        
+                            
                             Button(action: {
                                 
                                 withAnimation(.spring()){
                                     
                                     self.folderData.transerStatus(folder:item)
-
+                                    
                                 }
                                 
                             }) {
-                    
+                                
                                 Image(systemName: item.imagename)
                             }.frame(height: 55, alignment: .center)
-                             .padding(.trailing,30)
+                                .padding(.trailing,30)
+                            
+                            
                             
                         }
-                    
                         
                         if item.open {
                             ForEach(item.folderBill){ child in
@@ -131,17 +126,12 @@ struct AllView: View {
                             }
                             .padding(.leading,80)
                         }
-                       
                         
-                        
-                        
-                    }
-                    .frame(width: width, height:item.open ? .none : 65, alignment: .leading)
+                    }.frame(width: width, height:item.open ? .none : 65, alignment: .leading)
                 }
-                
-                }
+            }
             .padding(.top,height >= 812 ? 108 : 84)
-          
+            
             
             HStack{
                 
@@ -149,7 +139,7 @@ struct AllView: View {
                     
                     Image(systemName: "magnifyingglass")
                         .resizable()
-                       
+                        
                         .frame(width:18,height:18)
                         .foregroundColor(Color.init("transerTime"))
                         .padding(.leading,20)
@@ -168,7 +158,9 @@ struct AllView: View {
                 
                 
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Button(action: {
+                    
+                }) {
                     Circle()
                         .frame(width: 50, height: 50)
                         .foregroundColor(Color.init("transerTime"))
@@ -183,11 +175,10 @@ struct AllView: View {
                             
                     )
                 }
-
+                
             }
             .frame(width:width, height: height >= 812 ? 88 : 64)
-                .background(Color.clear)
-            
+            .background(Color.clear)
         }
         .navigationBarTitle("账单")
         .navigationBarHidden(true)
@@ -197,7 +188,6 @@ struct AllView: View {
             self.folderData.refresh()
             
         }
-        
         
         
     }
