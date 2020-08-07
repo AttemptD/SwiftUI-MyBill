@@ -14,7 +14,7 @@ struct HomeView: View {
     @State private var scale: CGFloat = 1.0
     @State var barTitle = "主页"
     @State var updateBill = false
-    @ObservedObject var appData = AppData()
+    @ObservedObject var appData : AppData
     @State var billdata = Model()
     @ObservedObject var folderData : FolderData
     var body: some View {
@@ -55,7 +55,7 @@ struct HomeView: View {
                     }
                         
                     .frame(width: width-60, height: height/3.5,alignment: .center)
-            
+                    
             )
                 .cornerRadius(15)
                 .offset(x: 0, y:-scrollViewContentOffset <= 0 ? 0 : scrollViewContentOffset)
@@ -63,8 +63,8 @@ struct HomeView: View {
             
             TrackableScrollView(axis: .vertical, showIndicators: false, contentOffset: $scrollViewContentOffset){
                 Spacer().frame(width:width, height: height/3)
-                 .animation(.none)
-                   
+                    .animation(.none)
+                
                 
                 VStack{
                     Image("MyImageBack")
@@ -120,12 +120,12 @@ struct HomeView: View {
                     
                 }
                 .frame(width: width-60, height: 190, alignment: .center)
-                    .background(Color.white)
-                    .shadow(radius: 10)
-                    .cornerRadius(10)
-                    .offset(x:0,y:-height/8)
-                    .animation(.none)
-              
+                .background(Color.white)
+                .shadow(radius: 10)
+                .cornerRadius(10)
+                .offset(x:0,y:-height/8)
+                .animation(.none)
+                
                 HStack{
                     Text(appData.TodayBill.count != 0 ? "今天的账单" : "往期的账单")
                         .font(.system(size:20))
@@ -208,7 +208,7 @@ struct HomeView: View {
                                     
                                     DispatchQueue.main.async {
                                         
-                                         
+                                        
                                         RealmDB().delete(time: item.time)
                                         self.appData.refreshData()
                                         self.folderData.refresh()
@@ -221,19 +221,19 @@ struct HomeView: View {
                                 }
                                 
                             }
-                            //.id(UUID())
-                        
+                           
+                            
                         }
                         .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
                         .shadow(radius: 5)
                         .animation(.none)
-                    
+                        
                     }
                     .buttonStyle(PlainButtonStyle())
-                        
+                    
                     
                 }.id(UUID())
-                .offset(x:0,y:-height/20)
+                    .offset(x:0,y:-height/20)
                 
             }
             

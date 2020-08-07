@@ -222,7 +222,7 @@ struct NewAddBillView: View {
                                             
                                             self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
                                             
-                                            
+                                             self.folderData.setFoloderBillData()
                                         }
                                     }else{
                                         self.appData.updataBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
@@ -230,7 +230,10 @@ struct NewAddBillView: View {
                                     
                                     DispatchQueue.main.async {
                                         self.appData.refreshData()
+                                        
+            
                                         self.folderData.refresh()
+                                       
                                     }
                                     
                                     self.presentationMode.wrappedValue.dismiss()

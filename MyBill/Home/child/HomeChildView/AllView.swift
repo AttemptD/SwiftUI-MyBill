@@ -13,6 +13,8 @@ struct AllView: View {
     @ObservedObject var folderData : FolderData
     @State var searchText : String = ""
     @State var searchBar = true
+    @State var cut = false
+    @State var billtype = type
     var body: some View {
         
         ZStack(alignment:.top){
@@ -127,7 +129,8 @@ struct AllView: View {
                             .padding(.leading,80)
                         }
                         
-                    }.frame(width: width, height:item.open ? .none : 65, alignment: .leading)
+                    }
+                    .frame(width: width, height:item.open ? .none : 65, alignment: .leading)
                 }
             }
             .padding(.top,height >= 812 ? 108 : 84)
@@ -142,39 +145,99 @@ struct AllView: View {
                         
                         .frame(width:18,height:18)
                         .foregroundColor(Color.init("transerTime"))
-                        .padding(.leading,20)
+                        .padding(.leading,cut == false ? 20 : 0)
+                    
+                    if cut == false{
+                        MySearchBar(keyboardType: .default, text: $searchText, placeholder:"请输入搜索内容")
+                            
+                            .frame(height: 40)
+                    }
                     
                     
-                    MySearchBar(keyboardType: .default, text: $searchText, placeholder:"请输入搜索内容")
-                        
-                        .frame(height: 40)
                     
-                    
-                }.frame(width: width-100, height: 50)
+                }.frame(width: cut == false ?  width-100 : width/9 , height: width/9)
                     .background(Color.init("AllViewCircle"))
                     .cornerRadius(90)
                     .padding(.top,height >= 812 ? 54 : 30)
                     .padding(.leading,15)
                 
                 
-                
-                Button(action: {
-                    
-                }) {
-                    Circle()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(Color.init("transerTime"))
-                        .padding(.top,height >= 812 ? 54 : 30)
-                        .overlay(
-                            Image(systemName: "line.horizontal.3.decrease")
-                                .resizable()
-                                .frame(width:18,height: 18)
-                                .padding(.top,height >= 812 ? 54 : 30)
-                                .foregroundColor(.white)
-                            
-                            
-                    )
+                if cut == true{
+                    Spacer().frame(width:10)
                 }
+                
+                
+                HStack(alignment: .center){
+                    
+                    if cut == true {
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.spring()){
+                                self.cut = false
+                            }
+                            self.folderData.transerBilltype(type: "全部")
+                        }) {
+                            Text("全部")
+                                .frame(width: width/7, height: width/11, alignment: .center)
+                                .foregroundColor(.white)
+                                .background(billtype == "全部" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
+                                .cornerRadius(15)
+                            
+                        }
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.spring()){
+                                self.cut = false
+                            }
+                             self.folderData.transerBilltype(type: "支出")
+                        }) {
+                            Text("支出")
+                                .frame(width: width/7, height: width/11, alignment: .center)
+                                .foregroundColor(.white)
+                                 .background(billtype == "支出" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
+                                .cornerRadius(15)
+                        }
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.spring()){
+                                self.cut = false
+                            }
+                             self.folderData.transerBilltype(type: "收入")
+                        }) {
+                            Text("收入")
+                                .frame(width: width/7, height: width/11, alignment: .center)
+                                .foregroundColor(.white)
+                                .background(billtype == "收入" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
+                                .cornerRadius(15)
+                        }
+                        Spacer()
+                    }
+                    
+                    if cut == false{
+                        Image(systemName:"arrow.right.arrow.left")
+                            .foregroundColor(.white)
+                    }
+                    
+                }
+                    
+                .frame(width: cut == false ? width/9 : width - 100 ,height: width/9)
+                .background( cut == false ? Color.init("MainThemeColor") : Color.white)
+                .cornerRadius(90)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 90)
+                        .stroke(Color.init("MainThemeColor"), lineWidth: cut == true ? 1 : 0 )
+                        .animation(.linear)
+                        
+                )
+                    
+                    .padding(.top,height >= 812 ? 54 : 30)
+                    .onTapGesture {
+                        withAnimation(.spring()){
+                            self.cut = true
+                        }
+                        
+                }
+                
                 
             }
             .frame(width:width, height: height >= 812 ? 88 : 64)
@@ -185,7 +248,8 @@ struct AllView: View {
         .edgesIgnoringSafeArea(.top)
         .onAppear(){
             
-            self.folderData.refresh()
+            self.folderData.transerBilltype(type:type ?? "全部")
+            
             
         }
         

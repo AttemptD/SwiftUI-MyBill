@@ -11,3 +11,7 @@ import UIKit
 
 let width = UIScreen.main.bounds.width
 let height = UIScreen.main.bounds.height
+
+let userDefault = UserDefaults()
+
+let type = userDefault.string(forKey: "type")
