@@ -14,7 +14,7 @@ struct AllView: View {
     @State var searchText : String = ""
     @State var searchBar = true
     @State var cut = false
-    @State var billtype = type
+    //@State var billtype = userDefault.string(forKey: "type")
     var body: some View {
         
         ZStack(alignment:.top){
@@ -38,7 +38,7 @@ struct AllView: View {
                                     .lineSpacing(2)
                                     .frame(width: 55, height: 20, alignment: .center)
                                 
-                                
+                               
                             }
                             .frame(width:item.open ? 55 : width - 100,height: 55, alignment: item.open ? .center:.leading)
                             .foregroundColor(.white)
@@ -46,87 +46,103 @@ struct AllView: View {
                             .cornerRadius(15)
                             .padding(.leading,30)
                             .overlay(
-                                
-                                Chart(data:item.lineData)
-                                    .chartStyle( LineChartStyle(.quadCurve, lineColor: .white, lineWidth: 2)
-                                )
-                                    .frame(width: item.open ? 0 : width - 170, height: item.open ? 0 : 50,alignment:.center)
-                                    .padding(.leading,60)
-                                    .opacity(item.open ? 0:1)
+                                ZStack{
+                                    Chart(data:item.lineData)
+                                        .chartStyle( LineChartStyle(.quadCurve, lineColor: .white, lineWidth: 2)
+                                    )
+                                        .frame(width: item.open ? 0 : width - 170, height: item.open ? 0 : 50,alignment:.center)
+                                        .padding(.leading,60)
+                                        .opacity(item.open ? 0:1)
+                                    
+                                    Text("暂无账单")
+                                        .foregroundColor(.white)
+                                        .bold()
+                                        .opacity(item.haveData ? 0 : 1)
+                                    
+                                }
                             )
+                            
+                            
                             
                             Spacer()
                             
                             Button(action: {
-                                
                                 withAnimation(.spring()){
-                                    
-                                    self.folderData.transerStatus(folder:item)
-                                    
-                                }
-                                
+                                    self.folderData.transerStatus(folder:item)                                }
                             }) {
                                 
                                 Image(systemName: item.imagename)
-                            }.frame(height: 55, alignment: .center)
-                                .padding(.trailing,30)
+                              
+                            }
+                                
+                            .frame(height: 55, alignment: .center)
+                                
+                            .padding(.trailing,30)
+                            .disabled(!item.haveData)
+                            
                             
                             
                             
                         }
                         
-                        if item.open {
-                            ForEach(item.folderBill){ child in
+                        if item.haveData {
+                            if item.open {
                                 
-                                HStack(alignment:.top){
-                                    VStack{
-                                        Circle().frame(width: 20, height:20 )
-                                            .foregroundColor(Color.init("AllViewCircle"))
-                                            .overlay(Circle().frame(width: 5, height: 5)
-                                                .foregroundColor(Color.init("transerTime")))
-                                        
-                                        Spacer().frame(height:0)
-                                        
-                                        if(child.id != item.folderBill.count-1){
+                                ForEach(item.folderBill){ child in
+                                    
+                                    HStack(alignment:.top){
+                                        VStack{
+                                            Circle().frame(width: 20, height:20 )
+                                                .foregroundColor(Color.init("AllViewCircle"))
+                                                .overlay(Circle().frame(width: 5, height: 5)
+                                                    .foregroundColor(Color.init("transerTime")))
                                             
-                                            Divider().frame(width:1, height: 110)
-                                                .background(Color.init("AllViewCircle"))
+                                            Spacer().frame(height:0)
+                                            
+                                            if(child.id != item.folderBill.count-1){
+                                                
+                                                Divider().frame(width:1, height: 110)
+                                                    .background(Color.init("AllViewCircle"))
+                                                
+                                            }
                                             
                                         }
+                                        .frame(height: 120,alignment: .topLeading)
+                                        
+                                        VStack(alignment:.leading){
+                                            Text("\(String(child.time.suffix(8)))")
+                                                .foregroundColor(.gray)
+                                                .fontWeight(.thin)
+                                                .frame(width: 100, alignment: .leading)
+                                            
+                                            
+                                            HStack{
+                                                Image("\(child.type)")
+                                                    .resizable()
+                                                    .frame(width: 35, height: 35, alignment: .center)
+                                                    .padding(.leading,10)
+                                                
+                                                Text(child.doWhat)
+                                                    .font(.system(size: 14))
+                                                Spacer()
+                                                Text("¥\(transer(value: child.money))")
+                                                    .padding(.trailing,20)
+                                            }
+                                            .frame(width: width-140, height: 70, alignment: .leading)
+                                            .background(Color.init("AllViewCircle"))
+                                            .cornerRadius(15)
+                                            
+                                        }.frame(height: 100)
                                         
                                     }
-                                    .frame(height: 120,alignment: .topLeading)
-                                    
-                                    VStack(alignment:.leading){
-                                        Text("\(String(child.time.suffix(8)))")
-                                            .foregroundColor(.gray)
-                                            .fontWeight(.thin)
-                                            .frame(width: 100, alignment: .leading)
-                                        
-                                        
-                                        HStack{
-                                            Image("\(child.type)")
-                                                .resizable()
-                                                .frame(width: 35, height: 35, alignment: .center)
-                                                .padding(.leading,10)
-                                            
-                                            Text(child.doWhat)
-                                                .font(.system(size: 14))
-                                            Spacer()
-                                            Text("¥\(transer(value: child.money))")
-                                                .padding(.trailing,20)
-                                        }
-                                        .frame(width: width-140, height: 70, alignment: .leading)
-                                        .background(Color.init("AllViewCircle"))
-                                        .cornerRadius(15)
-                                        
-                                    }.frame(height: 100)
                                     
                                 }
+                                .padding(.leading,80)
                                 
                                 
                             }
-                            .padding(.leading,80)
+                        }else{
+                            //Text("\(getString(time: item.folderTime,min: 5,max: 10))暂无账单")
                         }
                         
                     }
@@ -180,11 +196,13 @@ struct AllView: View {
                             Text("全部")
                                 .frame(width: width/7, height: width/11, alignment: .center)
                                 .foregroundColor(.white)
-                                .background(billtype == "全部" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
+                                .background(folderData.typeChange == "全部" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
                                 .cornerRadius(15)
                             
                         }
+                        
                         Spacer()
+                        
                         Button(action: {
                             withAnimation(.spring()){
                                 self.cut = false
@@ -194,7 +212,7 @@ struct AllView: View {
                             Text("支出")
                                 .frame(width: width/7, height: width/11, alignment: .center)
                                 .foregroundColor(.white)
-                                 .background(billtype == "支出" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
+                                 .background(folderData.typeChange == "支出" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
                                 .cornerRadius(15)
                         }
                         Spacer()
@@ -207,7 +225,7 @@ struct AllView: View {
                             Text("收入")
                                 .frame(width: width/7, height: width/11, alignment: .center)
                                 .foregroundColor(.white)
-                                .background(billtype == "收入" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
+                                .background(folderData.typeChange == "收入" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
                                 .cornerRadius(15)
                         }
                         Spacer()
@@ -248,7 +266,7 @@ struct AllView: View {
         .edgesIgnoringSafeArea(.top)
         .onAppear(){
             
-            self.folderData.transerBilltype(type:type ?? "全部")
+            self.folderData.transerBilltype(type:self.folderData.typeChange )
             
             
         }
