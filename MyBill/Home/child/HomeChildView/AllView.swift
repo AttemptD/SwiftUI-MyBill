@@ -38,7 +38,7 @@ struct AllView: View {
                                     .lineSpacing(2)
                                     .frame(width: 55, height: 20, alignment: .center)
                                 
-                               
+                                
                             }
                             .frame(width:item.open ? 55 : width - 100,height: 55, alignment: item.open ? .center:.leading)
                             .foregroundColor(.white)
@@ -61,6 +61,14 @@ struct AllView: View {
                                     
                                 }
                             )
+                                .onTapGesture{
+                                    withAnimation(.spring()){
+                                        if item.haveData {
+                                            self.folderData.transerStatus(folder:item)
+                                        }
+                                        
+                                    }
+                            }
                             
                             
                             
@@ -68,11 +76,13 @@ struct AllView: View {
                             
                             Button(action: {
                                 withAnimation(.spring()){
-                                    self.folderData.transerStatus(folder:item)                                }
+                                    self.folderData.transerStatus(folder:item)
+                                    
+                                }
                             }) {
                                 
                                 Image(systemName: item.imagename)
-                              
+                                
                             }
                                 
                             .frame(height: 55, alignment: .center)
@@ -140,6 +150,7 @@ struct AllView: View {
                                 .padding(.leading,80)
                                 
                                 
+                                
                             }
                         }else{
                             //Text("\(getString(time: item.folderTime,min: 5,max: 10))暂无账单")
@@ -188,10 +199,13 @@ struct AllView: View {
                     if cut == true {
                         Spacer()
                         Button(action: {
+                            
                             withAnimation(.spring()){
                                 self.cut = false
                             }
-                            self.folderData.transerBilltype(type: "全部")
+                            if self.folderData.typeChange != "全部"{
+                                self.folderData.transerBilltype(type: "全部")
+                            }
                         }) {
                             Text("全部")
                                 .frame(width: width/7, height: width/11, alignment: .center)
@@ -204,23 +218,29 @@ struct AllView: View {
                         Spacer()
                         
                         Button(action: {
+                            
                             withAnimation(.spring()){
                                 self.cut = false
                             }
-                             self.folderData.transerBilltype(type: "支出")
+                            if self.folderData.typeChange != "支出"{
+                                self.folderData.transerBilltype(type: "支出")
+                            }
                         }) {
                             Text("支出")
                                 .frame(width: width/7, height: width/11, alignment: .center)
                                 .foregroundColor(.white)
-                                 .background(folderData.typeChange == "支出" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
+                                .background(folderData.typeChange == "支出" ? Color.init("MainThemeColor") :Color.init("AllViewCircle"))
                                 .cornerRadius(15)
                         }
                         Spacer()
                         Button(action: {
+                            
                             withAnimation(.spring()){
                                 self.cut = false
                             }
-                             self.folderData.transerBilltype(type: "收入")
+                            if self.folderData.typeChange != "收入"{
+                                self.folderData.transerBilltype(type: "收入")
+                            }
                         }) {
                             Text("收入")
                                 .frame(width: width/7, height: width/11, alignment: .center)
@@ -245,7 +265,7 @@ struct AllView: View {
                     RoundedRectangle(cornerRadius: 90)
                         .stroke(Color.init("MainThemeColor"), lineWidth: cut == true ? 1 : 0 )
                         .animation(.linear)
-                        
+                    
                 )
                     
                     .padding(.top,height >= 812 ? 54 : 30)

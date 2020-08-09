@@ -9,16 +9,24 @@
 import UIKit
 import CoreData
 import RealmSwift
+//import IceCream
+//import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
    
-    
+    //var syncEngine: SyncEngine?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        syncEngine = SyncEngine(objects: [
+//            SyncObject<Bill>(),
+//            SyncObject<FolderBill>()
+//
+//        ])
         return true
     }
 
