@@ -14,18 +14,18 @@ struct MainView: View {
     @State var newAddBill = false
     @ObservedObject var appData = AppData()
     @ObservedObject var folderData = FolderData()
-    
+    @ObservedObject var mycenterdata : MyInfoData
     let Title = ["钱记","收入","支出"]
     var body: some View {
         ZStack(alignment:.bottomTrailing){
             NavigationView{
+                
+                
                 TabView(selection: $selection) {
                     
                     
-                    HomeView(appData:self.appData,folderData:self.folderData).tabItem
+                    HomeView(appData:self.appData,folderData:self.folderData,mycenterdata:self.mycenterdata).tabItem
                         {
-                            
-                            
                             Image(systemName: "house.fill")
                                 .renderingMode(.template)
                             Text("主页")
@@ -37,7 +37,7 @@ struct MainView: View {
                             
                     }
                     
-                    AllView(folderData:self.folderData).tabItem
+                    AllView(folderData:self.folderData,appData:self.appData).tabItem
                         {
                             Image(systemName: "tray.full.fill")
                                 .renderingMode(.template)
@@ -48,7 +48,7 @@ struct MainView: View {
                             controller?.statusBarStyle = .darkContent
                     }
                     
-                    MyCenterView().tabItem
+                    MyCenterView(appData: self.appData).tabItem
                         {
                             Image(systemName: "person.crop.circle.fill")
                                 .renderingMode(.template)
@@ -56,6 +56,11 @@ struct MainView: View {
                             Text("我的")
                             
                     }.tag(3)
+                    .onAppear(){
+                            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+                            controller?.statusBarStyle = .lightContent
+                            
+                    }
                     
                 }
                 .accentColor(Color.init("MainThemeColor"))
@@ -86,13 +91,6 @@ struct MainView: View {
         
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}
-
 
 
 

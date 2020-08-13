@@ -17,11 +17,12 @@ struct HomeView: View {
     @ObservedObject var appData : AppData
     @State var billdata = Model()
     @ObservedObject var folderData : FolderData
+    @ObservedObject var mycenterdata : MyInfoData
     var body: some View {
         
         ZStack(alignment:.topTrailing){
             
-            Image("IMG_0090")
+            Image("background")
                 .resizable()
                 .scaledToFill()
                 .frame(width: width, height: -scrollViewContentOffset <= 0 ? height/3+scrollViewContentOffset : height/3)
@@ -127,7 +128,7 @@ struct HomeView: View {
                 .animation(.none)
                 
                 HStack{
-                    Text(appData.TodayBill.count != 0 ? "今天的账单" : "往期的账单")
+                    Text(appData.TodayBill.count == 0 ? "往期的账单" : "今天的账单")
                         .font(.system(size:20))
                         .bold()
                         .foregroundColor(Color.init("FontColor"))
@@ -211,7 +212,7 @@ struct HomeView: View {
                                         
                                         RealmDB().delete(time: item.time)
                                         self.appData.refreshData()
-                                        self.folderData.refresh()
+                                        self.folderData.setFoloderBillData()
                                     }
                                     
                                 }) {

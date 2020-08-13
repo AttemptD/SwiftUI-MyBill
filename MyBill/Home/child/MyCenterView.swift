@@ -12,6 +12,7 @@ struct MyCenterView: View {
     @State var scrollViewContentOffset : CGFloat = 0
     @State private var scale: CGFloat = 1.0
     @State var barTitle = "我的"
+    @ObservedObject var appData : AppData
     var body: some View {
         ZStack(alignment:.top){
             
@@ -38,37 +39,48 @@ struct MyCenterView: View {
                 HStack{
                     
                     VStack{
-                        Text("36")
+                        Text(appData.AllMony)
                             .font(.system(size: 25))
+                        .frame(width:width/4)
                         Text("全部")
                             .font(.system(size: 15))
                             .fontWeight(.thin)
+                        .frame(width:width/4)
                         
-                    }
+                    }.frame(width:width/4)
+                    
                     VStack{
-                        Text("").frame(width: 1, height: 50, alignment: .center)
+                         Divider().frame(width: 1, height: 50, alignment: .center)
                             .background(Color.init("MainCellSpacerColor"))
                     }
-                    .frame(width: width/5, height: 30, alignment: .center)
+                   
+                    
                     VStack{
-                        Text("36")
+                        Text(appData.PayMoney)
                             .font(.system(size: 25))
+                        .frame(width:width/4)
                         Text("支出")
                             .font(.system(size: 15))
                             .fontWeight(.thin)
-                    }
+                        .frame(width:width/4)
+                    }.frame(width:width/4)
+                    
                     VStack{
-                        Text("").frame(width: 1, height: 50, alignment: .center)
+                         Divider().frame(width: 1, height: 50, alignment: .center)
                             .background(Color.init("MainCellSpacerColor"))
                     }
-                    .frame(width: width/5, height: 30, alignment: .center)
+                   
+                    
                     VStack{
-                        Text("36")
+                        Text(appData.EaringMoney)
                             .font(.system(size: 25))
+                        .frame(width:width/4)
                         Text("收入")
                             .font(.system(size: 15))
                             .fontWeight(.thin)
-                    }
+                        .frame(width:width/4)
+                        
+                    }.frame(width:width/4)
                     
                     
                 }
@@ -76,9 +88,41 @@ struct MyCenterView: View {
                 .frame(width: width, height: height/7.5, alignment: .center)
                 .background(Color.white)
                 
-                VStack{
-                    Text("")
-                }
+             
+                HStack(alignment:.center){
+                        Image("资料修改")
+                            .resizable().frame(width: 32, height: 32)
+                            .padding(.leading,10)
+                    Spacer().frame(width:10)
+                        Text("资料修改")
+                            .font(.system(size: 15))
+                            .fontWeight(.light)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .padding(.trailing,10)
+                           
+                    }
+                .frame(width: width - 20, height: 50,alignment: .leading)
+                        .background(Color.white)
+                .cornerRadius(10)
+                
+                HStack(alignment:.center){
+                        Image("设置")
+                            .resizable().frame(width: 30, height: 30)
+                            .padding(.leading,10)
+                    Spacer().frame(width:10)
+                        Text("设置")
+                            .font(.system(size: 15))
+                            .fontWeight(.light)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .padding(.trailing,10)
+                           
+                    }
+                .frame(width: width - 20, height: 50,alignment: .leading)
+                        .background(Color.white)
+                .cornerRadius(10)
+                
                 
             }
             
@@ -89,6 +133,9 @@ struct MyCenterView: View {
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitle("我的",displayMode: .inline)
         .navigationBarHidden(true)
+        .onAppear(){
+            self.appData.getMyCenterData()
+        }
         
     }
 }
@@ -97,6 +144,6 @@ struct MyCenterView: View {
 
 struct MyCenterView_Previews: PreviewProvider {
     static var previews: some View {
-        MyCenterView()
+        MyCenterView(appData: AppData())
     }
 }

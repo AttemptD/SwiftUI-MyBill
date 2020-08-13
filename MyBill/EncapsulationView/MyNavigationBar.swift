@@ -53,7 +53,7 @@ struct MyNavigationBar: View {
                     
                 }
                 .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height >= 812 ? 88 : 64,alignment: .top)
-                .foregroundColor(Color(red: 1, green: 1, blue: 1, opacity: -scrollViewContentOffset > 50 ? 1 : 0))
+                .foregroundColor(Color(red: 1, green: 1, blue: 1, opacity: -scrollViewContentOffset >  height/4.5 ? 1 : 0))
             }
             Spacer()
         }

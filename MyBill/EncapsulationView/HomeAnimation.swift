@@ -105,7 +105,8 @@ struct HomeAnimation: View {
                   .opacity(1/2)
                   .onAppear() {
                       self.rotateSmallFan.toggle()
-                                                  }
+                                                  
+            }
           }
 
       }

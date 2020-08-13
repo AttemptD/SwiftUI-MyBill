@@ -11,10 +11,13 @@ import Charts
 
 struct AllView: View {
     @ObservedObject var folderData : FolderData
+    @ObservedObject var appData : AppData
     @State var searchText : String = ""
     @State var searchBar = true
     @State var cut = false
-    //@State var billtype = userDefault.string(forKey: "type")
+    @State var updateBill = false
+    @State var billdata = Model()
+
     var body: some View {
         
         ZStack(alignment:.top){
@@ -69,9 +72,7 @@ struct AllView: View {
                                         
                                     }
                             }
-                            
-                            
-                            
+                         
                             Spacer()
                             
                             Button(action: {
@@ -89,9 +90,7 @@ struct AllView: View {
                                 
                             .padding(.trailing,30)
                             .disabled(!item.haveData)
-                            
-                            
-                            
+                     
                             
                         }
                         
@@ -141,12 +140,54 @@ struct AllView: View {
                                             .frame(width: width-140, height: 70, alignment: .leading)
                                             .background(Color.init("AllViewCircle"))
                                             .cornerRadius(15)
+                                            .contextMenu(){
+                                                Button(action: {
+                                                    
+                                                    self.updateBill.toggle()
+                                                    self.billdata = child
+                                                    
+                                                }) {
+                                                    Text("修改")
+                                                    Image(systemName: "pencil")
+                                                }
+                                                
+                                                
+                                                Button(action: {
+                                                    
+                                                    print(item.folderBill.count)
+                                                    
+                                                    if(item.folderBill.count != 0){
+                                                        
+                                                        if(item.folderBill.count == 1){
+                                                            item.folderBill.remove(at: child.id)
+                                                            RealmDB().deleteFolder(time: item.folderTime)
+                                                            self.folderData.transerBilltype(type:self.folderData.typeChange)
+                                                        }else{
+                                                            
+                                                            item.folderBill.remove(at: child.id)
+                                                            
+                                                            RealmDB().delete(time: child.time)
+                                                            
+                                                            self.folderData.setFoloderBillData()
+                                                            self.folderData.transerBilltype(type:self.folderData.typeChange)
+                                                        }
+                                                    }
+                                                 
+                                                }) {
+                                                    Text("删除")
+                                                    Image(systemName: "trash")
+                                                        .foregroundColor(.red)
+                                                }
+                                                
+                                            }
                                             
-                                        }.frame(height: 100)
-                                        
+                                        }
+                                        .frame(height: 100)
+                                  
                                     }
-                                    
+                              
                                 }
+                                .id(UUID())
                                 .padding(.leading,80)
                                 
                                 
@@ -161,7 +202,6 @@ struct AllView: View {
                 }
             }
             .padding(.top,height >= 812 ? 108 : 84)
-            
             
             HStack{
                 
@@ -289,6 +329,10 @@ struct AllView: View {
             self.folderData.transerBilltype(type:self.folderData.typeChange )
             
             
+        }
+        .sheet(isPresented: self.$updateBill) {
+            
+            NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.billdata ,OpenType: "修改")
         }
         
         
