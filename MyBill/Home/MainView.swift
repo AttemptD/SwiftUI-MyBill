@@ -48,7 +48,7 @@ struct MainView: View {
                             controller?.statusBarStyle = .darkContent
                     }
                     
-                    MyCenterView(appData: self.appData).tabItem
+                    MyCenterView(appData: self.appData,mycenterdata:self.mycenterdata).tabItem
                         {
                             Image(systemName: "person.crop.circle.fill")
                                 .renderingMode(.template)
@@ -86,6 +86,9 @@ struct MainView: View {
                 .offset(y:-60)
                 
             }
+        }
+        .onAppear(){
+            self.mycenterdata.getMyInfo()
         }
         
         

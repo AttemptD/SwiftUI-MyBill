@@ -13,26 +13,37 @@ class MyInfoData:ObservableObject{
     
     @Published var ToMain = false
     @Published var name = ""
-    @Published var sex = ""
+   
     @Published var headerIco = Data()
     @Published var background = Data()
     
     init() {
         getMyInfo()
+        
     }
    
     func getMyInfo() {
-        let imageTranser = ImageTranser()
-        let mydata = RealmDB().getDB().object(ofType: PersonInfo.self, forPrimaryKey: "username");
         
-        print(mydata?.username)
-        if mydata?.username != nil{
-            self.ToMain = true
+      
+        let mydata = RealmDB().getDB().objects(PersonInfo.self)
+        
+        for data in mydata {
+           
+            print(data.username)
+           if data.username != "" {
+                self.ToMain = true
+            }
+         
+            self.name = data.username
+            
+            self.headerIco = data.headerIcon
+            self.background = data.mainBackground
         }
-        self.name = mydata?.username ?? "请设置用户名"
-        self.sex = mydata?.sex ?? "请设置性别"
-        self.headerIco = mydata?.headerIcon ?? imageTranser.ImageToData(image: UIImage(named: "MyImageBack")!)
-        self.background = mydata?.mainBackground ?? imageTranser.ImageToData(image: UIImage(named: "background")!)
+        
+       //print(mydata?.username)
+       
+     
+       
         
     }
 }

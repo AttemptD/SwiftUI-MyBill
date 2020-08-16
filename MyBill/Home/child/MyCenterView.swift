@@ -13,17 +13,18 @@ struct MyCenterView: View {
     @State private var scale: CGFloat = 1.0
     @State var barTitle = "我的"
     @ObservedObject var appData : AppData
+    @ObservedObject var mycenterdata : MyInfoData
     var body: some View {
         ZStack(alignment:.top){
             
-            Image("MyImageBack")
+            Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
                 .resizable()
                 .scaledToFill()
                 .frame(width: width, height: height/3)
                 .clipped()
                 .blur(radius: scrollViewContentOffset >= 0 ? 2 :  -scrollViewContentOffset/2 + 2,opaque:true)
                 .scaleEffect(-scrollViewContentOffset < 0 ? 1 + scrollViewContentOffset / 200 : 1)
-                .overlay(Image("MyImageBack")
+                .overlay(Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 85, height: 85, alignment: .center)
@@ -142,8 +143,3 @@ struct MyCenterView: View {
 
 
 
-struct MyCenterView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyCenterView(appData: AppData())
-    }
-}

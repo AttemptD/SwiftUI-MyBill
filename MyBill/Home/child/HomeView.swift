@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 
 struct HomeView: View {
@@ -22,7 +23,7 @@ struct HomeView: View {
         
         ZStack(alignment:.topTrailing){
             
-            Image("background")
+            Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.background))
                 .resizable()
                 .scaledToFill()
                 .frame(width: width, height: -scrollViewContentOffset <= 0 ? height/3+scrollViewContentOffset : height/3)
@@ -58,7 +59,7 @@ struct HomeView: View {
                     .frame(width: width-60, height: height/3.5,alignment: .center)
                     
             )
-                .cornerRadius(15)
+                .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
                 .offset(x: 0, y:-scrollViewContentOffset <= 0 ? 0 : scrollViewContentOffset)
                 .animation(.easeOut(duration: 0.3))
             
@@ -68,14 +69,14 @@ struct HomeView: View {
                 
                 
                 VStack{
-                    Image("MyImageBack")
+                    Image(uiImage:ImageTranser().DataToImage(data: mycenterdata.headerIco))
                         .resizable()
                         .scaledToFill()
                         .frame(width: 60, height: 60, alignment: .center)
                         .clipped()
                         .cornerRadius(50)
                     
-                    Text("Attempt")
+                    Text(mycenterdata.name)
                         .bold()
                         .foregroundColor(Color.init("FontColor"))
                     
@@ -263,3 +264,19 @@ struct HomeView: View {
 }
 
 
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+}
+
+struct RoundedCorner: Shape {
+
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
