@@ -52,13 +52,29 @@ struct NewAddBillView: View {
                                                     self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                                     
                                                     
-                                                    self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
+                                                    self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                                     
-                                                    self.folderData.setFoloderBillData()
+                                                     self.folderData.setFoloderBillData()
                                                 }
                                             }else{
-                                                self.appData.updataBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
+                                                
+                                               
+                                                
+                                                 DispatchQueue.main.async {
+                                                    
+                                                    
+                                                    
+                                                    RealmDB().delete(time: self.billData.time)
+                                                    
+                                                    self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
+                                                
+                                                
+                                                     self.folderData.setFoloderBillData()
+                                                }
+                                                
                                             }
+                                            
+                                             self.folderData.setFoloderBillData()
                                             
                                             DispatchQueue.main.async {
                                                 self.appData.refreshData()
@@ -275,15 +291,37 @@ struct NewAddBillView: View {
                                         self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                         
                                         
-                                        self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
+                                        self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                         
-                                        self.folderData.setFoloderBillData()
+                                         self.folderData.setFoloderBillData()
                                     }
                                 }else{
-                                    self.appData.updataBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 HH:mm:ss"), money: Money, type: self.select, doWhat: self.doWhat)
                                     
-                                    self.folderData.setFoloderBillData()
+                                   
+                                    
+                                    if self.time == TimeTools().stringConvertDate(string: self.billData.time){
+                                        
+                                        self.appData.updataBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
+                                        
+                                         self.folderData.setFoloderBillData()
+                                    }else{
+                                        DispatchQueue.main.async {
+                                             
+                                             RealmDB().delete(time: self.billData.time)
+                                            
+                                            
+                                             
+                                             self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
+                                         
+                                         
+                                              self.folderData.setFoloderBillData()
+                                         }
+                                    }
+                                    
+                                    
+                                    
                                 }
+                               
                                 
                                 DispatchQueue.main.async {
                                     self.appData.refreshData()
@@ -310,10 +348,7 @@ struct NewAddBillView: View {
                         }
                         .padding(.bottom,height/10)
                         }
-//                        .opacity(showLine_doWhat ? 0 : 1)
-//                        .opacity(showLine_money ? 0 : 1)
-//                        .disabled(showLine_doWhat ? true :false)
-//                        .disabled(showLine_money ? true :false)
+
                        
                         
                     }
@@ -349,7 +384,7 @@ struct NewAddBillView: View {
                     self.doWhat = self.billData.doWhat
                     self.money = String(self.billData.money)
                     
-                    print(String(self.billData.money))
+                    //print(String(self.billData.money))
                     
                     if self.billData.type == "支出"{
                         

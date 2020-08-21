@@ -29,7 +29,7 @@ class MyInfoData:ObservableObject{
         
         for data in mydata {
            
-            print(data.username)
+          
            if data.username != "" {
                 self.ToMain = true
             }

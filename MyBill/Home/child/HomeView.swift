@@ -26,9 +26,10 @@ struct HomeView: View {
             Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.background))
                 .resizable()
                 .scaledToFill()
-                .frame(width: width, height: -scrollViewContentOffset <= 0 ? height/3+scrollViewContentOffset : height/3)
+                .frame(width: width, height:height/3)
                 .clipped()
-                .blur(radius: -scrollViewContentOffset/4,opaque:true)
+                .blur(radius: scrollViewContentOffset >= 0 ? 0 :  -scrollViewContentOffset/2,opaque:true)
+                .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
                 .scaleEffect(-scrollViewContentOffset < 0 ? 1 + scrollViewContentOffset / 200 : 1)
                 .overlay(
                     
@@ -59,9 +60,9 @@ struct HomeView: View {
                     .frame(width: width-60, height: height/3.5,alignment: .center)
                     
             )
-                .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
+                
                 .offset(x: 0, y:-scrollViewContentOffset <= 0 ? 0 : scrollViewContentOffset)
-                .animation(.easeOut(duration: 0.3))
+                .animation(.easeInOut(duration: 0.3))
             
             TrackableScrollView(axis: .vertical, showIndicators: false, contentOffset: $scrollViewContentOffset){
                 Spacer().frame(width:width, height: height/3)

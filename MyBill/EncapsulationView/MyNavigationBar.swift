@@ -44,7 +44,14 @@ struct MyNavigationBar: View {
                     Button(action: {
                         
                     }) {
-                        Image(self.right)
+                        if self.right == "透明"{
+                         Image(self.right )
+                        }else{
+                            Image(systemName: self.right)
+                                .padding(.top,10)
+                        }
+                       
+                            //.resizable().frame(width: 30,height: 10)
                     }
                         
                     .accentColor(.white)
