@@ -33,11 +33,11 @@ struct NewAddBillView: View {
                     ZStack(alignment:.bottom){
                         VStack{
                             HStack{
-                            Text("新建")
-                                .font(.system(size: 20))
-                                .fontWeight(.light)
-                                .padding(.leading,25)
-                                .padding(.top,50)
+                                Text("新建")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.light)
+                                    .padding(.leading,25)
+                                    .padding(.top,50)
                                 
                                 Spacer()
                                 
@@ -48,44 +48,44 @@ struct NewAddBillView: View {
                                             
                                             if self.OpenType == "新建"{
                                                 
+                                                self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
+                                                
+                                                self.folderData.setFoloderBillData()
+                                                
                                                 DispatchQueue.main.async {
-                                                    self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
-                                                    
                                                     
                                                     self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
-                                                    
-                                                     self.folderData.setFoloderBillData()
                                                 }
+                                                
                                             }else{
                                                 
-                                               
-                                                
-                                                 DispatchQueue.main.async {
+                                                if self.time == TimeTools().stringConvertDate(string: self.billData.time){
                                                     
+                                                    self.appData.updataBillData(time: self.billData.time, money: Money, type: self.select, doWhat: self.doWhat)
                                                     
+                                                    self.folderData.setFoloderBillData()
+                                                    
+                                                }else{
                                                     
                                                     RealmDB().delete(time: self.billData.time)
                                                     
+                                                    RealmDB().deleteFolder(time: self.billData.blurTime)
+                                                    
                                                     self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
-                                                
-                                                
-                                                     self.folderData.setFoloderBillData()
+                                                    
+                                                    self.folderData.setFoloderBillData()
+                                                    
                                                 }
                                                 
                                             }
-                                            
-                                             self.folderData.setFoloderBillData()
                                             
                                             DispatchQueue.main.async {
                                                 self.appData.refreshData()
                                                 
-                                                
                                                 self.folderData.refresh()
                                                 
                                             }
-                                            
                                             self.presentationMode.wrappedValue.dismiss()
-                                            
                                             
                                         }else{
                                             self.showWarn.toggle()
@@ -236,9 +236,7 @@ struct NewAddBillView: View {
                                         
                                     }.frame(width: width-40,alignment:.leading)
                                     
-                                    
                                     Spacer().frame( height: 30)
-                                    
                                     
                                     VStack(alignment:.leading){
                                         
@@ -247,7 +245,6 @@ struct NewAddBillView: View {
                                             .fontWeight(.light)
                                             .padding(.leading,20)
                                             .padding(.bottom,10)
-                                        
                                         
                                         HStack{
                                             MyTextField(keyboardType: .default, text: $doWhat, placeholder:  "例如发红包/收红包", showLine:$showLine_doWhat)
@@ -269,9 +266,6 @@ struct NewAddBillView: View {
                                 .background(Color.white)
                                 .cornerRadius(15)
                                 
-                                
-                                
-                                
                             }
                             .frame(width: width, alignment: .center)
                             .background(Color.init("MainCellSpacerColor"))
@@ -281,75 +275,67 @@ struct NewAddBillView: View {
                         .background(Color.init("MainCellSpacerColor"))
                         
                         if showLine_doWhat != true && showLine_money != true{
-                        Button(action: {
-                            if self.money != "" && self.select != ""{
-                                let Money :Double = Double(self.money)!
-                                
-                                if self.OpenType == "新建"{
+                            Button(action: {
+                                if self.money != "" && self.select != ""{
+                                    let Money :Double = Double(self.money)!
                                     
-                                    DispatchQueue.main.async {
+                                    if self.OpenType == "新建"{
+                                        
                                         self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                         
+                                        self.folderData.setFoloderBillData()
                                         
-                                        self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
-                                        
-                                         self.folderData.setFoloderBillData()
-                                    }
-                                }else{
-                                    
-                                   
-                                    
-                                    if self.time == TimeTools().stringConvertDate(string: self.billData.time){
-                                        
-                                        self.appData.updataBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
-                                        
-                                         self.folderData.setFoloderBillData()
-                                    }else{
                                         DispatchQueue.main.async {
-                                             
-                                             RealmDB().delete(time: self.billData.time)
+                                            self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
+                                        }
+                                        
+                                        
+                                    }else{
+                                        
+                                        if self.time == TimeTools().stringConvertDate(string: self.billData.time){
                                             
+                                            self.appData.updataBillData(time: self.billData.time, money: Money, type: self.select, doWhat: self.doWhat)
                                             
-                                             
-                                             self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
-                                         
-                                         
-                                              self.folderData.setFoloderBillData()
-                                         }
+                                            self.folderData.setFoloderBillData()
+                                            
+                                        }else{
+                                            
+                                            RealmDB().delete(time: self.billData.time)
+                                            
+                                            RealmDB().deleteFolder(time: self.billData.blurTime)
+                                            
+                                            self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
+                                            
+                                            self.folderData.setFoloderBillData()
+                                            
+                                        }
+                                        
                                     }
                                     
                                     
+                                    DispatchQueue.main.async {
+                                        self.appData.refreshData()
+                                        
+                                        self.folderData.refresh()
+                                    }
                                     
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }else{
+                                    self.showWarn.toggle()
                                 }
-                               
+                            }) {
                                 
-                                DispatchQueue.main.async {
-                                    self.appData.refreshData()
-                                    
-                                    
-                                    self.folderData.refresh()
-                                    
-                                }
+                                Text("\(OpenType)账单")
+                                    .foregroundColor(.white)
+                                    .frame(width: 200, height: 50, alignment: .center)
+                                    .background(Color.init("MainThemeColor"))
+                                    .cornerRadius(15)
                                 
-                                self.presentationMode.wrappedValue.dismiss()
-                                
-                                
-                            }else{
-                                self.showWarn.toggle()
                             }
-                        }) {
-                            
-                            Text("\(OpenType)账单")
-                                .foregroundColor(.white)
-                                .frame(width: 200, height: 50, alignment: .center)
-                                .background(Color.init("MainThemeColor"))
-                                .cornerRadius(15)
-                            
+                            .padding(.bottom,height/10)
                         }
-                        .padding(.bottom,height/10)
-                        }
-
-                       
+                        
+                        
                         
                     }
                     
@@ -372,19 +358,17 @@ struct NewAddBillView: View {
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
             }
-                .alert(isPresented: $showWarn) {
-                    Alert(title: Text("提示"),
-                          message: Text( self.select == "" ? "请选择账单类型":"请输入收入支出费用"),
-                          dismissButton: .default(Text("我知道了")))
-                }
+            .alert(isPresented: $showWarn) {
+                Alert(title: Text("提示"),
+                      message: Text( self.select == "" ? "请选择账单类型":"请输入收入支出费用"),
+                      dismissButton: .default(Text("我知道了")))
+            }
             .onAppear(){
                 
                 if self.OpenType == "修改"{
                     
                     self.doWhat = self.billData.doWhat
                     self.money = String(self.billData.money)
-                    
-                    //print(String(self.billData.money))
                     
                     if self.billData.type == "支出"{
                         

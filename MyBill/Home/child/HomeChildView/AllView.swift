@@ -160,8 +160,10 @@ struct AllView: View {
                                                         
                                                         if(item.folderBill.count == 1){
                                                             item.folderBill.remove(at: child.id)
+                                                            RealmDB().delete(time: child.time)
                                                             RealmDB().deleteFolder(time: item.folderTime)
                                                             self.folderData.transerBilltype(type:self.folderData.typeChange)
+                                                            
                                                         }else{
                                                             
                                                             item.folderBill.remove(at: child.id)
@@ -202,6 +204,7 @@ struct AllView: View {
                 }
             }
             .padding(.top,height >= 812 ? 108 : 84)
+            .opacity(self.folderData.folderList.count > 0 ? 1:0)
             
             HStack{
                 
@@ -320,6 +323,10 @@ struct AllView: View {
             }
             .frame(width:width, height: height >= 812 ? 88 : 64)
             .background(Color.clear)
+            
+            All_ViewAnimation().opacity(self.folderData.folderList.count > 0 ? 0:1)
+            
+            
         }
         .navigationBarTitle("账单")
         .navigationBarHidden(true)
@@ -334,7 +341,6 @@ struct AllView: View {
             
             NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.billdata ,OpenType: "修改")
         }
-        
         
     }
 }

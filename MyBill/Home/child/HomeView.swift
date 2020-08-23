@@ -62,7 +62,7 @@ struct HomeView: View {
             )
                 
                 .offset(x: 0, y:-scrollViewContentOffset <= 0 ? 0 : scrollViewContentOffset)
-                .animation(.easeInOut(duration: 0.3))
+                .animation(.easeInOut(duration: 0.1))
             
             TrackableScrollView(axis: .vertical, showIndicators: false, contentOffset: $scrollViewContentOffset){
                 Spacer().frame(width:width, height: height/3)
@@ -207,12 +207,17 @@ struct HomeView: View {
                                         self.appData.TodayBill.remove(at: item.id)
                                     }else{
                                         self.appData.Bill_ten.remove(at:item.id)
+                                        
                                     }
                                     
+                                    if(self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 ){
+                                         RealmDB().deleteFolder(time: item.blurTime)
+                                    }
                                     DispatchQueue.main.async {
                                         
                                         
                                         RealmDB().delete(time: item.time)
+                                       
                                         self.appData.refreshData()
                                         self.folderData.setFoloderBillData()
                                     }

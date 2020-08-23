@@ -11,6 +11,7 @@
 		364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C24BA24D5A6F3001EBD47 /* SearchView.swift */; };
 		365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365A3C4D24CACF1D001E2328 /* DetailView.swift */; };
 		365AC0BC24E76626009B822E /* DiyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC0BB24E76626009B822E /* DiyShape.swift */; };
+		365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365DF82B24F1EC950078C79E /* All_ViewAnimation.swift */; };
 		366E056124BC4D7E00AAA1DE /* AllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366E056024BC4D7E00AAA1DE /* AllView.swift */; };
 		3676FDCC24D7AC0000B8B8DB /* FolderBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676FDCB24D7AC0000B8B8DB /* FolderBill.swift */; };
 		36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36825C3424AD71D1007134FA /* TrackableScrollView.swift */; };
@@ -71,6 +72,7 @@
 		364C24BA24D5A6F3001EBD47 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		365A3C4D24CACF1D001E2328 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		365AC0BB24E76626009B822E /* DiyShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiyShape.swift; sourceTree = "<group>"; };
+		365DF82B24F1EC950078C79E /* All_ViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = All_ViewAnimation.swift; sourceTree = "<group>"; };
 		366E056024BC4D7E00AAA1DE /* AllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllView.swift; sourceTree = "<group>"; };
 		3676FDCB24D7AC0000B8B8DB /* FolderBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderBill.swift; sourceTree = "<group>"; };
 		36825C3424AD71D1007134FA /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				369FAD7C24C83B670030EAF8 /* MYTextfield.swift */,
 				36D6AB1F24E5383C0071A60D /* imagePicker.swift */,
 				365AC0BB24E76626009B822E /* DiyShape.swift */,
+				365DF82B24F1EC950078C79E /* All_ViewAnimation.swift */,
 			);
 			path = EncapsulationView;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				369E350724A9E65C00074C20 /* NumberTranser.swift in Sources */,
 				36F25DB524B854AC000428E0 /* TimeTools.swift in Sources */,
 				369E350524A9E21F00074C20 /* ModelApp.swift in Sources */,
+				365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */,
 				36D6AB2224E53A2E0071A60D /* Setting.swift in Sources */,
 				36FC7E8624E5615300EF7F06 /* ImageTranser.swift in Sources */,
 				36B667EF24AB2C1600985192 /* DropDownView.swift in Sources */,
