@@ -35,7 +35,18 @@
 		36B3371A24A0A74F00B780ED /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B3371524A0A74F00B780ED /* pageViewController.swift */; };
 		36B3371B24A0A74F00B780ED /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B3371624A0A74F00B780ED /* MainView.swift */; };
 		36B3371D24A0A74F00B780ED /* MyCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B3371924A0A74F00B780ED /* MyCenterView.swift */; };
+		36B667A624F5030F00B37C91 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667A524F5030F00B37C91 /* test.swift */; };
+		36B667E424F50F3800B37C91 /* FancyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DA24F50F3700B37C91 /* FancyScrollView.swift */; };
+		36B667E524F50F3800B37C91 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DB24F50F3700B37C91 /* BackButton.swift */; };
+		36B667E624F50F3800B37C91 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DC24F50F3700B37C91 /* BlurView.swift */; };
+		36B667E724F50F3800B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DD24F50F3700B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift */; };
+		36B667E824F50F3800B37C91 /* AppleMusicStyleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DE24F50F3800B37C91 /* AppleMusicStyleScrollView.swift */; };
+		36B667E924F50F3800B37C91 /* HeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DF24F50F3800B37C91 /* HeaderScrollView.swift */; };
+		36B667EA24F50F3800B37C91 /* HeaderScrollViewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667E024F50F3800B37C91 /* HeaderScrollViewTitle.swift */; };
+		36B667EB24F50F3800B37C91 /* ScrollUpHeaderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667E124F50F3800B37C91 /* ScrollUpHeaderBehavior.swift */; };
+		36B667EC24F50F3800B37C91 /* ScrollDownHeaderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667E224F50F3800B37C91 /* ScrollDownHeaderBehavior.swift */; };
 		36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667EC24AB205D00985192 /* HomeAnimation.swift */; };
+		36B667ED24F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667E324F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift */; };
 		36B667EF24AB2C1600985192 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667EE24AB2C1600985192 /* DropDownView.swift */; };
 		36C5D93424D00AD20041D7E6 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 36C5D93324D00AD20041D7E6 /* SwiftyJSON */; };
 		36CE697124B70BE60056737D /* MyNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CE697024B70BE60056737D /* MyNavigationBar.swift */; };
@@ -103,6 +114,17 @@
 		36B3371524A0A74F00B780ED /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
 		36B3371624A0A74F00B780ED /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		36B3371924A0A74F00B780ED /* MyCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCenterView.swift; sourceTree = "<group>"; };
+		36B667A524F5030F00B37C91 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		36B667DA24F50F3700B37C91 /* FancyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyScrollView.swift; sourceTree = "<group>"; };
+		36B667DB24F50F3700B37C91 /* BackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		36B667DC24F50F3700B37C91 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		36B667DD24F50F3700B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+navigationAllowSpipeBackWhenHidden.swift"; sourceTree = "<group>"; };
+		36B667DE24F50F3800B37C91 /* AppleMusicStyleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicStyleScrollView.swift; sourceTree = "<group>"; };
+		36B667DF24F50F3800B37C91 /* HeaderScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderScrollView.swift; sourceTree = "<group>"; };
+		36B667E024F50F3800B37C91 /* HeaderScrollViewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderScrollViewTitle.swift; sourceTree = "<group>"; };
+		36B667E124F50F3800B37C91 /* ScrollUpHeaderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollUpHeaderBehavior.swift; sourceTree = "<group>"; };
+		36B667E224F50F3800B37C91 /* ScrollDownHeaderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollDownHeaderBehavior.swift; sourceTree = "<group>"; };
+		36B667E324F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+hideNavigationBarWithoutLosingSwipeBack.swift"; sourceTree = "<group>"; };
 		36B667EC24AB205D00985192 /* HomeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAnimation.swift; sourceTree = "<group>"; };
 		36B667EE24AB2C1600985192 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		36CE697024B70BE60056737D /* MyNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNavigationBar.swift; sourceTree = "<group>"; };
@@ -150,6 +172,7 @@
 		369E34ED24A9767800074C20 /* EncapsulationView */ = {
 			isa = PBXGroup;
 			children = (
+				36B667D924F50EF700B37C91 /* FancyScrollView */,
 				364C24BA24D5A6F3001EBD47 /* SearchView.swift */,
 				36825C3424AD71D1007134FA /* TrackableScrollView.swift */,
 				36B3371524A0A74F00B780ED /* pageViewController.swift */,
@@ -300,8 +323,26 @@
 				369E350024A9DA0A00074C20 /* MyCenterchildView */,
 				365A3C4D24CACF1D001E2328 /* DetailView.swift */,
 				36F25DB024B8418D000428E0 /* NewBuild_Update.swift */,
+				36B667A524F5030F00B37C91 /* test.swift */,
 			);
 			path = child;
+			sourceTree = "<group>";
+		};
+		36B667D924F50EF700B37C91 /* FancyScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				36B667DE24F50F3800B37C91 /* AppleMusicStyleScrollView.swift */,
+				36B667DB24F50F3700B37C91 /* BackButton.swift */,
+				36B667DC24F50F3700B37C91 /* BlurView.swift */,
+				36B667DA24F50F3700B37C91 /* FancyScrollView.swift */,
+				36B667DF24F50F3800B37C91 /* HeaderScrollView.swift */,
+				36B667E024F50F3800B37C91 /* HeaderScrollViewTitle.swift */,
+				36B667E224F50F3800B37C91 /* ScrollDownHeaderBehavior.swift */,
+				36B667E124F50F3800B37C91 /* ScrollUpHeaderBehavior.swift */,
+				36B667E324F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift */,
+				36B667DD24F50F3700B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift */,
+			);
+			path = FancyScrollView;
 			sourceTree = "<group>";
 		};
 		36F3EBD024CD5EF600CD8415 /* Frameworks */ = {
@@ -458,21 +499,30 @@
 				36F25DB724B85794000428E0 /* KeyboardUp.swift in Sources */,
 				36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */,
 				369E34F824A9B12100074C20 /* SrcSysystem.swift in Sources */,
+				36B667E624F50F3800B37C91 /* BlurView.swift in Sources */,
 				369E34F324A9940100074C20 /* StatusBarLight.swift in Sources */,
 				36B336E224A0A72D00B780ED /* AppDelegate.swift in Sources */,
+				36B667E824F50F3800B37C91 /* AppleMusicStyleScrollView.swift in Sources */,
 				36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */,
 				369E350924A9EF6900074C20 /* HomeView.swift in Sources */,
 				36D6AB2024E5383C0071A60D /* imagePicker.swift in Sources */,
 				364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */,
+				36B667E924F50F3800B37C91 /* HeaderScrollView.swift in Sources */,
+				36B667E424F50F3800B37C91 /* FancyScrollView.swift in Sources */,
 				365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */,
 				36F25DB324B85033000428E0 /* DatePicker.swift in Sources */,
+				36B667EB24F50F3800B37C91 /* ScrollUpHeaderBehavior.swift in Sources */,
 				36CE697124B70BE60056737D /* MyNavigationBar.swift in Sources */,
 				369E350324A9E14A00074C20 /* RealmDb.swift in Sources */,
+				36B667A624F5030F00B37C91 /* test.swift in Sources */,
 				3676FDCC24D7AC0000B8B8DB /* FolderBill.swift in Sources */,
 				369E350724A9E65C00074C20 /* NumberTranser.swift in Sources */,
 				36F25DB524B854AC000428E0 /* TimeTools.swift in Sources */,
 				369E350524A9E21F00074C20 /* ModelApp.swift in Sources */,
+				36B667EC24F50F3800B37C91 /* ScrollDownHeaderBehavior.swift in Sources */,
+				36B667E724F50F3800B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */,
 				365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */,
+				36B667EA24F50F3800B37C91 /* HeaderScrollViewTitle.swift in Sources */,
 				36D6AB2224E53A2E0071A60D /* Setting.swift in Sources */,
 				36FC7E8624E5615300EF7F06 /* ImageTranser.swift in Sources */,
 				36B667EF24AB2C1600985192 /* DropDownView.swift in Sources */,
@@ -484,9 +534,11 @@
 				36FC7E8224E5525200EF7F06 /* SetInfoView.swift in Sources */,
 				369FAD7D24C83B670030EAF8 /* MYTextfield.swift in Sources */,
 				366E056124BC4D7E00AAA1DE /* AllView.swift in Sources */,
+				36B667E524F50F3800B37C91 /* BackButton.swift in Sources */,
 				36B3371A24A0A74F00B780ED /* pageViewController.swift in Sources */,
 				36FC7E8424E554B200EF7F06 /* MycenterData.swift in Sources */,
 				36B3371D24A0A74F00B780ED /* MyCenterView.swift in Sources */,
+				36B667ED24F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

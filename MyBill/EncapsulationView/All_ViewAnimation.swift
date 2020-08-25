@@ -22,10 +22,13 @@ struct All_ViewAnimation: View {
         ZStack {
             Text("还没有账单哦，请添加一个吧 ！")
                 .offset(y: -height/4)
+                .font(.system(size: 15))
+                .frame(width: width-40, alignment: .center)
+            
             Image("tree")
                 .resizable()
                 .scaledToFit()
-                .offset(y:40)
+                .offset(y:30)
             
             
             ZStack {
