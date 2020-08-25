@@ -78,6 +78,7 @@ struct SetInfoView: View {
             }
             
             
+            
             Button(action: {
                
                 if self.username == ""{

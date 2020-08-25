@@ -137,111 +137,120 @@ struct test: View {
                     .offset(x:0,y:-height/10)
                     .animation(.none)
                 
-              
-                ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
+                Spacer().frame(height:0)
+                
+                ScrollView{
                     
-                    NavigationLink(destination:DetailView(billData: item)){
-                        
-                        HStack{
-                            VStack{
+                        ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
+                            
+                            NavigationLink(destination:DetailView(billData: item)){
+                                
                                 HStack{
-                                    if item.type == "收入"{
+                                    VStack{
+                                        HStack{
+                                            if item.type == "收入"{
+                                                
+                                                Image("收入")
+                                                    .resizable()
+                                                    .frame(width:35,height:35)
+                                                    .foregroundColor(.orange)
+                                            }else{
+                                                Image("支出")
+                                                    .resizable()
+                                                    .frame(width:35,height:35)
+                                                    .foregroundColor(.gray)
+                                            }
+                                            Spacer()
+                                            Text(item.doWhat)
+                                                .font(.system(size:16))
+                                        }.padding(.horizontal,10)
+                                            .shadow(radius: 0)
                                         
-                                        Image("收入")
-                                            .resizable()
-                                            .frame(width:35,height:35)
-                                            .foregroundColor(.orange)
-                                    }else{
-                                        Image("支出")
-                                            .resizable()
-                                            .frame(width:35,height:35)
+                                        Text("\(transer(value:item.money))元")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.heavy)
+                                            .padding(.bottom,15)
+                                            
+                                            .foregroundColor(Color.init("FontColor"))
+                                        
+                                        Text(item.blurTime)
                                             .foregroundColor(.gray)
+                                            .fontWeight(.light)
+                                            .font(.system(size:14))
+                                        
                                     }
-                                    Spacer()
-                                    Text(item.doWhat)
-                                        .font(.system(size:16))
-                                }.padding(.horizontal,10)
-                                    .shadow(radius: 0)
-                                
-                                Text("\(transer(value:item.money))元")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.heavy)
-                                    .padding(.bottom,15)
+                                    .padding(.vertical,15)
+                                    .frame(width: (width-60)/2-10, alignment: .center)
+                                        
+                                    .background(Color.white)
+                                    .cornerRadius(10)
+                                        
+                                    .contextMenu(){
+                                        Button(action: {
+                                            
+                                            self.updateBill.toggle()
+                                            self.billdata = item
+                                            
+                                        }) {
+                                            Text("修改")
+                                            Image(systemName: "pencil")
+                                        }
+                                        
+                                        
+                                        Button(action: {
+                                            
+                                            if(self.appData.TodayBill.count != 0){
+                                                self.appData.TodayBill.remove(at: item.id)
+                                            }else{
+                                                self.appData.Bill_ten.remove(at:item.id)
+                                                
+                                            }
+                                            
+                                            if(self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 ){
+                                                RealmDB().deleteFolder(time: item.blurTime)
+                                            }
+                                            DispatchQueue.main.async {
+                                                
+                                                
+                                                RealmDB().delete(time: item.time)
+                                                
+                                                self.appData.refreshData()
+                                                self.folderData.setFoloderBillData()
+                                            }
+                                            
+                                        }) {
+                                            Text("删除")
+                                            Image(systemName: "trash")
+                                                .foregroundColor(.red)
+                                        }
+                                        
+                                    }
                                     
-                                    .foregroundColor(Color.init("FontColor"))
-                                
-                                Text(item.blurTime)
-                                    .foregroundColor(.gray)
-                                    .fontWeight(.light)
-                                    .font(.system(size:14))
+                                    
+                                }
+                                .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                                .shadow(radius: 5)
+                                .animation(.none)
                                 
                             }
-                            .padding(.vertical,15)
-                            .frame(width: (width-60)/2-10, alignment: .center)
-                                
-                            .background(Color.white)
-                            .cornerRadius(10)
-                                
-                            .contextMenu(){
-                                Button(action: {
-                                    
-                                    self.updateBill.toggle()
-                                    self.billdata = item
-                                    
-                                }) {
-                                    Text("修改")
-                                    Image(systemName: "pencil")
-                                }
-                                
-                                
-                                Button(action: {
-                                    
-                                    if(self.appData.TodayBill.count != 0){
-                                        self.appData.TodayBill.remove(at: item.id)
-                                    }else{
-                                        self.appData.Bill_ten.remove(at:item.id)
-                                        
-                                    }
-                                    
-                                    if(self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 ){
-                                        RealmDB().deleteFolder(time: item.blurTime)
-                                    }
-                                    DispatchQueue.main.async {
-                                        
-                                        
-                                        RealmDB().delete(time: item.time)
-                                        
-                                        self.appData.refreshData()
-                                        self.folderData.setFoloderBillData()
-                                    }
-                                    
-                                }) {
-                                    Text("删除")
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
-                                }
-                                
-                            }
+                            .buttonStyle(PlainButtonStyle())
                             
                             
-                        }
-                        .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
-                        .shadow(radius: 5)
-                        .animation(.none)
-                        
-                    }
-                    .buttonStyle(PlainButtonStyle())
+                        }.id(UUID())
+                            .frame(width:width)
+                    .offset(x:0,y:height/15)
+                   
                     
-                    
-                }.id(UUID())
-                    .offset(x:0,y:-height/20)
-               
+                }.frame(width:width,height:appData.TodayBill.count != 0 ? CGFloat(appData.TodayBill.count * 98) : CGFloat(appData.Bill_ten.count * 98))
+                //.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                 .offset(x:0,y:-height/12)
+                
                 
             } .background(Color.init("MainCellSpacerColor"))
             
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-        .background(Color.init("MainCellSpacerColor"))
-        .navigationBarTitle("主页").navigationBarHidden(true)
+            .background(Color.init("MainCellSpacerColor"))
+            .navigationBarTitle("主页").navigationBarHidden(true)
     }
 }
 

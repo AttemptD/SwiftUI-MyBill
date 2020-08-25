@@ -15,7 +15,7 @@ struct HeaderScrollView: View {
 
     var body: some View {
         GeometryReader { globalGeometry in
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
                     GeometryReader { geometry -> AnyView in
                         let geometry = self.geometry(from: geometry, safeArea: globalGeometry.safeAreaInsets)
