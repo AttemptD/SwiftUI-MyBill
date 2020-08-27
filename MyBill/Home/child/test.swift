@@ -22,10 +22,11 @@ struct test: View {
                         headerHeight: height/3,
                         scrollUpHeaderBehavior: .parallax,
                         scrollDownHeaderBehavior: .offset,
+                        cornerRadiusNub:15,
                         header: { Image("background").resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: width, height:height)
-                            .clipped()
+                            //.frame(width: width, height:height)
+                            //.clipped()
                             .overlay(
                                 
                                 VStack{
@@ -136,114 +137,114 @@ struct test: View {
                 } .frame(width: width-60,  alignment: .center)
                     .offset(x:0,y:-height/10)
                     .animation(.none)
+                    
                 
-                Spacer().frame(height:0)
+                
                 
                 ScrollView{
                     
-                        ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
+                    ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
+                        
+                        NavigationLink(destination:DetailView(billData: item)){
                             
-                            NavigationLink(destination:DetailView(billData: item)){
-                                
-                                HStack{
-                                    VStack{
-                                        HStack{
-                                            if item.type == "收入"{
-                                                
-                                                Image("收入")
-                                                    .resizable()
-                                                    .frame(width:35,height:35)
-                                                    .foregroundColor(.orange)
-                                            }else{
-                                                Image("支出")
-                                                    .resizable()
-                                                    .frame(width:35,height:35)
-                                                    .foregroundColor(.gray)
-                                            }
-                                            Spacer()
-                                            Text(item.doWhat)
-                                                .font(.system(size:16))
-                                        }.padding(.horizontal,10)
-                                            .shadow(radius: 0)
-                                        
-                                        Text("\(transer(value:item.money))元")
-                                            .font(.system(size: 20))
-                                            .fontWeight(.heavy)
-                                            .padding(.bottom,15)
+                            HStack{
+                                VStack{
+                                    HStack{
+                                        if item.type == "收入"{
                                             
-                                            .foregroundColor(Color.init("FontColor"))
-                                        
-                                        Text(item.blurTime)
-                                            .foregroundColor(.gray)
-                                            .fontWeight(.light)
-                                            .font(.system(size:14))
-                                        
-                                    }
-                                    .padding(.vertical,15)
-                                    .frame(width: (width-60)/2-10, alignment: .center)
-                                        
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                        
-                                    .contextMenu(){
-                                        Button(action: {
-                                            
-                                            self.updateBill.toggle()
-                                            self.billdata = item
-                                            
-                                        }) {
-                                            Text("修改")
-                                            Image(systemName: "pencil")
+                                            Image("收入")
+                                                .resizable()
+                                                .frame(width:35,height:35)
+                                                .foregroundColor(.orange)
+                                        }else{
+                                            Image("支出")
+                                                .resizable()
+                                                .frame(width:35,height:35)
+                                                .foregroundColor(.gray)
                                         }
-                                        
-                                        
-                                        Button(action: {
-                                            
-                                            if(self.appData.TodayBill.count != 0){
-                                                self.appData.TodayBill.remove(at: item.id)
-                                            }else{
-                                                self.appData.Bill_ten.remove(at:item.id)
-                                                
-                                            }
-                                            
-                                            if(self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 ){
-                                                RealmDB().deleteFolder(time: item.blurTime)
-                                            }
-                                            DispatchQueue.main.async {
-                                                
-                                                
-                                                RealmDB().delete(time: item.time)
-                                                
-                                                self.appData.refreshData()
-                                                self.folderData.setFoloderBillData()
-                                            }
-                                            
-                                        }) {
-                                            Text("删除")
-                                            Image(systemName: "trash")
-                                                .foregroundColor(.red)
-                                        }
-                                        
-                                    }
+                                        Spacer()
+                                        Text(item.doWhat)
+                                            .font(.system(size:16))
+                                    }.padding(.horizontal,10)
+                                        .shadow(radius: 0)
                                     
+                                    Text("\(transer(value:item.money))元")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.heavy)
+                                        .padding(.bottom,15)
+                                        
+                                        .foregroundColor(Color.init("FontColor"))
+                                    
+                                    Text(item.blurTime)
+                                        .foregroundColor(.gray)
+                                        .fontWeight(.light)
+                                        .font(.system(size:14))
                                     
                                 }
-                                .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
-                                .shadow(radius: 5)
-                                .animation(.none)
+                                .padding(.vertical,15)
+                                .frame(width: (width-60)/2-10, alignment: .center)
+                                    
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                    
+                                .contextMenu(){
+                                    Button(action: {
+                                        
+                                        self.updateBill.toggle()
+                                        self.billdata = item
+                                        
+                                    }) {
+                                        Text("修改")
+                                        Image(systemName: "pencil")
+                                    }
+                                    
+                                    
+                                    Button(action: {
+                                        
+                                        if(self.appData.TodayBill.count != 0){
+                                            self.appData.TodayBill.remove(at: item.id)
+                                        }else{
+                                            self.appData.Bill_ten.remove(at:item.id)
+                                            
+                                        }
+                                        
+                                        if(self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 ){
+                                            RealmDB().deleteFolder(time: item.blurTime)
+                                        }
+                                        DispatchQueue.main.async {
+                                            
+                                            
+                                            RealmDB().delete(time: item.time)
+                                            
+                                            self.appData.refreshData()
+                                            self.folderData.setFoloderBillData()
+                                        }
+                                        
+                                    }) {
+                                        Text("删除")
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
+                                    
+                                }
+                                
                                 
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                            .shadow(radius: 3)
+                            .animation(.none)
                             
-                            
-                        }.id(UUID())
-                            .frame(width:width)
-                    .offset(x:0,y:height/15)
-                   
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        
+                    }.id(UUID())
+                        .frame(width:width,height: appData.TodayBill.count == 1 ? 160 : appData.Bill_ten.count == 1 ? 160 :   appData.TodayBill.count != 0 ? CGFloat(appData.TodayBill.count * 105) : CGFloat(appData.Bill_ten.count * 105),alignment:.center)
+                }
                     
-                }.frame(width:width,height:appData.TodayBill.count != 0 ? CGFloat(appData.TodayBill.count * 98) : CGFloat(appData.Bill_ten.count * 98))
-                //.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                 .offset(x:0,y:-height/12)
+                .offset(x:0,y:-height/10)
+              
+                
                 
                 
             } .background(Color.init("MainCellSpacerColor"))

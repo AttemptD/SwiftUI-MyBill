@@ -5,6 +5,7 @@ public struct FancyScrollView: View {
     let headerHeight: CGFloat
     let scrollUpHeaderBehavior: ScrollUpHeaderBehavior
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
+    let cornerRadiusNub : CGFloat
     let header: AnyView?
     let content: AnyView
 
@@ -15,6 +16,7 @@ public struct FancyScrollView: View {
                                  headerHeight: headerHeight,
                                  scrollUpBehavior: scrollUpHeaderBehavior,
                                  scrollDownBehavior: scrollDownHeaderBehavior,
+                                 cornerRadiusNub:cornerRadiusNub,
                                  header: header,
                                  content: content)
             )
@@ -48,6 +50,7 @@ extension FancyScrollView {
                                   headerHeight: CGFloat = 300,
                                   scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
+                                  cornerRadiusNub:CGFloat = 15,
                                   header: () -> A?,
                                   content: () -> B) {
 
@@ -55,6 +58,7 @@ extension FancyScrollView {
                   headerHeight: headerHeight,
                   scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
+                  cornerRadiusNub:cornerRadiusNub,
                   header: AnyView(header()),
                   content: AnyView(content()))
     }
@@ -63,12 +67,14 @@ extension FancyScrollView {
                          headerHeight: CGFloat = 300,
                          scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                          scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
+                         cornerRadiusNub:CGFloat = 15,
                          content: () -> A) {
 
            self.init(title: title,
                      headerHeight: headerHeight,
                      scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
+                     cornerRadiusNub:cornerRadiusNub,
                      header: nil,
                      content: AnyView(content()))
        }

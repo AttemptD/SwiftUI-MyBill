@@ -31,7 +31,7 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIViewController,
                                 context: UIViewControllerRepresentableContext<NavigationConfigurator>) {
- uiViewController.navigationController?.navigationBar.backgroundColor = UIColor.orange
+
         uiViewController.navigationController?.navigationBar.isHidden = hidden
         
         context.coordinator.navigationController = uiViewController.navigationController

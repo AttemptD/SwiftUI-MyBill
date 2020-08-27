@@ -71,7 +71,7 @@ private struct NavigationConfigurator: UIViewControllerRepresentable {
         uiViewController.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
         guard !(uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate is Coordinator) else { return }
-         //uiViewController.navigationController?.navigationBar.backgroundColor = UIColor.orange
+   
         context.coordinator.navigationController = uiViewController.navigationController
         context.coordinator.originalDelegate = uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate
         uiViewController.navigationController?.interactivePopGestureRecognizer?.delegate = context.coordinator

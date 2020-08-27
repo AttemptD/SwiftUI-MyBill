@@ -10,24 +10,53 @@ struct HeaderScrollView: View {
     let headerHeight: CGFloat
     let scrollUpBehavior: ScrollUpHeaderBehavior
     let scrollDownBehavior: ScrollDownHeaderBehavior
+    let cornerRadiusNub : CGFloat
     let header: AnyView
     let content: AnyView
+   
 
     var body: some View {
         GeometryReader { globalGeometry in
+            
+//            GeometryReader { geometry -> AnyView in
+//
+//                let geometry = self.geometry(from: geometry, safeArea: globalGeometry.safeAreaInsets)
+//
+//                return AnyView(
+//
+//                    self.header
+//                        .frame(width: geometry.width, height: geometry.headerHeight)
+//                        .clipped()
+//                        .cornerRadius(self.cornerRadiusNub, corners: [.bottomLeft, .bottomRight])
+//                        .offset(y: geometry.headerOffset)
+//                        .opacity(geometry.largeTitleWeight == 0 ? 0 : 1)
+//
+//
+//                )
+//            }
+//            .frame(width: globalGeometry.size.width, height: self.headerHeight-40,alignment: .top)
+//
+            
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
-                    GeometryReader { geometry -> AnyView in
-                        let geometry = self.geometry(from: geometry, safeArea: globalGeometry.safeAreaInsets)
-                        return AnyView(
-                            self.header
-                                .frame(width: geometry.width, height: geometry.headerHeight)
-                                .clipped()
-                                .opacity(sqrt(geometry.largeTitleWeight))
-                                .offset(y: geometry.headerOffset)
-                        )
-                    }
-                    .frame(width: globalGeometry.size.width, height: self.headerHeight)
+                    
+                  GeometryReader { geometry -> AnyView in
+                      
+                      let geometry = self.geometry(from: geometry, safeArea: globalGeometry.safeAreaInsets)
+                    
+                      return AnyView(
+                     
+                          self.header
+                              .frame(width: geometry.width, height: geometry.headerHeight)
+                              .clipped()
+                              .cornerRadius(self.cornerRadiusNub, corners: [.bottomLeft, .bottomRight])
+                              .opacity(sqrt(geometry.largeTitleWeight))
+                              .offset(y: geometry.headerOffset)
+                           
+                       
+                      )
+                  }
+                  .frame(width: globalGeometry.size.width, height: self.headerHeight,alignment: .top)
 
                     GeometryReader { geometry -> AnyView in
                         let geometry = self.geometry(from: geometry, safeArea: globalGeometry.safeAreaInsets)
@@ -58,11 +87,13 @@ struct HeaderScrollView: View {
                     .frame(width: globalGeometry.size.width, height: self.headerHeight)
                     .zIndex(1000)
                     .offset(y: -self.headerHeight)
-
+                    
+                    
                     self.content
                         .background(Color.background(colorScheme: self.colorScheme))
                         .offset(y: -self.headerHeight)
                         .padding(.bottom, -self.headerHeight)
+                     
                 }
             }
             .edgesIgnoringSafeArea(.top)
