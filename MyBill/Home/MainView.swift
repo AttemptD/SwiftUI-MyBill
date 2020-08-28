@@ -24,7 +24,7 @@ struct MainView: View {
                 TabView(selection: $selection) {
                     
                     
-                    test(appData:self.appData,folderData:self.folderData,mycenterdata:self.mycenterdata).tabItem
+                    Home(appData:self.appData,folderData:self.folderData,mycenterdata:self.mycenterdata).tabItem
                         {
                             Image(systemName: "house.fill")
                                 .renderingMode(.template)

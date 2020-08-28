@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-struct test: View {
+struct Home: View {
     @State var scrollViewContentOffset : CGFloat = 0
     @State private var scale: CGFloat = 1.0
     @State var barTitle = "主页"
@@ -197,22 +197,26 @@ struct test: View {
                                     
                                     Button(action: {
                                         
-                                        if(self.appData.TodayBill.count != 0){
-                                            self.appData.TodayBill.remove(at: item.id)
-                                        }else{
-                                            self.appData.Bill_ten.remove(at:item.id)
-                                            
-                                        }
                                         
-                                        if(self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 ){
-                                            RealmDB().deleteFolder(time: item.blurTime)
-                                        }
-                                        DispatchQueue.main.async {
-                                            
-                                            RealmDB().delete(time: item.time)
-                                            
-                                            self.appData.refreshData()
-                                            self.folderData.setFoloderBillData()
+                                        withAnimation(.easeOut){
+                                            DispatchQueue.main.async {
+                                                
+                                                if self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 {
+                                                    RealmDB().deleteFolder(time: item.blurTime)
+                                                }
+                                                
+                                                if(self.appData.TodayBill.count != 0){
+                                                    self.appData.TodayBill.remove(at: item.id)
+                                                }else{
+                                                    self.appData.Bill_ten.remove(at:item.id)
+                                                    
+                                                }
+                                                
+                                                RealmDB().delete(time: item.time)
+                                                
+                                                self.appData.refreshData()
+                                                self.folderData.setFoloderBillData()
+                                            }
                                         }
                                         
                                     }) {
@@ -256,3 +260,19 @@ struct test: View {
 }
 
 
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+}
+
+struct RoundedCorner: Shape {
+
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}

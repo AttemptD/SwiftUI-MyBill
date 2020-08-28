@@ -21,7 +21,6 @@
 		369E350324A9E14A00074C20 /* RealmDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350224A9E14A00074C20 /* RealmDb.swift */; };
 		369E350524A9E21F00074C20 /* ModelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350424A9E21F00074C20 /* ModelApp.swift */; };
 		369E350724A9E65C00074C20 /* NumberTranser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350624A9E65C00074C20 /* NumberTranser.swift */; };
-		369E350924A9EF6900074C20 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350824A9EF6900074C20 /* HomeView.swift */; };
 		369FAD7D24C83B670030EAF8 /* MYTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369FAD7C24C83B670030EAF8 /* MYTextfield.swift */; };
 		36A3566C24DFDAD50095EF86 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A3566B24DFDAD50095EF86 /* CloudKit.framework */; };
 		36B336E224A0A72D00B780ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B336E124A0A72D00B780ED /* AppDelegate.swift */; };
@@ -35,7 +34,7 @@
 		36B3371A24A0A74F00B780ED /* pageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B3371524A0A74F00B780ED /* pageViewController.swift */; };
 		36B3371B24A0A74F00B780ED /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B3371624A0A74F00B780ED /* MainView.swift */; };
 		36B3371D24A0A74F00B780ED /* MyCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B3371924A0A74F00B780ED /* MyCenterView.swift */; };
-		36B667A624F5030F00B37C91 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667A524F5030F00B37C91 /* test.swift */; };
+		36B667A624F5030F00B37C91 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667A524F5030F00B37C91 /* Home.swift */; };
 		36B667E424F50F3800B37C91 /* FancyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DA24F50F3700B37C91 /* FancyScrollView.swift */; };
 		36B667E524F50F3800B37C91 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DB24F50F3700B37C91 /* BackButton.swift */; };
 		36B667E624F50F3800B37C91 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667DC24F50F3700B37C91 /* BlurView.swift */; };
@@ -92,7 +91,6 @@
 		369E350224A9E14A00074C20 /* RealmDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDb.swift; sourceTree = "<group>"; };
 		369E350424A9E21F00074C20 /* ModelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelApp.swift; sourceTree = "<group>"; };
 		369E350624A9E65C00074C20 /* NumberTranser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTranser.swift; sourceTree = "<group>"; };
-		369E350824A9EF6900074C20 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		369FAD7C24C83B670030EAF8 /* MYTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYTextfield.swift; sourceTree = "<group>"; };
 		36A3566A24DFDA8B0095EF86 /* 小猪罐.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "小猪罐.entitlements"; sourceTree = "<group>"; };
 		36A3566B24DFDAD50095EF86 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -114,7 +112,7 @@
 		36B3371524A0A74F00B780ED /* pageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageViewController.swift; sourceTree = "<group>"; };
 		36B3371624A0A74F00B780ED /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		36B3371924A0A74F00B780ED /* MyCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCenterView.swift; sourceTree = "<group>"; };
-		36B667A524F5030F00B37C91 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		36B667A524F5030F00B37C91 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		36B667DA24F50F3700B37C91 /* FancyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyScrollView.swift; sourceTree = "<group>"; };
 		36B667DB24F50F3700B37C91 /* BackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		36B667DC24F50F3700B37C91 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -317,13 +315,12 @@
 		36B3371724A0A74F00B780ED /* child */ = {
 			isa = PBXGroup;
 			children = (
-				369E350824A9EF6900074C20 /* HomeView.swift */,
+				36B667A524F5030F00B37C91 /* Home.swift */,
 				369E34F924A9C93000074C20 /* HomeChildView */,
 				36B3371924A0A74F00B780ED /* MyCenterView.swift */,
 				369E350024A9DA0A00074C20 /* MyCenterchildView */,
 				365A3C4D24CACF1D001E2328 /* DetailView.swift */,
 				36F25DB024B8418D000428E0 /* NewBuild_Update.swift */,
-				36B667A524F5030F00B37C91 /* test.swift */,
 			);
 			path = child;
 			sourceTree = "<group>";
@@ -504,7 +501,6 @@
 				36B336E224A0A72D00B780ED /* AppDelegate.swift in Sources */,
 				36B667E824F50F3800B37C91 /* AppleMusicStyleScrollView.swift in Sources */,
 				36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */,
-				369E350924A9EF6900074C20 /* HomeView.swift in Sources */,
 				36D6AB2024E5383C0071A60D /* imagePicker.swift in Sources */,
 				364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */,
 				36B667E924F50F3800B37C91 /* HeaderScrollView.swift in Sources */,
@@ -514,7 +510,7 @@
 				36B667EB24F50F3800B37C91 /* ScrollUpHeaderBehavior.swift in Sources */,
 				36CE697124B70BE60056737D /* MyNavigationBar.swift in Sources */,
 				369E350324A9E14A00074C20 /* RealmDb.swift in Sources */,
-				36B667A624F5030F00B37C91 /* test.swift in Sources */,
+				36B667A624F5030F00B37C91 /* Home.swift in Sources */,
 				3676FDCC24D7AC0000B8B8DB /* FolderBill.swift in Sources */,
 				369E350724A9E65C00074C20 /* NumberTranser.swift in Sources */,
 				36F25DB524B854AC000428E0 /* TimeTools.swift in Sources */,
