@@ -8,7 +8,6 @@
 
 import SwiftUI
 import UIKit
-import FancyScrollView
 
 struct HomeView: View {
     @State var scrollViewContentOffset : CGFloat = 0
@@ -20,9 +19,6 @@ struct HomeView: View {
     @ObservedObject var folderData : FolderData
     @ObservedObject var mycenterdata : MyInfoData
     var body: some View {
-        
-        
-
         
         ZStack(alignment:.topTrailing){
 

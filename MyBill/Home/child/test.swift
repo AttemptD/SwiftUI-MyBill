@@ -6,6 +6,8 @@
 //  Copyright © 2020 Frank D. All rights reserved.
 //
 
+
+
 import SwiftUI
 
 struct test: View {
@@ -135,14 +137,11 @@ struct test: View {
                             .foregroundColor(Color.init("FontColor"))
                     }
                 } .frame(width: width-60,  alignment: .center)
-                    .offset(x:0,y:-height/10)
+                    .offset(x:0,y:-height/12)
                     .animation(.none)
-                    
                 
-                
-                
-                ScrollView{
-                    
+               
+                ScrollView {
                     ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
                         
                         NavigationLink(destination:DetailView(billData: item)){
@@ -181,12 +180,9 @@ struct test: View {
                                         .font(.system(size:14))
                                     
                                 }
-                                .padding(.vertical,15)
-                                .frame(width: (width-60)/2-10, alignment: .center)
-                                    
+                                .frame(width: (width-60)/2-10,height:  (width-60)/2-25, alignment: .center)
                                 .background(Color.white)
                                 .cornerRadius(10)
-                                    
                                 .contextMenu(){
                                     Button(action: {
                                         
@@ -213,7 +209,6 @@ struct test: View {
                                         }
                                         DispatchQueue.main.async {
                                             
-                                            
                                             RealmDB().delete(time: item.time)
                                             
                                             self.appData.refreshData()
@@ -227,25 +222,30 @@ struct test: View {
                                     }
                                     
                                 }
-                                
-                                
+                                .offset(y: item.lastOne ? -27:0)
+                            
                             }
-                            .frame(width: width-60, height: 65, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                            .frame(width: width-60, height: item.lastOne ? (width-60)/2 + 54 : (width-60)/2, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                            .offset(y:item.left ? 0 : -20)
                             .shadow(radius: 3)
                             .animation(.none)
+                            .padding(.bottom, item.lastOne ? -60 : -80)
+                        
                             
                         }
                         .buttonStyle(PlainButtonStyle())
                         
                         
                     }.id(UUID())
-                        .frame(width:width,height: appData.TodayBill.count == 1 ? 160 : appData.Bill_ten.count == 1 ? 160 :   appData.TodayBill.count != 0 ? CGFloat(appData.TodayBill.count * 105) : CGFloat(appData.Bill_ten.count * 105),alignment:.center)
-                }
+                        .frame(width:width)
                     
-                .offset(x:0,y:-height/10)
+                        
+                
+                }
+                //.border(Color.red, width: 1)
+               
+                .offset(y:-60)
               
-                
-                
                 
             } .background(Color.init("MainCellSpacerColor"))
             
