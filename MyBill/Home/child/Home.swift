@@ -27,8 +27,7 @@ struct Home: View {
                         cornerRadiusNub:15,
                         header: { Image("background").resizable()
                             .aspectRatio(contentMode: .fill)
-                            //.frame(width: width, height:height)
-                            //.clipped()
+                            
                             .overlay(
                                 
                                 VStack{
@@ -246,8 +245,7 @@ struct Home: View {
                         
                 
                 }
-                //.border(Color.red, width: 1)
-               
+             
                 .offset(y:-60)
               
                 
