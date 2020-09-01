@@ -14,16 +14,18 @@ struct SetInfoView: View {
     @State var selectImage = false
     @State var showtips = false
     @ObservedObject var mycenterdata : MyInfoData
+    @Environment(\.presentationMode) var presentationMode
+    @State var openType : String
     var body: some View {
         
         ZStack(alignment:.bottom){
             VStack(alignment:.leading,spacing: 10){
                 
-                Text("设置个人信息")
+                Text("\(openType)个人信息")
                     .font(.system(size: 20))
                     .fontWeight(.heavy)
                 
-                Text("给自己设置一个头像和用户名吧")
+                Text(openType == "修改" ? "修改头像" : "给自己设置一个头像和用户名吧")
                     .font(.system(size: 12))
                     .fontWeight(.light)
                 
@@ -58,9 +60,17 @@ struct SetInfoView: View {
                 Spacer().frame(height:20)
                 
                 HStack{
-                    TextField("设置一个用户名呗", text: $username)
+                    
+                    if openType == "新建"{
+                        TextField("设置一个用户名呗", text: $username)
                         .padding(.leading,10)
                         .frame( height: 40)
+                    }else{
+                        TextField("修改用户名", text: $username)
+                        .padding(.leading,10)
+                        .frame( height: 40)
+                    }
+                    
                     
                     
                 }
@@ -84,14 +94,22 @@ struct SetInfoView: View {
                 if self.username == ""{
                     self.showtips.toggle()
                 }else{
-                    
-                self.mycenterdata.ToMain.toggle()
+                    if self.openType == "新建"{
+                         self.mycenterdata.ToMain.toggle()
+                    }else{
+                         self.presentationMode.wrappedValue.dismiss()
+                    }
+               
                 RealmDB().insertMyInfo(header: ImageTranser().ImageToData(image: self.header ??  UIImage(named:"MyImageBack")!),
                                        background: ImageTranser().ImageToData(image: UIImage.init(named: "background")!),
                                        name: self.username)
+                    
+                    DispatchQueue.main.async {
+                        self.mycenterdata.getMyInfo()
+                    }
                 }
             }) {
-                Text("进入主页")
+                Text(openType == "修改" ? "完成":  "进入主页")
                     .foregroundColor(.white)
                 
             }.frame(width: 120, height: 45, alignment: .center)
@@ -105,14 +123,16 @@ struct SetInfoView: View {
                       dismissButton: .default(Text("我知道了")))
             }
             
+        }.onAppear(){
+            if self.openType == "修改"{
+                self.username = self.mycenterdata.name
+                self.header = ImageTranser().DataToImage(data: self.mycenterdata.headerIco) 
+            }
         }
+    .navigationBarTitle("")
+    .navigationBarHidden(true)
     }
 }
 
-struct SetInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        SetInfoView(mycenterdata: MyInfoData())
-    }
-}
 
 

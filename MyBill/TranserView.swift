@@ -16,7 +16,7 @@ struct TranserView: View {
             if mycenterdata.ToMain {
                 MainView(mycenterdata:mycenterdata)
             }else{
-                SetInfoView(mycenterdata: mycenterdata)
+                SetInfoView(mycenterdata: mycenterdata, openType: "新建")
             }
         }.transition(.identity)
     }

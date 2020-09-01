@@ -28,6 +28,7 @@ struct MyCenterView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .blur(radius: 5,opaque: true)
+                                    .overlay(Color.init("MyCenterColor"))
                                     .overlay(
                                         NavigationLink(destination: EmptyView(), isActive: $gotoEditView){
                                             Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
@@ -41,6 +42,7 @@ struct MyCenterView: View {
                                             }
                                         }.buttonStyle(PlainButtonStyle())
                                 )
+                                
                                 
                                 
             }){
@@ -114,7 +116,7 @@ struct MyCenterView: View {
                 self.appData.getMyCenterData()
             }
             
-            NavigationLink(destination:SettingView(),isActive: self.$gotoSetting){
+            NavigationLink(destination:SettingView(mycenterdata:self.mycenterdata),isActive: self.$gotoSetting){
                 Button(action: {
                     self.gotoSetting.toggle()
                 }) {

@@ -9,31 +9,59 @@
 import SwiftUI
 
 struct SettingView: View {
+    @ObservedObject var setting = SettingData()
+    @ObservedObject var mycenterdata : MyInfoData
+    @Environment(\.presentationMode) var persentationMode
     var body: some View {
         
-        ZStack{
+        ZStack(alignment:.topLeading){
             FancyScrollView(title: "设置",
-                            headerHeight: 150,
+                            headerHeight: 200,
                             scrollUpHeaderBehavior: .parallax,
-                            scrollDownHeaderBehavior: .sticky,
+                            scrollDownHeaderBehavior: .offset,
                             showTitle: true,
-                            header: { EmptyView() }) {
+                            header: { Image("Setting").resizable().scaledToFill() }) {
                                 VStack{
+                                    ForEach(setting.settingData){item in
+                                        
+                                        NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata)){
+                                            HStack{
+                                                Image(item.seleterIcon)
+                                                Text(item.seleterName)
+                                                Spacer()
+                                                Image(systemName: "chevron.right")
+                                            }.padding(.horizontal,20)
+                                                .frame(width: width-40, height: 50, alignment: .leading)
+                                                .contentShape(Rectangle())
+                                        }.buttonStyle(PlainButtonStyle())
+                                        
+                                        
+                                    }
                                     
-                                    Text("测试")
-                                }.background(Color.red)
+                                }
+                                .frame(width: width-40,alignment: .center)
+                                .background(Color.white)
+                                .cornerRadius(15)
+                                .shadow(radius: 5)
+                                
                                 
             }.background(Color.init("MainCellSpacerColor"))
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .edgesIgnoringSafeArea(.all)
             
-        } .navigationBarTitle("")
-            .navigationBarHidden(true)
-            .edgesIgnoringSafeArea(.all)
+            Button(action: {
+                self.persentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .scaleEffect(1.1)
+                    .foregroundColor(.black)
+                    .padding(.leading,25)
+                    .padding(.top,10)
+                
+            }
+            
+        }
         
-    }
-}
-
-struct Setting_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView()
     }
 }

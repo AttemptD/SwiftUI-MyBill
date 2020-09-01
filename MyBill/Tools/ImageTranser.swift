@@ -12,7 +12,7 @@ import UIKit
 
 class ImageTranser {
     func ImageToData(image : UIImage) -> Data{
-        let data = image.pngData()
+        let data = image.jpegData(compressionQuality: 0.3)
         return data!
        
     }

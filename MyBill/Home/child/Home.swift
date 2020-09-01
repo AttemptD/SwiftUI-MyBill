@@ -26,7 +26,7 @@ struct Home: View {
                         scrollDownHeaderBehavior: .offset,
                         cornerRadiusNub:15,
                         showTitle:false,
-                        header: { Image("background").resizable()
+                        header: { Image(uiImage:ImageTranser().DataToImage(data: mycenterdata.background)).resizable()
                             .aspectRatio(contentMode: .fill)
                             
                             .overlay(

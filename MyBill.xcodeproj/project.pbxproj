@@ -23,6 +23,8 @@
 		369E350724A9E65C00074C20 /* NumberTranser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350624A9E65C00074C20 /* NumberTranser.swift */; };
 		369FAD7D24C83B670030EAF8 /* MYTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369FAD7C24C83B670030EAF8 /* MYTextfield.swift */; };
 		36A3566C24DFDAD50095EF86 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A3566B24DFDAD50095EF86 /* CloudKit.framework */; };
+		36B0868B24FDEC4C0014E217 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B0868A24FDEC4C0014E217 /* SettingModel.swift */; };
+		36B0868E24FE12700014E217 /* SettingChildMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B0868D24FE12700014E217 /* SettingChildMainView.swift */; };
 		36B336E224A0A72D00B780ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B336E124A0A72D00B780ED /* AppDelegate.swift */; };
 		36B336E424A0A72D00B780ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B336E324A0A72D00B780ED /* SceneDelegate.swift */; };
 		36B336E724A0A72D00B780ED /* pageView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36B336E524A0A72D00B780ED /* pageView.xcdatamodeld */; };
@@ -93,6 +95,8 @@
 		36A3566A24DFDA8B0095EF86 /* 小猪罐.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "小猪罐.entitlements"; sourceTree = "<group>"; };
 		36A3566B24DFDAD50095EF86 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		36A3566D24DFDCDB0095EF86 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		36B0868A24FDEC4C0014E217 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		36B0868D24FE12700014E217 /* SettingChildMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingChildMainView.swift; sourceTree = "<group>"; };
 		36B336DE24A0A72D00B780ED /* 小猪罐.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "小猪罐.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B336E124A0A72D00B780ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36B336E324A0A72D00B780ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				36D6AB2124E53A2E0071A60D /* Setting.swift */,
+				36B0868C24FE124F0014E217 /* SettingChildView */,
 			);
 			path = MyCenterchildView;
 			sourceTree = "<group>";
@@ -223,8 +228,17 @@
 				3676FDCB24D7AC0000B8B8DB /* FolderBill.swift */,
 				369E350424A9E21F00074C20 /* ModelApp.swift */,
 				36FC7E8324E554B200EF7F06 /* MycenterData.swift */,
+				36B0868A24FDEC4C0014E217 /* SettingModel.swift */,
 			);
 			path = AppData;
+			sourceTree = "<group>";
+		};
+		36B0868C24FE124F0014E217 /* SettingChildView */ = {
+			isa = PBXGroup;
+			children = (
+				36B0868D24FE12700014E217 /* SettingChildMainView.swift */,
+			);
+			path = SettingChildView;
 			sourceTree = "<group>";
 		};
 		36B336D524A0A72D00B780ED = {
@@ -512,7 +526,9 @@
 				36B667E724F50F3800B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */,
 				365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */,
 				36B667EA24F50F3800B37C91 /* HeaderScrollViewTitle.swift in Sources */,
+				36B0868B24FDEC4C0014E217 /* SettingModel.swift in Sources */,
 				36D6AB2224E53A2E0071A60D /* Setting.swift in Sources */,
+				36B0868E24FE12700014E217 /* SettingChildMainView.swift in Sources */,
 				36FC7E8624E5615300EF7F06 /* ImageTranser.swift in Sources */,
 				36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */,
 				36B336E724A0A72D00B780ED /* pageView.xcdatamodeld in Sources */,
