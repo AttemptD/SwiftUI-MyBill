@@ -20,7 +20,7 @@ struct SettingChildMainView: View {
             case "资料修改":
                 self.view = AnyView(SetInfoView(mycenterdata: self.mycenterdata, openType: "修改"))
             case "背景修改":
-                self.view = AnyView(EmptyView())
+                self.view = AnyView(BackgroundEdit(mycenterdata: self.mycenterdata))
             case "主题样式":
                 self.view = AnyView(EmptyView())
             default:

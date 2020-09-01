@@ -22,20 +22,22 @@ struct SettingView: View {
                             showTitle: true,
                             header: { Image("Setting").resizable().scaledToFill() }) {
                                 VStack{
-                                    ForEach(setting.settingData){item in
-                                        
-                                        NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata)){
-                                            HStack{
-                                                Image(item.seleterIcon)
-                                                Text(item.seleterName)
-                                                Spacer()
-                                                Image(systemName: "chevron.right")
-                                            }.padding(.horizontal,20)
-                                                .frame(width: width-40, height: 50, alignment: .leading)
-                                                .contentShape(Rectangle())
-                                        }.buttonStyle(PlainButtonStyle())
-                                        
-                                        
+                                    ScrollView{
+                                        ForEach(setting.settingData){item in
+                                            
+                                            NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata)){
+                                                HStack{
+                                                    Image(item.seleterIcon)
+                                                    Text(item.seleterName)
+                                                    Spacer()
+                                                    Image(systemName: "chevron.right")
+                                                }.padding(.horizontal,20)
+                                                    .frame(width: width-40, height: 50, alignment: .leading)
+                                                    .contentShape(Rectangle())
+                                            }.buttonStyle(PlainButtonStyle())
+                                            
+                                            
+                                        }
                                     }
                                     
                                 }
