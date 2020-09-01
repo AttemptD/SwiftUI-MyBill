@@ -13,30 +13,12 @@ struct HeaderScrollView: View {
     let cornerRadiusNub : CGFloat
     let header: AnyView
     let content: AnyView
+    @State var showTitle:Bool
    
 
     var body: some View {
         GeometryReader { globalGeometry in
-            
-//            GeometryReader { geometry -> AnyView in
-//
-//                let geometry = self.geometry(from: geometry, safeArea: globalGeometry.safeAreaInsets)
-//
-//                return AnyView(
-//
-//                    self.header
-//                        .frame(width: geometry.width, height: geometry.headerHeight)
-//                        .clipped()
-//                        .cornerRadius(self.cornerRadiusNub, corners: [.bottomLeft, .bottomRight])
-//                        .offset(y: geometry.headerOffset)
-//                        .opacity(geometry.largeTitleWeight == 0 ? 0 : 1)
-//
-//
-//                )
-//            }
-//            .frame(width: globalGeometry.size.width, height: self.headerHeight-40,alignment: .top)
-//
-            
+          
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
                     
@@ -76,7 +58,7 @@ struct HeaderScrollView: View {
 
                                     HeaderScrollViewTitle(title: self.title,
                                                           height: navigationBarHeight,
-                                                          largeTitle: geometry.largeTitleWeight).layoutPriority(1000)
+                                                          largeTitle: geometry.largeTitleWeight,showTitle: self.showTitle).layoutPriority(1000)
                                 }
                                 .padding(.top, globalGeometry.safeAreaInsets.top)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))

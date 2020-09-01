@@ -25,6 +25,7 @@ struct Home: View {
                         scrollUpHeaderBehavior: .parallax,
                         scrollDownHeaderBehavior: .offset,
                         cornerRadiusNub:15,
+                        showTitle:false,
                         header: { Image("background").resizable()
                             .aspectRatio(contentMode: .fill)
                             

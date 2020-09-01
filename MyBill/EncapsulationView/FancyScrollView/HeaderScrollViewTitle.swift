@@ -4,22 +4,26 @@ struct HeaderScrollViewTitle: View {
     let title: String
     let height: CGFloat
     let largeTitle: Double
+    @State var showTitle : Bool
 
     var body: some View {
-        //let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
+        let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
         let tinyTitleOpacity = 1 - min(largeTitle, 0.5) * 2
         return ZStack {
-//            HStack {
-//                Text(title)
-//                    .font(.largeTitle)
-//                    .foregroundColor(.white)
-//                    .fontWeight(.black)
-//                    .padding(.horizontal, 16)
-//
-//                Spacer()
-//            }
-//            .padding(.bottom, 8)
-//            .opacity(sqrt(largeTitleOpacity))
+            
+            if showTitle{
+                HStack {
+                    Text(title)
+                        .font(.largeTitle)
+                        .foregroundColor(.black)
+                        .fontWeight(.black)
+                        .padding(.horizontal, 16)
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 8)
+                .opacity(sqrt(largeTitleOpacity))
+            }
 
             ZStack {
                 HStack {

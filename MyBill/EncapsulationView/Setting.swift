@@ -10,11 +10,25 @@ import SwiftUI
 
 struct SettingView: View {
     var body: some View {
+        
         ZStack{
+            FancyScrollView(title: "设置",
+                            headerHeight: 150,
+                            scrollUpHeaderBehavior: .parallax,
+                            scrollDownHeaderBehavior: .sticky,
+                            showTitle: true,
+                            header: { EmptyView() }) {
+                                VStack{
+                                    
+                                    Text("测试")
+                                }.background(Color.red)
+                                
+            }.background(Color.init("MainCellSpacerColor"))
             
-            Text("").frame(width:width,height:height/4)
-                .background(Color.orange)
-        }
+        } .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.all)
+        
     }
 }
 

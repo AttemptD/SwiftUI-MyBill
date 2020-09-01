@@ -6,9 +6,12 @@ public struct FancyScrollView: View {
     let scrollUpHeaderBehavior: ScrollUpHeaderBehavior
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
     let cornerRadiusNub : CGFloat
+    @State var showTitle : Bool
     let header: AnyView?
+    
     let content: AnyView
-
+    
+    
     public var body: some View {
         if let header = header {
             return AnyView(
@@ -18,7 +21,7 @@ public struct FancyScrollView: View {
                                  scrollDownBehavior: scrollDownHeaderBehavior,
                                  cornerRadiusNub:cornerRadiusNub,
                                  header: header,
-                                 content: content)
+                                 content: content, showTitle: showTitle)
             )
         } else {
             return AnyView(
@@ -30,12 +33,12 @@ public struct FancyScrollView: View {
                                 .foregroundColor(.white)
                                 .fontWeight(.black)
                                 .padding(.horizontal, 16)
-
+                            
                             Spacer()
-                        } : nil
-
+                            } : nil
+                        
                         title != "" ? Spacer() : nil
-
+                        
                         content
                     }
                 }
@@ -45,38 +48,43 @@ public struct FancyScrollView: View {
 }
 
 extension FancyScrollView {
-
+    
     public init<A: View, B: View>(title: String = "",
                                   headerHeight: CGFloat = 300,
                                   scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   cornerRadiusNub:CGFloat = 15,
+                                  showTitle:Bool = false,
                                   header: () -> A?,
                                   content: () -> B) {
-
+        
         self.init(title: title,
                   headerHeight: headerHeight,
                   scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                   cornerRadiusNub:cornerRadiusNub,
+                  showTitle:showTitle,
                   header: AnyView(header()),
-                  content: AnyView(content()))
+                  content: AnyView(content())
+        )
     }
-
+    
     public init<A: View>(title: String = "",
                          headerHeight: CGFloat = 300,
                          scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                          scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                          cornerRadiusNub:CGFloat = 15,
+                         showTitle:Bool = false,
                          content: () -> A) {
-
-           self.init(title: title,
-                     headerHeight: headerHeight,
-                     scrollUpHeaderBehavior: scrollUpHeaderBehavior,
-                     scrollDownHeaderBehavior: scrollDownHeaderBehavior,
-                     cornerRadiusNub:cornerRadiusNub,
-                     header: nil,
-                     content: AnyView(content()))
-       }
-
+        
+        self.init(title: title,
+                  headerHeight: headerHeight,
+                  scrollUpHeaderBehavior: scrollUpHeaderBehavior,
+                  scrollDownHeaderBehavior: scrollDownHeaderBehavior,
+                  cornerRadiusNub:cornerRadiusNub,
+                  showTitle:showTitle,
+                  header: nil,
+                  content: AnyView(content()))
+    }
+    
 }
