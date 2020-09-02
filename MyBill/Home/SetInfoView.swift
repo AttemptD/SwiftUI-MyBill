@@ -77,7 +77,7 @@ struct SetInfoView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.init("MainThemeColor"), lineWidth: 1 )
-                        .animation(.linear)
+                        
                 ).padding(.trailing,40)
                 
             }
@@ -128,6 +128,9 @@ struct SetInfoView: View {
                 self.username = self.mycenterdata.name
                 self.header = ImageTranser().DataToImage(data: self.mycenterdata.headerIco) 
             }
+            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+            controller?.statusBarStyle = .darkContent
+            
         }
     .navigationBarTitle("")
     .navigationBarHidden(true)

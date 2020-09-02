@@ -126,7 +126,9 @@ struct MyCenterView: View {
                         .padding(.trailing,25)
                         .padding(.top,10)
                     
-                }
+                }.frame(width: 50, height: 30, alignment: .center)
+                .contentShape(Rectangle())
+          
                 
             }.buttonStyle(PlainButtonStyle())
            

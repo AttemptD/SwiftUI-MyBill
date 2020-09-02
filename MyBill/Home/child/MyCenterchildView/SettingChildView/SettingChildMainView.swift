@@ -26,6 +26,8 @@ struct SettingChildMainView: View {
             default:
                 self.view = AnyView(EmptyView())
             }
+            
+           
         }
        
     }
