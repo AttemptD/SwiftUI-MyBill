@@ -17,7 +17,7 @@ struct AllView: View {
     @State var cut = false
     @State var updateBill = false
     @State var billdata = Model()
-
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         
         ZStack(alignment:.top){
@@ -102,16 +102,16 @@ struct AllView: View {
                                     HStack(alignment:.top){
                                         VStack{
                                             Circle().frame(width: 20, height:20 )
-                                                .foregroundColor(Color.init("AllViewCircle"))
+                                                .foregroundColor(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") :Color.init("AllViewCircle"))
                                                 .overlay(Circle().frame(width: 5, height: 5)
-                                                    .foregroundColor(Color.init("transerTime")))
+                                                    .foregroundColor(self.colorScheme == .dark ? Color.gray: Color.init("transerTime")))
                                             
                                             Spacer().frame(height:0)
                                             
                                             if(child.id != item.folderBill.count-1){
                                                 
                                                 Divider().frame(width:1, height: 110)
-                                                    .background(Color.init("AllViewCircle"))
+                                                    .background(self.colorScheme == .dark ? Color.gray :Color.init("AllViewCircle"))
                                                 
                                             }
                                             
@@ -138,7 +138,8 @@ struct AllView: View {
                                                     .padding(.trailing,20)
                                             }
                                             .frame(width: width-140, height: 70, alignment: .leading)
-                                            .background(Color.init("AllViewCircle"))
+                                               
+                                            .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") :Color.init("AllViewCircle"))
                                             .cornerRadius(15)
                                             .contextMenu(){
                                                 Button(action: {
@@ -196,7 +197,7 @@ struct AllView: View {
                                 
                             }
                         }else{
-                            //Text("\(getString(time: item.folderTime,min: 5,max: 10))暂无账单")
+                           
                         }
                         
                     }
@@ -214,7 +215,7 @@ struct AllView: View {
                         .resizable()
                         
                         .frame(width:18,height:18)
-                        .foregroundColor(Color.init("transerTime"))
+                        .foregroundColor(self.colorScheme == .dark ? Color.gray: Color.init("transerTime"))
                         .padding(.leading,cut == false ? 20 : 0)
                     
                     if cut == false{
@@ -226,7 +227,7 @@ struct AllView: View {
                     
                     
                 }.frame(width: cut == false ?  width-100 : width/9 , height: width/9)
-                    .background(Color.init("AllViewCircle"))
+                    .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") :Color.init("AllViewCircle"))
                     .cornerRadius(90)
                     .padding(.top,height >= 812 ? 54 : 30)
                     .padding(.leading,15)
@@ -302,7 +303,7 @@ struct AllView: View {
                 }
                     
                 .frame(width: cut == false ? width/9 : width - 100 ,height: width/9)
-                .background( cut == false ? Color.init("MainThemeColor") : Color.white)
+                .background( cut == false ? Color.init("MainThemeColor") : self.colorScheme == .dark ? Color.black: Color.white)
                 .cornerRadius(90)
                 .overlay(
                     RoundedRectangle(cornerRadius: 90)

@@ -61,6 +61,7 @@ struct MySearchBar: UIViewRepresentable {
     let keyboardType: UIKeyboardType
     @Binding var text: String
     @State var placeholder : String
+     @Environment(\.colorScheme) var colorScheme
     var paddingHor:CGFloat = 10
    
     func makeUIView(context: Context) -> UITextField {
@@ -73,7 +74,10 @@ struct MySearchBar: UIViewRepresentable {
         textField.text = self.text
         
         textField.returnKeyType = UIReturnKeyType.search
-        textField.backgroundColor = UIColor.init(named: "AllViewCircle")
+        
+    
+        textField.backgroundColor =  UIColor.init(named: colorScheme == .dark ? "MainCellSpacerColor_dark" :"AllViewCircle") 
+      
         textField.placeholder = placeholder
         
         

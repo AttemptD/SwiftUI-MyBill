@@ -17,6 +17,8 @@
 		3676FDCC24D7AC0000B8B8DB /* FolderBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676FDCB24D7AC0000B8B8DB /* FolderBill.swift */; };
 		36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36825C3424AD71D1007134FA /* TrackableScrollView.swift */; };
 		3687A3E524BD489D008A6194 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687A3E424BD489D008A6194 /* Charts */; };
+		368C8B6D2501E693009AC12E /* StyleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6C2501E693009AC12E /* StyleTheme.swift */; };
+		368C8B6F25022BE8009AC12E /* StyleTheme_animtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */; };
 		369E34F324A9940100074C20 /* StatusBarLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F224A9940100074C20 /* StatusBarLight.swift */; };
 		369E34F824A9B12100074C20 /* SrcSysystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F724A9B12100074C20 /* SrcSysystem.swift */; };
 		369E350324A9E14A00074C20 /* RealmDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350224A9E14A00074C20 /* RealmDb.swift */; };
@@ -88,6 +90,8 @@
 		366E056024BC4D7E00AAA1DE /* AllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllView.swift; sourceTree = "<group>"; };
 		3676FDCB24D7AC0000B8B8DB /* FolderBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderBill.swift; sourceTree = "<group>"; };
 		36825C3424AD71D1007134FA /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
+		368C8B6C2501E693009AC12E /* StyleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme.swift; sourceTree = "<group>"; };
+		368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme_animtion.swift; sourceTree = "<group>"; };
 		369E34F224A9940100074C20 /* StatusBarLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarLight.swift; sourceTree = "<group>"; };
 		369E34F724A9B12100074C20 /* SrcSysystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SrcSysystem.swift; sourceTree = "<group>"; };
 		369E350224A9E14A00074C20 /* RealmDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDb.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				36D6AB1F24E5383C0071A60D /* imagePicker.swift */,
 				365AC0BB24E76626009B822E /* DiyShape.swift */,
 				365DF82B24F1EC950078C79E /* All_ViewAnimation.swift */,
+				368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */,
 			);
 			path = EncapsulationView;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 			children = (
 				36B0868D24FE12700014E217 /* SettingChildMainView.swift */,
 				36B0869124FE24EA0014E217 /* BackgroundEdit.swift */,
+				368C8B6C2501E693009AC12E /* StyleTheme.swift */,
 			);
 			path = SettingChildView;
 			sourceTree = "<group>";
@@ -508,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				365AC0BC24E76626009B822E /* DiyShape.swift in Sources */,
+				368C8B6D2501E693009AC12E /* StyleTheme.swift in Sources */,
 				36F25DB724B85794000428E0 /* KeyboardUp.swift in Sources */,
 				36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */,
 				369E34F824A9B12100074C20 /* SrcSysystem.swift in Sources */,
@@ -530,6 +537,7 @@
 				36F25DB524B854AC000428E0 /* TimeTools.swift in Sources */,
 				369E350524A9E21F00074C20 /* ModelApp.swift in Sources */,
 				36B667EC24F50F3800B37C91 /* ScrollDownHeaderBehavior.swift in Sources */,
+				368C8B6F25022BE8009AC12E /* StyleTheme_animtion.swift in Sources */,
 				36B667E724F50F3800B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */,
 				365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */,
 				36B667EA24F50F3800B37C91 /* HeaderScrollViewTitle.swift in Sources */,

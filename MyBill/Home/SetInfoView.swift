@@ -15,6 +15,7 @@ struct SetInfoView: View {
     @State var showtips = false
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.presentationMode) var presentationMode
+     @Environment(\.colorScheme) var colorScheme
     @State var openType : String
     var body: some View {
         
@@ -42,12 +43,12 @@ struct SetInfoView: View {
                         HStack{
                             Image(systemName: "camera.fill")
                                 .resizable()
-                                .frame(width: 12, height: 12)
+                                .frame(width: 14, height: 12)
                                 .foregroundColor(.white)
                             
                             
                         }.frame(width: 68, height: 20, alignment: .center)
-                            .background(DiyShape(tl: 0, tr: 0, bl: 360, br: 360).fill(Color.init("HeaderIconBack")) )
+                            .background(DiyShape(tl: 0, tr: 0, bl: 360, br: 360).fill(colorScheme == .dark ? Color.init("HeaderIconBack_dark") : Color.init("HeaderIconBack")) )
                             .padding(.top,60)
                         
                         
@@ -101,7 +102,8 @@ struct SetInfoView: View {
                     }
                
                 RealmDB().insertMyInfo(header: ImageTranser().ImageToData(image: self.header ??  UIImage(named:"MyImageBack")!),
-                                       background: ImageTranser().ImageToData(image: UIImage.init(named: "background")!),
+                                       background: self.openType == "修改" ? self.mycenterdata.background :
+                    ImageTranser().ImageToData(image: UIImage.init(named: "background")!),
                                        name: self.username)
                     
                     DispatchQueue.main.async {
@@ -128,8 +130,11 @@ struct SetInfoView: View {
                 self.username = self.mycenterdata.name
                 self.header = ImageTranser().DataToImage(data: self.mycenterdata.headerIco) 
             }
-            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-            controller?.statusBarStyle = .darkContent
+            
+           if self.colorScheme != .dark{
+                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+                controller?.statusBarStyle = .darkContent
+            }
             
         }
     .navigationBarTitle("")

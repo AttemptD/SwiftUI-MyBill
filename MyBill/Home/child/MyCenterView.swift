@@ -16,6 +16,7 @@ struct MyCenterView: View {
     @ObservedObject var mycenterdata : MyInfoData
     @State var gotoEditView = false
     @State var gotoSetting = false
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         ZStack(alignment:.topTrailing){
             FancyScrollView(title: "我的",
@@ -63,7 +64,7 @@ struct MyCenterView: View {
                         
                         VStack{
                             Divider().frame(width: 1, height: 50, alignment: .center)
-                                .background(Color.init("MainCellSpacerColor"))
+                                .background(colorScheme == .dark ?  Color.black : Color.init("MainCellSpacerColor"))
                         }
                         
                         
@@ -79,7 +80,7 @@ struct MyCenterView: View {
                         
                         VStack{
                             Divider().frame(width: 1, height: 50, alignment: .center)
-                                .background(Color.init("MainCellSpacerColor"))
+                                .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
                         }
                         
                         
@@ -98,17 +99,18 @@ struct MyCenterView: View {
                     }
                     .padding(.horizontal)
                     .frame(width: width-20, height: height/8, alignment: .center)
-                    .background(Color.white)
+                    .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
                     .cornerRadius(15)
                     .padding(.top,20)
                     
                     
-                }.background(Color.init("MainCellSpacerColor"))
+                }
+                .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
                 
                 
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .background(Color.init("MainCellSpacerColor"))
+            .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
             .edgesIgnoringSafeArea(.top)
             .navigationBarTitle("我的",displayMode: .inline)
             .navigationBarHidden(true)

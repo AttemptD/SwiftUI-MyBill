@@ -18,6 +18,7 @@ struct BackgroundEdit: View {
     @State var diybackgroundImage : UIImage?
     @Environment(\.presentationMode) var persentationMode
     let data = ["IMG_0090","MyImageBack","background2","background"]
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         ZStack(alignment:.topLeading){
             ZStack(alignment: .center){
@@ -37,7 +38,7 @@ struct BackgroundEdit: View {
                             
                         .itemSpacing(-30)
                         .itemAspectRatio(0, alignment: .center)
-                        .overlay(Text("当前主页背景以上图所示").foregroundColor(Color.init("FontColor"))
+                        .overlay(Text("当前主页背景以上图所示").foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                         .fontWeight(.light)
                         .offset(y:-160))
                         
@@ -47,6 +48,7 @@ struct BackgroundEdit: View {
                     HStack(spacing:20){
                         Button(action: {
                             self.showSeletImage.toggle()
+                            self.changeImage = false
                             
                         }) {
                             HStack{
@@ -153,6 +155,7 @@ struct Previews_Home: View {
     @Binding var changeImage : Bool
     @Binding var seletImage : String
     @Binding var diybackgroundImage : UIImage?
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         FancyScrollView(title: "主页",
                         headerHeight: height/3,
@@ -173,7 +176,8 @@ struct Previews_Home: View {
             
             
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .background(Color.init("MainCellSpacerColor"))
+                       .background(colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.init("MainCellSpacerColor"))
+
         
         
     }

@@ -15,6 +15,7 @@ struct MainView: View {
     @ObservedObject var appData = AppData()
     @ObservedObject var folderData = FolderData()
     @ObservedObject var mycenterdata : MyInfoData
+    @Environment(\.colorScheme) var colorScheme
     let Title = ["钱记","收入","支出"]
     var body: some View {
         ZStack(alignment:.bottomTrailing){
@@ -44,8 +45,10 @@ struct MainView: View {
                             Text("账单")
                     }.tag(2)
                         .onAppear(){
-                            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-                            controller?.statusBarStyle = .darkContent
+                            if self.colorScheme != .dark{
+                                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+                                controller?.statusBarStyle = .darkContent
+                            }
                     }
                     
                     MyCenterView(appData: self.appData,mycenterdata:self.mycenterdata).tabItem

@@ -12,6 +12,7 @@ struct SettingView: View {
     @ObservedObject var setting = SettingData()
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.presentationMode) var persentationMode
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         
         ZStack(alignment:.topLeading){
@@ -20,44 +21,47 @@ struct SettingView: View {
                             scrollUpHeaderBehavior: .parallax,
                             scrollDownHeaderBehavior: .offset,
                             showTitle: true,
-                            header: { Image("Setting").resizable().scaledToFill() }) {
+                            header: { Image(colorScheme == .dark ? "Setting_dark" : "Setting").resizable().scaledToFill() }) {
                                 
                                 VStack{
                                     Spacer().frame(height:20)
-                                VStack{
-                                    ScrollView{
-                                        ForEach(setting.settingData){item in
-                                            
-                                            NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata)){
-                                                HStack{
-                                                    Image(item.seleterIcon)
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .scaleEffect(0.7)
-                                                    Text(item.seleterName)
-                                                    Spacer()
-                                                    Image(systemName: "chevron.right")
-                                                }
-                                                .padding(.horizontal,15)
-                                                .frame(width: width-40, height: 40, alignment: .center)
+                                    VStack{
+                                        ScrollView{
+                                            ForEach(colorScheme == .dark ? setting.settingData_dark: setting.settingData){item in
+                                                
+                                                NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata)){
+                                                    HStack{
+                                                        Image(item.seleterIcon)
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .scaleEffect(0.7)
+                                                        Text(item.seleterName)
+                                                        Spacer()
+                                                        Image(systemName: "chevron.right")
+                                                    }
+                                                    .padding(.horizontal,15)
+                                                    .frame(width: width-40, height: 40, alignment: .center)
                                                     .contentShape(Rectangle())
-                                            }.buttonStyle(PlainButtonStyle())
+                                                  
+                                                    
+                                                }.buttonStyle(PlainButtonStyle())
+                                            }
                                             
-                                            
-                                        }
+                                        }.background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.white)
+                                        
                                     }
-                                    
+                                    .padding(.vertical,15)
+                                        
+                                    .frame(width: width-40,alignment: .center)
+                                    .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.white)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 5)
                                 }
-                                .padding(.vertical,15)
-                                .frame(width: width-40,alignment: .center)
-                                .background(Color.white)
-                                .cornerRadius(15)
-                                .shadow(radius: 5)
-                                } .frame(width: width,alignment: .center)
-                                .background(Color.init("SettingColor"))
+                                .frame(width: width,alignment: .center)
+                                .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
                                 
                                 
-            } .background(Color.init("SettingColor"))
+            } .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
                 .edgesIgnoringSafeArea(.all)
@@ -67,16 +71,20 @@ struct SettingView: View {
             }) {
                 Image(systemName: "chevron.left")
                     .scaleEffect(1.2)
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .dark ? .white :.black)
                     .padding(.leading,25)
                     .padding(.top,10)
                 
             }.frame(width: 50, height: 30, alignment: .center)
-            .contentShape(Rectangle())
+                .contentShape(Rectangle())
             
         }.onAppear(){
-            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-                       controller?.statusBarStyle = .darkContent
+            
+            if self.colorScheme != .dark{
+                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+                controller?.statusBarStyle = .darkContent
+            }
+            
         }
         
     }

@@ -19,6 +19,7 @@ struct Home: View {
     @State var billdata = Model()
     @ObservedObject var folderData : FolderData
     @ObservedObject var mycenterdata : MyInfoData
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         FancyScrollView(title: "主页",
                         headerHeight: height/3,
@@ -28,7 +29,7 @@ struct Home: View {
                         showTitle:false,
                         header: { Image(uiImage:ImageTranser().DataToImage(data: mycenterdata.background)).resizable()
                             .aspectRatio(contentMode: .fill)
-                            
+                            .overlay(Color.init(colorScheme == .dark ?  "MyCenterColor" :"tanser"))
                             .overlay(
                                 
                                 VStack{
@@ -38,14 +39,14 @@ struct Home: View {
                                             .bold()
                                             .font(.system(size: 20))
                                             
-                                            .foregroundColor(Color.init("FontColor"))
+                                            .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                                         
                                         Spacer()
                                         
                                         Text(appData.TodayEarning - appData.TodayPay < 0 ? "¥\(transer(value: appData.TodayPay - appData.TodayEarning))" : "¥\(transer(value: appData.TodayEarning - appData.TodayPay))")
                                             
                                             .font(.system(size: 25))
-                                            .foregroundColor(Color.init("FontColor"))
+                                            .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                                         
                                         
                                         
@@ -61,8 +62,6 @@ struct Home: View {
                             
                             
         }) {
-            
-            
             VStack{
                 VStack{
                     Image(uiImage:ImageTranser().DataToImage(data: mycenterdata.headerIco))
@@ -74,19 +73,19 @@ struct Home: View {
                     
                     Text(mycenterdata.name)
                         .bold()
-                        .foregroundColor(Color.init("FontColor"))
+                        .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                     
                     HStack(alignment: .center){
                         
                         HStack{
-                            Image("收入-1")
+                            Image(colorScheme == .dark ? "收入-1_dark" : "收入-1")
                                 .resizable()
                                 .frame(width: 35, height: 35)
                             VStack(alignment:.leading){
                                 Text("\(transer(value: appData.TodayEarning))元")
                                     .font(.system(size: 16))
                                     .bold()
-                                    .foregroundColor(Color.init("FontColor"))
+                                    .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                                 Text("收入")
                                     .font(.system(size: 11))
                                     .fontWeight(.thin)
@@ -97,7 +96,7 @@ struct Home: View {
                         Spacer()
                         
                         HStack{
-                            Image("支出-1")
+                            Image(colorScheme == .dark ? "支出-1_dark":"支出-1")
                                 .resizable()
                                 .frame(width: 35, height: 35)
                             
@@ -105,20 +104,21 @@ struct Home: View {
                                 Text("\(transer(value: appData.TodayPay))元")
                                     .font(.system(size: 16))
                                     .bold()
-                                    .foregroundColor(Color.init("FontColor"))
+                                    .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                                 Text("支出")
                                     .font(.system(size: 11))
                                     .fontWeight(.thin)
                                 
                             }
                         }
-                    }.padding(.horizontal,width/10)
+                    }
+                    .padding(.horizontal,width/10)
                         .frame(width: width-60,  alignment: .center)
                     
                     
                 }
                 .frame(width: width-60, height: 190, alignment: .center)
-                .background(Color.white)
+                .background(colorScheme == .dark ?  Color.init("MainCellSpacerColor_dark") :Color.white)
                 .shadow(radius: 10)
                 .cornerRadius(10)
                 .offset(x:0,y:-height/8)
@@ -128,19 +128,19 @@ struct Home: View {
                     Text(appData.TodayBill.count == 0 ? "往期的账单" : "今天的账单")
                         .font(.system(size:20))
                         .bold()
-                        .foregroundColor(Color.init("FontColor"))
+                        .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                     Spacer()
                     Button(action: {
                         
                     }) {
                         Image(systemName: "ellipsis")
-                            .foregroundColor(Color.init("FontColor"))
+                            .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                     }
                 } .frame(width: width-60,  alignment: .center)
                     .offset(x:0,y:-height/12)
                     .animation(.none)
                 
-               
+                
                 ScrollView {
                     ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
                         
@@ -172,7 +172,7 @@ struct Home: View {
                                         .fontWeight(.heavy)
                                         .padding(.bottom,15)
                                         
-                                        .foregroundColor(Color.init("FontColor"))
+                                        .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                                     
                                     Text(item.blurTime)
                                         .foregroundColor(.gray)
@@ -181,7 +181,7 @@ struct Home: View {
                                     
                                 }
                                 .frame(width: (width-60)/2-10,height:  (width-60)/2-25, alignment: .center)
-                                .background(Color.white)
+                                .background(self.colorScheme == .dark ?  Color.init("MainCellSpacerColor_dark") :Color.white)
                                 .cornerRadius(10)
                                 .contextMenu(){
                                     Button(action: {
@@ -227,14 +227,14 @@ struct Home: View {
                                     
                                 }
                                 .offset(y: item.lastOne ? -27:0)
-                            
+                                
                             }
                             .frame(width: width-60, height: item.lastOne ? (width-60)/2 + 54 : (width-60)/2, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
                             .offset(y:item.left ? 0 : -20)
                             .shadow(radius: 3)
                             .animation(.none)
                             .padding(.bottom, item.lastOne ? -60 : -80)
-                        
+                            
                             
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -243,17 +243,17 @@ struct Home: View {
                     }.id(UUID())
                         .frame(width:width)
                     
-                        
-                
+                    
+                    
                 }
-             
+                    
                 .offset(y:-60)
-              
                 
-            } .background(Color.init("MainCellSpacerColor"))
+                
+            } .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
             
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .background(Color.init("MainCellSpacerColor"))
+            .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
             .navigationBarTitle("主页").navigationBarHidden(true)
     }
 }
@@ -266,10 +266,10 @@ extension View {
 }
 
 struct RoundedCorner: Shape {
-
+    
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)

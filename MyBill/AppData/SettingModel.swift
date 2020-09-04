@@ -28,4 +28,13 @@ class SettingData: ObservableObject {
         SettingModel(id: 5, seleterName: "关于", seleterIcon: "关于")
     ]
     
+    @Published var settingData_dark = [
+        SettingModel(id: 0, seleterName: "资料修改", seleterIcon: "资料修改_dark"),
+        SettingModel(id: 1, seleterName: "背景修改", seleterIcon: "背景修改_dark"),
+        SettingModel(id: 2, seleterName: "主题样式", seleterIcon: "主题样式_dark"),
+        SettingModel(id: 3, seleterName: "清理缓存", seleterIcon: "清理缓存_dark"),
+        SettingModel(id: 4, seleterName: "反馈", seleterIcon: "反馈_dark"),
+        SettingModel(id: 5, seleterName: "关于", seleterIcon: "关于_dark")
+    ]
+    
 }

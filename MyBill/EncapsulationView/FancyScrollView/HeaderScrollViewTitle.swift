@@ -5,7 +5,7 @@ struct HeaderScrollViewTitle: View {
     let height: CGFloat
     let largeTitle: Double
     @State var showTitle : Bool
-
+@Environment(\.colorScheme) var colorScheme
     var body: some View {
         let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
         let tinyTitleOpacity = 1 - min(largeTitle, 0.5) * 2
@@ -15,7 +15,7 @@ struct HeaderScrollViewTitle: View {
                 HStack {
                     Text(title)
                         .font(.largeTitle)
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? .white :.black)
                         .fontWeight(.black)
                         .padding(.horizontal, 16)
                     

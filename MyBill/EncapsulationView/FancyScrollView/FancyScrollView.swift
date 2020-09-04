@@ -7,6 +7,7 @@ public struct FancyScrollView: View {
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
     let cornerRadiusNub : CGFloat
     @State var showTitle : Bool
+    @Environment(\.colorScheme) var colorScheme
     let header: AnyView?
     
     let content: AnyView
@@ -30,7 +31,7 @@ public struct FancyScrollView: View {
                         title != "" ? HStack {
                             Text(title)
                                 .font(.largeTitle)
-                                .foregroundColor(.white)
+                                .foregroundColor(colorScheme == .dark ? .white :.black)
                                 .fontWeight(.black)
                                 .padding(.horizontal, 16)
                             
