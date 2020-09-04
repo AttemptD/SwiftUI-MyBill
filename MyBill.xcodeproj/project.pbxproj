@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		360C07FE24DFEB5200505860 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 360C07FD24DFEB5200505860 /* RealmSwift */; };
 		364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C24BA24D5A6F3001EBD47 /* SearchView.swift */; };
+		3656EBB524FF9C7F009A319D /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 3656EBB424FF9C7F009A319D /* SwiftUIPager */; };
 		365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365A3C4D24CACF1D001E2328 /* DetailView.swift */; };
 		365AC0BC24E76626009B822E /* DiyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC0BB24E76626009B822E /* DiyShape.swift */; };
 		365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365DF82B24F1EC950078C79E /* All_ViewAnimation.swift */; };
@@ -147,6 +148,7 @@
 			files = (
 				360C07FE24DFEB5200505860 /* RealmSwift in Frameworks */,
 				36A3566C24DFDAD50095EF86 /* CloudKit.framework in Frameworks */,
+				3656EBB524FF9C7F009A319D /* SwiftUIPager in Frameworks */,
 				3687A3E524BD489D008A6194 /* Charts in Frameworks */,
 				36C5D93424D00AD20041D7E6 /* SwiftyJSON in Frameworks */,
 			);
@@ -381,6 +383,7 @@
 				3687A3E424BD489D008A6194 /* Charts */,
 				36C5D93324D00AD20041D7E6 /* SwiftyJSON */,
 				360C07FD24DFEB5200505860 /* RealmSwift */,
+				3656EBB424FF9C7F009A319D /* SwiftUIPager */,
 			);
 			productName = pageView;
 			productReference = 36B336DE24A0A72D00B780ED /* 小猪罐.app */;
@@ -459,6 +462,7 @@
 				3687A3E324BD489D008A6194 /* XCRemoteSwiftPackageReference "swiftui-charts" */,
 				36C5D93224D00AD20041D7E6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				360C07FC24DFEB5200505860 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = 36B336DF24A0A72D00B780ED /* Products */;
 			projectDirPath = "";
@@ -894,6 +898,14 @@
 				minimumVersion = 5.3.3;
 			};
 		};
+		3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.4;
+			};
+		};
 		3687A3E324BD489D008A6194 /* XCRemoteSwiftPackageReference "swiftui-charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/spacenation/swiftui-charts.git";
@@ -917,6 +929,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 360C07FC24DFEB5200505860 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		3656EBB424FF9C7F009A319D /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
 		};
 		3687A3E424BD489D008A6194 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
