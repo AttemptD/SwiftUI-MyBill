@@ -17,6 +17,7 @@ struct MyCenterView: View {
     @State var gotoEditView = false
     @State var gotoSetting = false
     @Environment(\.colorScheme) var colorScheme
+    @State var window: UIWindow
     var body: some View {
         ZStack(alignment:.topTrailing){
             FancyScrollView(title: "我的",
@@ -118,7 +119,7 @@ struct MyCenterView: View {
                 self.appData.getMyCenterData()
             }
             
-            NavigationLink(destination:SettingView(mycenterdata:self.mycenterdata),isActive: self.$gotoSetting){
+            NavigationLink(destination:SettingView(mycenterdata:self.mycenterdata,window: self.window),isActive: self.$gotoSetting){
                 Button(action: {
                     self.gotoSetting.toggle()
                 }) {

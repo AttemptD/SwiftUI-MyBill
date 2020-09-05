@@ -18,11 +18,11 @@ import SwiftUI
 
 struct StyleTheme_animtion: View {
     
-    @State var sunMotion  = false
+    @State var sunMotion = false
     @State var drawSunPath = false
     @State var rotateLargeFan = false
     @State var rotateSmallFan = false
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         ZStack {
             Divider()
@@ -53,14 +53,17 @@ struct StyleTheme_animtion: View {
             ZStack {
                 Circle()
                     .trim(from: drawSunPath ? 1/2 : 1, to: 1)
-                    .stroke(Color.yellow, lineWidth: 3)
-                    .frame(width: 350)
+                    .stroke(Color.gray, lineWidth: 1)
                     
-                    // Use 2D & 3D rotation to flip path drawing
+                    .frame(width: 350)
+                    .foregroundColor(.black)
+                    
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 90, y: 0, z: 0))
-                    .offset(x: 0)
-                    .animation(Animation.easeInOut(duration: 4))
+                    .onAppear(){
+                        self.drawSunPath.toggle()
+                }
+                   
                     
                 
                 
@@ -68,9 +71,10 @@ struct StyleTheme_animtion: View {
                 Image(systemName: "sun.max")
                     .font(.largeTitle)
                     .foregroundColor(.yellow)
-                   .offset(x: -175)
-                    .rotationEffect(.degrees(sunMotion ? 180 : 60))
-                    .animation(sunMotion ? Animation.easeInOut(duration: 4):.none)
+                    .offset(x: -175)
+                    .rotationEffect(.degrees(colorScheme == .dark  ? 180 : 60))
+                    .opacity(colorScheme == .dark ? 0 : 1)
+                    .animation(Animation.easeInOut(duration: 4))
                     
                     
                 
@@ -79,14 +83,14 @@ struct StyleTheme_animtion: View {
                 Image(systemName: "moon.circle")
                     .font(.largeTitle)
                     .rotationEffect(.degrees(220))
-                    .opacity(sunMotion ? 1/2 : 0)
-                    .offset(x: 110, y: sunMotion ? -200:0)
+                    .opacity(colorScheme == .dark ? 1:0)
+                    .foregroundColor(colorScheme == .dark ? .yellow : .white)
+                    
+                    .offset(x: 110, y: colorScheme == .dark ? -200:0)
                     .animation(Animation.easeInOut(duration: 4))
                 
-                Text("白天 & 黑夜")
-                    .font(.title)
-                    .multilineTextAlignment(.leading)
-                    .offset( y: -230)
+                
+               
                 
                 
             }
@@ -95,18 +99,20 @@ struct StyleTheme_animtion: View {
             Image("stand_l")
                 .offset(x: -100, y: -40)
                 .opacity(1/2)
-            Image("fan_l")
+            Image(colorScheme == .dark ? "fan_l_dark":"fan_l")
                 .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
+                
                 .offset(x: -100, y: -80)
                 .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
                 .opacity(1/2)
+            
             
             
             // Fan Small
             Image("stand_s")
                 .offset(x: -60, y: -20)
                 .opacity(1/2)
-            Image("fan_s")
+            Image(colorScheme == .dark ? "fan_s_dark" : "fan_s")
                 .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
                 .offset(x: -60, y: -40)
                 .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
@@ -118,14 +124,10 @@ struct StyleTheme_animtion: View {
             
             
         }
+       
+        
         
     }
 }
 
-#if DEBUG
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        StyleTheme_animtion()
-    }
-}
-#endif
+

@@ -24,11 +24,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        let contentView = TranserView().environment(\.managedObjectContext, context)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
+            
             let window = UIWindow(windowScene: windowScene)
+            
+            let contentView = TranserView(window: window).environment(\.managedObjectContext, context)
+            
+            let style = userDefault.string(forKey: "style")
+            
+            if style == "dark"{
+                window.overrideUserInterfaceStyle = .dark
+            }else if style == "light"{
+                window.overrideUserInterfaceStyle = .light
+            }else if style == "" && style == "system"{
+                window.overrideUserInterfaceStyle = .unspecified
+            }
             window.rootViewController = MyHontingController(rootView: AnyView(contentView))
             self.window = window
             window.makeKeyAndVisible()

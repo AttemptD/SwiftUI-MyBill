@@ -12,6 +12,7 @@ struct SettingChildMainView: View {
     let settingModel:SettingModel
     @ObservedObject var mycenterdata : MyInfoData
     @State var view = AnyView(EmptyView())
+    @State var window: UIWindow
     var body: some View {
         
         
@@ -22,7 +23,7 @@ struct SettingChildMainView: View {
             case "背景修改":
                 self.view = AnyView(BackgroundEdit(mycenterdata: self.mycenterdata))
             case "主题样式":
-                self.view = AnyView(StyleTheme())
+                self.view = AnyView(StyleTheme(window: self.window))
             default:
                 self.view = AnyView(EmptyView())
             }

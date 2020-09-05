@@ -10,11 +10,12 @@ import SwiftUI
 
 struct TranserView: View {
     @ObservedObject var mycenterdata = MyInfoData()
+    @State var window: UIWindow
     var body: some View {
         
         VStack{
             if mycenterdata.ToMain {
-                MainView(mycenterdata:mycenterdata)
+                MainView(mycenterdata:mycenterdata,window: self.window)
             }else{
                 SetInfoView(mycenterdata: mycenterdata, openType: "新建")
             }
@@ -22,8 +23,3 @@ struct TranserView: View {
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        TranserView()
-    }
-}

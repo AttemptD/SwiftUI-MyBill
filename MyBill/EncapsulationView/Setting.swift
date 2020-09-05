@@ -13,6 +13,7 @@ struct SettingView: View {
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.presentationMode) var persentationMode
     @Environment(\.colorScheme) var colorScheme
+    @State var window: UIWindow
     var body: some View {
         
         ZStack(alignment:.topLeading){
@@ -29,7 +30,7 @@ struct SettingView: View {
                                         ScrollView{
                                             ForEach(colorScheme == .dark ? setting.settingData_dark: setting.settingData){item in
                                                 
-                                                NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata)){
+                                                NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata,window: self.window)){
                                                     HStack{
                                                         Image(item.seleterIcon)
                                                             .resizable()

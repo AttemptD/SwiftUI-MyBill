@@ -16,6 +16,7 @@ struct MainView: View {
     @ObservedObject var folderData = FolderData()
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.colorScheme) var colorScheme
+    @State var window: UIWindow
     let Title = ["钱记","收入","支出"]
     var body: some View {
         ZStack(alignment:.bottomTrailing){
@@ -51,7 +52,7 @@ struct MainView: View {
                             }
                     }
                     
-                    MyCenterView(appData: self.appData,mycenterdata:self.mycenterdata).tabItem
+                    MyCenterView(appData: self.appData,mycenterdata:self.mycenterdata,window: self.window).tabItem
                         {
                             Image(systemName: "person.crop.circle.fill")
                                 .renderingMode(.template)
@@ -103,6 +104,7 @@ struct MainView: View {
 
 
 extension UIApplication {
+    
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
