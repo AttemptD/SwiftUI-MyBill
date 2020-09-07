@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		360C07FE24DFEB5200505860 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 360C07FD24DFEB5200505860 /* RealmSwift */; };
+		36203C452505CBF500C4C1E8 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 36203C442505CBF500C4C1E8 /* SwiftUICharts */; };
 		364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C24BA24D5A6F3001EBD47 /* SearchView.swift */; };
 		3656EBB524FF9C7F009A319D /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 3656EBB424FF9C7F009A319D /* SwiftUIPager */; };
 		365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365A3C4D24CACF1D001E2328 /* DetailView.swift */; };
@@ -153,6 +154,7 @@
 				360C07FE24DFEB5200505860 /* RealmSwift in Frameworks */,
 				36A3566C24DFDAD50095EF86 /* CloudKit.framework in Frameworks */,
 				3656EBB524FF9C7F009A319D /* SwiftUIPager in Frameworks */,
+				36203C452505CBF500C4C1E8 /* SwiftUICharts in Frameworks */,
 				3687A3E524BD489D008A6194 /* Charts in Frameworks */,
 				36C5D93424D00AD20041D7E6 /* SwiftyJSON in Frameworks */,
 			);
@@ -390,6 +392,7 @@
 				36C5D93324D00AD20041D7E6 /* SwiftyJSON */,
 				360C07FD24DFEB5200505860 /* RealmSwift */,
 				3656EBB424FF9C7F009A319D /* SwiftUIPager */,
+				36203C442505CBF500C4C1E8 /* SwiftUICharts */,
 			);
 			productName = pageView;
 			productReference = 36B336DE24A0A72D00B780ED /* 小猪罐.app */;
@@ -469,6 +472,7 @@
 				36C5D93224D00AD20041D7E6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				360C07FC24DFEB5200505860 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				36203C432505CBF500C4C1E8 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 36B336DF24A0A72D00B780ED /* Products */;
 			projectDirPath = "";
@@ -906,6 +910,14 @@
 				minimumVersion = 5.3.3;
 			};
 		};
+		36203C432505CBF500C4C1E8 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
 		3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -937,6 +949,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 360C07FC24DFEB5200505860 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		36203C442505CBF500C4C1E8 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36203C432505CBF500C4C1E8 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 		3656EBB424FF9C7F009A319D /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;

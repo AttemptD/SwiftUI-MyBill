@@ -22,6 +22,7 @@ struct NewAddBillView: View {
     @State var showLine_money = false
     @State var showLine_doWhat = false
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         
         KeyboardHost{
@@ -31,13 +32,14 @@ struct NewAddBillView: View {
                 ZStack(alignment:.top){
                     
                     ZStack(alignment:.bottom){
-                        VStack{
+                        VStack(spacing:25){
                             HStack{
                                 Text("新建")
                                     .font(.system(size: 20))
                                     .fontWeight(.light)
                                     .padding(.leading,25)
                                     .padding(.top,50)
+                                    .foregroundColor(colorScheme == .dark ? Color.init("MainCellSpacerColor") : Color.black)
                                 
                                 Spacer()
                                 
@@ -102,9 +104,9 @@ struct NewAddBillView: View {
                                 }
                                 
                             }.frame(width: width,alignment: .center)
+                            .background(colorScheme == .dark ? Color.black: Color.init("MainCellSpacerColor"))
+
                             
-                            
-                            Spacer().frame(height: 25)
                             
                             ScrollView(showsIndicators:false){
                                 
@@ -263,16 +265,18 @@ struct NewAddBillView: View {
                                     Spacer().frame( height: 30)
                                 }
                                 .frame(width: width-40, alignment: .center)
-                                .background(Color.white)
+                                
+                                .background(colorScheme == .dark ? Color.init("MainCellSpacerColor_dark"): Color.white)
                                 .cornerRadius(15)
                                 
                             }
                             .frame(width: width, alignment: .center)
-                            .background(Color.init("MainCellSpacerColor"))
+                            .background(colorScheme == .dark ? Color.black: Color.init("MainCellSpacerColor"))
+
                             
                             
                         }
-                        .background(Color.init("MainCellSpacerColor"))
+                        .background(colorScheme == .dark ? Color.black: Color.init("MainCellSpacerColor"))
                         
                         if showLine_doWhat != true && showLine_money != true{
                             Button(action: {
@@ -353,7 +357,8 @@ struct NewAddBillView: View {
                         .frame(width: width,height:50,alignment: .leading)
                     
                 }
-                    
+                    //.background(colorScheme == .dark ? Color.black : Color.clear)
+
                 .buttonStyle(PlainButtonStyle())
                 .navigationBarTitle("")
                 .navigationBarHidden(true)

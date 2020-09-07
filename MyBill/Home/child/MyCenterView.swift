@@ -9,13 +9,8 @@
 import SwiftUI
 
 struct MyCenterView: View {
-    @State var scrollViewContentOffset : CGFloat = 0
-    @State private var scale: CGFloat = 1.0
-    @State var barTitle = "我的"
     @ObservedObject var appData : AppData
     @ObservedObject var mycenterdata : MyInfoData
-    @State var gotoEditView = false
-    @State var gotoSetting = false
     @Environment(\.colorScheme) var colorScheme
     @State var window: UIWindow
     var body: some View {
@@ -26,87 +21,12 @@ struct MyCenterView: View {
                             scrollDownHeaderBehavior: .offset,
                             cornerRadiusNub:15,
                             header: {
-                                Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .blur(radius: 5,opaque: true)
-                                    .overlay(Color.init("MyCenterColor"))
-                                    .overlay(
-                                        NavigationLink(destination: EmptyView(), isActive: $gotoEditView){
-                                            Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
-                                                .resizable()
-                                                .scaledToFill()
-                                                .frame(width: 85, height: 85, alignment: .center)
-                                                .clipped()
-                                                .cornerRadius(50)
-                                                .onTapGesture {
-                                                    self.gotoEditView.toggle()
-                                            }
-                                        }.buttonStyle(PlainButtonStyle())
-                                )
+                                MyViewBackground(mycenterdata: mycenterdata)
                                 
                                 
                                 
             }){
-                VStack{
-                    
-                    HStack{
-                        
-                        VStack{
-                            Text(appData.AllMony)
-                                .font(.system(size: 25))
-                                .frame(width:(width-40)/4)
-                            Text("全部")
-                                .font(.system(size: 15))
-                                .fontWeight(.thin)
-                                .frame(width:(width-40)/4)
-                            
-                        }.frame(width:(width-40)/4)
-                        
-                        VStack{
-                            Divider().frame(width: 1, height: 50, alignment: .center)
-                                .background(colorScheme == .dark ?  Color.black : Color.init("MainCellSpacerColor"))
-                        }
-                        
-                        
-                        VStack{
-                            Text(appData.PayMoney)
-                                .font(.system(size: 25))
-                                .frame(width:(width-40)/4)
-                            Text("支出")
-                                .font(.system(size: 15))
-                                .fontWeight(.thin)
-                                .frame(width:(width-40)/4)
-                        }.frame(width:(width-40)/4)
-                        
-                        VStack{
-                            Divider().frame(width: 1, height: 50, alignment: .center)
-                                .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
-                        }
-                        
-                        
-                        VStack{
-                            Text(appData.EaringMoney)
-                                .font(.system(size: 25))
-                                .frame(width:(width-40)/4)
-                            Text("收入")
-                                .font(.system(size: 15))
-                                .fontWeight(.thin)
-                                .frame(width:(width-40)/4)
-                            
-                        }.frame(width:(width-40)/4)
-                        
-                        
-                    }
-                    .padding(.horizontal)
-                    .frame(width: width-20, height: height/8, alignment: .center)
-                    .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
-                    .cornerRadius(15)
-                    .padding(.top,20)
-                    
-                    
-                }
-                .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
+                UserAllMoney(appData: appData)
                 
                 
             }
@@ -119,22 +39,8 @@ struct MyCenterView: View {
                 self.appData.getMyCenterData()
             }
             
-            NavigationLink(destination:SettingView(mycenterdata:self.mycenterdata,window: self.window),isActive: self.$gotoSetting){
-                Button(action: {
-                    self.gotoSetting.toggle()
-                }) {
-                    Image(systemName: "ellipsis")
-                        .scaleEffect(1.1)
-                        .foregroundColor(.white)
-                        .padding(.trailing,25)
-                        .padding(.top,10)
-                    
-                }.frame(width: 50, height: 30, alignment: .center)
-                .contentShape(Rectangle())
-          
-                
-            }.buttonStyle(PlainButtonStyle())
-           
+            SettingButton(mycenterdata: mycenterdata, window: window)
+            
             
         }
         
@@ -143,3 +49,117 @@ struct MyCenterView: View {
 
 
 
+
+struct UserAllMoney: View {
+    @ObservedObject var appData : AppData
+    @Environment(\.colorScheme) var colorScheme
+    var body: some View {
+        VStack{
+            
+            HStack{
+                
+                VStack{
+                    Text(appData.AllMony)
+                        .font(.system(size: 25))
+                        .frame(width:(width-40)/4)
+                    Text("全部")
+                        .font(.system(size: 15))
+                        .fontWeight(.thin)
+                        .frame(width:(width-40)/4)
+                    
+                }.frame(width:(width-40)/4)
+                
+                VStack{
+                    Divider().frame(width: 1, height: 50, alignment: .center)
+                        .background(colorScheme == .dark ?  Color.black : Color.init("MainCellSpacerColor"))
+                }
+                
+                
+                VStack{
+                    Text(appData.PayMoney)
+                        .font(.system(size: 25))
+                        .frame(width:(width-40)/4)
+                    Text("支出")
+                        .font(.system(size: 15))
+                        .fontWeight(.thin)
+                        .frame(width:(width-40)/4)
+                }.frame(width:(width-40)/4)
+                
+                VStack{
+                    Divider().frame(width: 1, height: 50, alignment: .center)
+                        .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
+                }
+                
+                
+                VStack{
+                    Text(appData.EaringMoney)
+                        .font(.system(size: 25))
+                        .frame(width:(width-40)/4)
+                    Text("收入")
+                        .font(.system(size: 15))
+                        .fontWeight(.thin)
+                        .frame(width:(width-40)/4)
+                    
+                }.frame(width:(width-40)/4)
+                
+                
+            }
+            .padding(.horizontal)
+            .frame(width: width-20, height: height/8, alignment: .center)
+            .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
+            .cornerRadius(15)
+            .padding(.top,20)
+            
+            
+        }
+        .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
+    }
+}
+
+struct MyViewBackground: View {
+    @ObservedObject var mycenterdata : MyInfoData
+    @State var gotoEditView = false
+    var body: some View {
+        Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .blur(radius: 5,opaque: true)
+            .overlay(Color.init("MyCenterColor"))
+            .overlay(
+                NavigationLink(destination: EmptyView(), isActive: $gotoEditView){
+                    Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 85, height: 85, alignment: .center)
+                        .clipped()
+                        .cornerRadius(50)
+                        .onTapGesture {
+                            self.gotoEditView.toggle()
+                    }
+                }.buttonStyle(PlainButtonStyle())
+        )
+    }
+}
+
+struct SettingButton: View {
+    @ObservedObject var mycenterdata : MyInfoData
+    @State var window: UIWindow
+    @State var gotoSetting = false
+    var body: some View {
+        NavigationLink(destination:SettingView(mycenterdata:self.mycenterdata,window: self.window),isActive: self.$gotoSetting){
+            Button(action: {
+                self.gotoSetting.toggle()
+            }) {
+                Image(systemName: "ellipsis")
+                    .scaleEffect(1.1)
+                    .foregroundColor(.white)
+                    .padding(.trailing,25)
+                    .padding(.top,10)
+                
+            }.frame(width: 50, height: 30, alignment: .center)
+                .contentShape(Rectangle())
+            
+            
+        }.buttonStyle(PlainButtonStyle())
+    }
+}

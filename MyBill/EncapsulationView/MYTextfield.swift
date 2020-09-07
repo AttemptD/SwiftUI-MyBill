@@ -15,6 +15,7 @@ struct MyTextField: UIViewRepresentable {
     @State var placeholder : String
     var paddingHor:CGFloat = 10
     @Binding var showLine : Bool
+    @Environment(\.colorScheme) var colorScheme
     func makeUIView(context: Context) -> UITextField {
         
         
@@ -25,7 +26,8 @@ struct MyTextField: UIViewRepresentable {
         textField.text = self.text
         
         textField.returnKeyType = UIReturnKeyType.done
-        textField.backgroundColor = .white
+        textField.backgroundColor = UIColor.init(named: colorScheme == .dark ? "MainCellSpacerColor_dark" : "while")
+            
         textField.placeholder = placeholder
         
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: paddingHor, height: 1));

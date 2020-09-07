@@ -12,97 +12,18 @@ import SwiftUIPager
 struct BackgroundEdit: View {
     @ObservedObject var mycenterdata : MyInfoData
     @State var page = 0
+    @State var diybackgroundImage : UIImage?
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.presentationMode) var persentationMode
     @State var changeImage = false
     @State var seletImage = ""
-    @State var showSeletImage = false
-    @State var diybackgroundImage : UIImage?
-    @Environment(\.presentationMode) var persentationMode
-    let data = ["IMG_0090","MyImageBack","background2","background"]
-    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         ZStack(alignment:.topLeading){
             ZStack(alignment: .center){
                 Previews_Home(mycenterdata: self.mycenterdata,changeImage:self.$changeImage,seletImage:$seletImage, diybackgroundImage: self.$diybackgroundImage)
                     .edgesIgnoringSafeArea(.all)
                 
-                ZStack(alignment:.bottom){
-                    VStack{
-                        
-                        Pager(page: self.$page,
-                              data: self.data,
-                              id: \.self) {
-                                
-                                self.pageView("\($0)")
-                                
-                        }
-                            
-                        .itemSpacing(-30)
-                        .itemAspectRatio(0, alignment: .center)
-                        .overlay(Text("当前主页背景以上图所示").foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
-                        .fontWeight(.light)
-                        .offset(y:-160))
-                        
-                        
-                    }.padding(.top,width/3)
-                    
-                    HStack(spacing:20){
-                        Button(action: {
-                            self.showSeletImage.toggle()
-                            self.changeImage = false
-                            
-                        }) {
-                            HStack{
-                                
-                                Text("自定义")
-                                Image(systemName: "photo.fill")
-                                    .foregroundColor(Color.init("MainThemeColor"))
-                            }.frame(width: width/3, height: 40, alignment: .center)
-                                .foregroundColor(.white)
-                                .background(LinearGradient(gradient: Gradient(colors: [Color.init("MainThemeColor"),.white]), startPoint: .bottomLeading, endPoint: .topTrailing))
-                                
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
-                            
-                            
-                        }
-                            
-                        .sheet(isPresented:  $showSeletImage) {
-                            ImagePicker(image: self.$diybackgroundImage, isPresented: self.$showSeletImage)
-                        }
-                        
-                        Button(action: {
-                            
-                            if self.diybackgroundImage != nil{
-                                RealmDB().insertMyInfo(header: self.mycenterdata.headerIco,
-                                                       background: ImageTranser().ImageToData(image: self.diybackgroundImage!),
-                                                       name: self.mycenterdata.name)
-                            }else{
-                                RealmDB().insertMyInfo(header: self.mycenterdata.headerIco,
-                                                       background: ImageTranser().ImageToData(image: UIImage.init(named: self.seletImage) ??
-                                                        ImageTranser().DataToImage(data: self.mycenterdata.background)),
-                                                       name: self.mycenterdata.name)
-                            }
-                            
-                            self.mycenterdata.getMyInfo()
-                            self.persentationMode.wrappedValue.dismiss()
-                            
-                        }) {
-                            HStack{
-                                Image(systemName: "checkmark.seal.fill")
-                                    .foregroundColor(Color.init("MainThemeColor"))
-                                
-                                Text("完成")
-                            }.frame(width: width/3, height: 40, alignment: .center)
-                                .foregroundColor(.white)
-                                .background(LinearGradient(gradient: Gradient(colors: [.white, Color.init("MainThemeColor")]), startPoint: .bottomLeading, endPoint: .topTrailing))
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
-                            
-                            
-                        }
-                        
-                    }.padding(.bottom,width/4)
-                }
+                SelectImage_homeback(changeImage: $changeImage, seletImage: $seletImage,diybackgroundImage: $diybackgroundImage, mycenterdata: mycenterdata)
                 
                 
             }
@@ -124,25 +45,7 @@ struct BackgroundEdit: View {
         }.navigationBarTitle("")
         .navigationBarHidden(true)
     }
-    func pageView(_ page: String) -> some View {
-        ZStack {
-            
-            Image("\(page)")
-                .resizable()
-                .scaledToFill()
-                .frame(width:width - 40, height: 260, alignment: .center)
-                .clipped()
-                .shadow(radius: 5)
-                .onTapGesture {
-                    self.changeImage = true
-                    self.seletImage = page
-            }
-            
-            
-        }
-        .cornerRadius(10)
-        
-    }
+    
 }
 
 struct BackgroundEdit_Previews: PreviewProvider {
@@ -179,6 +82,117 @@ struct Previews_Home: View {
                        .background(colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.init("MainCellSpacerColor"))
 
         
+        
+    }
+}
+
+struct SelectImage_homeback: View {
+    @State var page = 0
+    @State var showSeletImage = false
+    @Binding var changeImage : Bool
+    @Binding var seletImage :String
+    @Binding var diybackgroundImage : UIImage?
+    @ObservedObject var mycenterdata : MyInfoData
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.presentationMode) var persentationMode
+    let data = ["IMG_0090","MyImageBack","background2","background"]
+    var body: some View {
+        ZStack(alignment:.bottom){
+            VStack{
+                
+                Pager(page: self.$page,
+                      data: self.data,
+                      id: \.self) {
+                        
+                        self.pageView("\($0)")
+                        
+                }
+                    
+                .itemSpacing(-30)
+                .itemAspectRatio(0, alignment: .center)
+                .overlay(Text("当前主页背景以上图所示").foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
+                .fontWeight(.light)
+                .offset(y:-160))
+                
+                
+            }.padding(.top,width/3)
+            
+            HStack(spacing:20){
+                Button(action: {
+                    self.showSeletImage.toggle()
+                    self.changeImage = false
+                    
+                }) {
+                    HStack{
+                        
+                        Text("自定义")
+                        Image(systemName: "photo.fill")
+                            .foregroundColor(Color.init("MainThemeColor"))
+                    }.frame(width: width/3, height: 40, alignment: .center)
+                        .foregroundColor(.white)
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.init("MainThemeColor"),.white]), startPoint: .bottomLeading, endPoint: .topTrailing))
+                        
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    
+                    
+                }
+                    
+                .sheet(isPresented:  $showSeletImage) {
+                    ImagePicker(image: self.$diybackgroundImage, isPresented: self.$showSeletImage)
+                }
+                
+                Button(action: {
+                    
+                    if self.diybackgroundImage != nil{
+                        RealmDB().insertMyInfo(header: self.mycenterdata.headerIco,
+                                               background: ImageTranser().ImageToData(image: self.diybackgroundImage!),
+                                               name: self.mycenterdata.name)
+                    }else{
+                        RealmDB().insertMyInfo(header: self.mycenterdata.headerIco,
+                                               background: ImageTranser().ImageToData(image: UIImage.init(named: self.seletImage) ??
+                                                ImageTranser().DataToImage(data: self.mycenterdata.background)),
+                                               name: self.mycenterdata.name)
+                    }
+                    
+                    self.mycenterdata.getMyInfo()
+                    self.persentationMode.wrappedValue.dismiss()
+                    
+                }) {
+                    HStack{
+                        Image(systemName: "checkmark.seal.fill")
+                            .foregroundColor(Color.init("MainThemeColor"))
+                        
+                        Text("完成")
+                    }.frame(width: width/3, height: 40, alignment: .center)
+                        .foregroundColor(.white)
+                        .background(LinearGradient(gradient: Gradient(colors: [.white, Color.init("MainThemeColor")]), startPoint: .bottomLeading, endPoint: .topTrailing))
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    
+                    
+                }
+                
+            }.padding(.bottom,width/4)
+        }
+    }
+    func pageView(_ page: String) -> some View {
+        ZStack {
+            
+            Image("\(page)")
+                .resizable()
+                .scaledToFill()
+                .frame(width:width - 40, height: 260, alignment: .center)
+                .clipped()
+                .shadow(radius: 5)
+                .onTapGesture {
+                    self.changeImage = true
+                    self.seletImage = page
+            }
+            
+            
+        }
+        .cornerRadius(10)
         
     }
 }
