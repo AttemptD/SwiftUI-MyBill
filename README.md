@@ -7,3 +7,5 @@
 
 
 ![](https://github.com/AttemptD/SwiftUI-MyBill/blob/master/RPReplay_Final1597018389.gif)
+
+![](https://github.com/AttemptD/SwiftUI-MyBill/blob/master/RPReplay_Final1599448204%E7%9A%84%E5%89%AF%E6%9C%AC.gif)
