@@ -26,7 +26,11 @@ struct MyCenterView: View {
                                 
                                 
             }){
-                UserAllMoney(appData: appData)
+                VStack{
+                    UserAllMoney(appData: appData)
+                    
+                }
+                
                 
                 
             }
@@ -46,9 +50,6 @@ struct MyCenterView: View {
         
     }
 }
-
-
-
 
 struct UserAllMoney: View {
     @ObservedObject var appData : AppData

@@ -59,6 +59,10 @@ struct Home: View {
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
             .navigationBarTitle("主页").navigationBarHidden(true)
+            .onAppear(){
+                self.appData.refreshData()
+             
+        }
     }
 }
 
