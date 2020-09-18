@@ -38,7 +38,7 @@ struct AllView: View {
         .onAppear(){
             
             self.folderData.transerBilltype(type:self.folderData.typeChange )
-            
+           
             
         }
         
@@ -53,92 +53,101 @@ struct FileName: View {
     @State var searchBar = true
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        ForEach(folderData.folderList.filter{ value in
-            self.searchText.isEmpty ? true :value.folderTime.lowercased().contains(self.searchText.lowercased())
-        }){ item in
-            VStack(alignment:.leading){
-                HStack{
-                    VStack(spacing:0){
-                        
-                        Text("\(getString(time: item.folderTime,min: 5,max: 7))")
-                            .bold()
-                            .fontWeight(.medium)
-                            .lineSpacing(2)
-                            .frame(width: 55, height: 20, alignment: .center)
-                        
-                        Text("\(getString(time: item.folderTime,min: 8,max: 10))")
-                            .bold()
-                            .lineSpacing(2)
-                            .frame(width: 55, height: 20, alignment: .center)
-                        
-                        
-                    }
-                    .frame(width:item.open ? 55 : width - 100,height: 55, alignment: item.open ? .center:.leading)
-                    .foregroundColor(.white)
-                    .background(Color.init("MainThemeColor"))
-                    .cornerRadius(15)
-                    .padding(.leading,30)
-                    .overlay(
-                        ZStack{
-                            Chart(data:item.lineData)
-                                .chartStyle( LineChartStyle(.quadCurve, lineColor: .white, lineWidth: 2)
-                            )
-                                .frame(width: item.open ? 0 : width - 170, height: item.open ? 0 : 50,alignment:.center)
-                                .padding(.leading,60)
-                                .opacity(item.open ? 0:1)
-                            
-                            Text("暂无账单")
-                                .foregroundColor(.white)
-                                .bold()
-                                .opacity(item.haveData ? 0 : 1)
-                            
-                        }
-                    )
-                        .onTapGesture{
-                            withAnimation(.spring()){
-                                if item.haveData {
-                                    self.folderData.transerStatus(folder:item)
-                                }
+        if #available(iOS 14.0, *) {
+            LazyVStack {
+                ForEach(folderData.folderList.filter{ value in
+                    self.searchText.isEmpty ? true :value.folderTime.lowercased().contains(self.searchText.lowercased())
+                }){ item in
+                    VStack(alignment:.leading){
+                        HStack{
+                            VStack(spacing:0){
+                                
+                                Text("\(getString(time: item.folderTime,min: 5,max: 7))")
+                                    .bold()
+                                    .fontWeight(.medium)
+                                    .lineSpacing(2)
+                                    .frame(width: 55, height: 20, alignment: .center)
+                                
+                                Text("\(getString(time: item.folderTime,min: 8,max: 10))")
+                                    .bold()
+                                    .lineSpacing(2)
+                                    .frame(width: 55, height: 20, alignment: .center)
+                                
                                 
                             }
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        withAnimation(.spring()){
-                            self.folderData.transerStatus(folder:item)
+                            .frame(width:item.open ? 55 : width - 100,height: 55, alignment: item.open ? .center:.leading)
+                            .foregroundColor(.white)
+                            .background(Color.init("MainThemeColor"))
+                            .cornerRadius(15)
+                            .padding(.leading,30)
+                            .overlay(
+                                ZStack{
+                                    Chart(data:item.lineData)
+                                        .chartStyle( LineChartStyle(.quadCurve, lineColor: .white, lineWidth: 2)
+                                    )
+                                        .frame(width: item.open ? 0 : width - 170, height: item.open ? 0 : 50,alignment:.center)
+                                        .padding(.leading,60)
+                                        .opacity(item.open ? 0:1)
+                                    
+                                    Text("暂无账单")
+                                        .foregroundColor(.white)
+                                        .bold()
+                                        .opacity(item.haveData ? 0 : 1)
+                                    
+                                }
+                            )
+                                .onTapGesture{
+                                    withAnimation(.spring()){
+                                        if item.haveData {
+                                            self.folderData.transerStatus(folder:item)
+                                        }
+                                        
+                                    }
+                            }
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                withAnimation(.spring()){
+                                    self.folderData.transerStatus(folder:item)
+                                    
+                                }
+                            }) {
+                                
+                                Image(systemName: item.imagename)
+                                
+                            }
+                                
+                            .frame(height: 55, alignment: .center)
+                                
+                            .padding(.trailing,30)
+                            .disabled(!item.haveData)
+                            
                             
                         }
-                    }) {
                         
-                        Image(systemName: item.imagename)
-                        
-                    }
-                        
-                    .frame(height: 55, alignment: .center)
-                        
-                    .padding(.trailing,30)
-                    .disabled(!item.haveData)
-                    
-                    
-                }
-                
-                if item.haveData {
-                    if item.open {
-                        
-                        ChildContent(item: item, folderData: self.folderData, appData: self.appData)
-                        
-                        
+                        if item.haveData {
+                            if item.open {
+                                
+                                ChildContent(item: item, folderData: self.folderData, appData: self.appData)
+                                
+                                
+                                
+                            }
+                        }else{
+                            
+                        }
                         
                     }
-                }else{
-                    
+                    .frame(width: width, height:item.open ? .none : 65, alignment: .leading)
                 }
-                
             }
-            .frame(width: width, height:item.open ? .none : 65, alignment: .leading)
+        } else {
+            // Fallback on earlier versions
         }
+
+        
+        
     }
 }
 
@@ -191,7 +200,6 @@ struct ChildContent: View {
                             .padding(.trailing,20)
                     }
                     .frame(width: width-140, height: 70, alignment: .leading)
-                        
                     .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") :Color.init("AllViewCircle"))
                     .cornerRadius(15)
                     .contextMenu(){
@@ -208,9 +216,7 @@ struct ChildContent: View {
                         
                         Button(action: {
                             
-                            print(self.item.folderBill.count)
-                            
-                            if(self.item.folderBill.count != 0){
+                           
                                 
                                 if(self.item.folderBill.count == 1){
                                     self.item.folderBill.remove(at: child.id)
@@ -229,7 +235,7 @@ struct ChildContent: View {
                                     
                                     
                                 }
-                            }
+                            
                             
                         }) {
                             Text("删除")
@@ -260,6 +266,7 @@ struct SearchBar_all: View {
     @Binding var searchText : String
     @ObservedObject var folderData : FolderData
     @Environment(\.colorScheme) var colorScheme
+    @State var color = "AllViewCircle"
     var body: some View {
         HStack{
             
@@ -274,7 +281,6 @@ struct SearchBar_all: View {
                 
                 if cut == false{
                     MySearchBar(keyboardType: .default, text: $searchText, placeholder:"请输入搜索内容")
-                        
                         .frame(height: 40)
                 }
                 
@@ -294,7 +300,7 @@ struct SearchBar_all: View {
             
             HStack(alignment: .center){
                 
-                if cut == true {
+                if cut {
                     Spacer()
                     Button(action: {
                         
@@ -349,15 +355,15 @@ struct SearchBar_all: View {
                     Spacer()
                 }
                 
-                if cut == false{
+                if !cut {
                     Image(systemName:"arrow.right.arrow.left")
                         .foregroundColor(.white)
                 }
                 
             }
                 
-            .frame(width: cut == false ? width/9 : width - 100 ,height: width/9)
-            .background( cut == false ? Color.init("MainThemeColor") : self.colorScheme == .dark ? Color.black: Color.white)
+            .frame(width: !cut ? width/9 : width - 100 ,height: width/9)
+            .background( !cut ? Color.init("MainThemeColor") : self.colorScheme == .dark ? Color.black: Color.white)
             .cornerRadius(90)
             .overlay(
                 RoundedRectangle(cornerRadius: 90)
@@ -378,5 +384,6 @@ struct SearchBar_all: View {
         }
         .frame(width:width, height: height >= 812 ? 88 : 64)
         .background(Color.clear)
+        
     }
 }

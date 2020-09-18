@@ -191,7 +191,7 @@ struct HomeContent: View {
                         VStack{
                             HStack{
                                 if item.type == "收入"{
-                                    
+
                                     Image("收入")
                                         .resizable()
                                         .frame(width:35,height:35)
@@ -270,7 +270,7 @@ struct HomeContent: View {
                         .offset(y: item.lastOne ? -27:0)
                         
                     }
-                    .frame(width: width-60, height: item.lastOne ? (width-60)/2 + 54 : (width-60)/2, alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                    .frame(width: width-60, height: forHeight(isBool: item.lastOne), alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
                     .offset(y:item.left ? 0 : -20)
                     .shadow(radius: 3)
                     .animation(.none)
@@ -305,5 +305,13 @@ struct RoundedCorner: Shape {
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+func forHeight(isBool:Bool) -> CGFloat {
+    if isBool {
+        return (width-60)/2 + 54
+    }else{
+        return (width-60)/2
     }
 }

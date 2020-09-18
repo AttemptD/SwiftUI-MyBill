@@ -34,13 +34,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let style = userDefault.string(forKey: "style")
             
-            if style == "dark"{
+            switch style {
+            case "dark":
                 window.overrideUserInterfaceStyle = .dark
-            }else if style == "light"{
+            case "light":
                 window.overrideUserInterfaceStyle = .light
-            }else if style == "" && style == "system"{
+            default:
                 window.overrideUserInterfaceStyle = .unspecified
             }
+            
+            
             window.rootViewController = MyHontingController(rootView: AnyView(contentView))
             self.window = window
             window.makeKeyAndVisible()

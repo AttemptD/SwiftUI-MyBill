@@ -22,50 +22,52 @@ struct SettingView: View {
                             scrollUpHeaderBehavior: .parallax,
                             scrollDownHeaderBehavior: .offset,
                             showTitle: true,
-                            header: { Image(colorScheme == .dark ? "Setting_dark" : "Setting").resizable().scaledToFill() }) {
+                            header: { Image(colorScheme == .dark ? "Setting_dark" : "Setting").resizable().scaledToFill() })
+            {
+                
+                VStack{
+                    Spacer().frame(height:20)
+                    VStack{
+                        ScrollView{
+                            ForEach(colorScheme == .dark ? setting.settingData_dark: setting.settingData){item in
                                 
-                                VStack{
-                                    Spacer().frame(height:20)
-                                    VStack{
-                                        ScrollView{
-                                            ForEach(colorScheme == .dark ? setting.settingData_dark: setting.settingData){item in
-                                                
-                                                NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata,window: self.window)){
-                                                    HStack{
-                                                        Image(item.seleterIcon)
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .scaleEffect(0.7)
-                                                        Text(item.seleterName)
-                                                        Spacer()
-                                                        Image(systemName: "chevron.right")
-                                                    }
-                                                    .padding(.horizontal,15)
-                                                    .frame(width: width-40, height: 40, alignment: .center)
-                                                    .contentShape(Rectangle())
-                                                  
-                                                    
-                                                }.buttonStyle(PlainButtonStyle())
-                                            }
-                                            
-                                        }.background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.white)
-                                        
+                                NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata,window: self.window)){
+                                    HStack{
+                                        Image(item.seleterIcon)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .scaleEffect(0.7)
+                                        Text(item.seleterName)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
                                     }
-                                    .padding(.vertical,15)
-                                        
-                                    .frame(width: width-40,alignment: .center)
-                                    .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.white)
-                                    .cornerRadius(15)
-                                    .shadow(radius: 5)
-                                }
-                                .frame(width: width,alignment: .center)
-                                .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
-                                
-                                
-            } .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-                .edgesIgnoringSafeArea(.all)
+                                    .padding(.horizontal,15)
+                                    .frame(width: width-40, height: 40, alignment: .center)
+                                    .contentShape(Rectangle())
+                                    
+                                    
+                                }.buttonStyle(PlainButtonStyle())
+                            }
+                            
+                        }.background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.white)
+                        
+                    }
+                    .padding(.vertical,15)
+                        
+                    .frame(width: width-40,alignment: .center)
+                    .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") : Color.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
+                }
+                .frame(width: width,alignment: .center)
+                .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
+                
+                
+            }
+            .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.all)
             
             Button(action: {
                 self.persentationMode.wrappedValue.dismiss()

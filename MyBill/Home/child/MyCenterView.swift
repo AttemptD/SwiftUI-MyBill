@@ -7,12 +7,15 @@
 //
 
 import SwiftUI
+import Charts
+
 
 struct MyCenterView: View {
     @ObservedObject var appData : AppData
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.colorScheme) var colorScheme
     @State var window: UIWindow
+    let week = ["周一","周二","周三","周四","周五","周六","周日"]
     var body: some View {
         ZStack(alignment:.topTrailing){
             FancyScrollView(title: "我的",
@@ -26,11 +29,62 @@ struct MyCenterView: View {
                                 
                                 
             }){
-                VStack{
-                    UserAllMoney(appData: appData)
-                    
-                }
                 
+                    VStack(spacing:20){
+                        UserAllMoney(appData: appData)
+                        
+                        
+                       
+                            
+                            VStack{
+                                
+                                Chart(data:appData.weekData)
+                                    .chartStyle( LineChartStyle(.quadCurve, lineColor: Color.init("MainThemeColor"), lineWidth: 2))
+                                    .padding()
+                                
+                                
+                            }
+                            .frame(width: width - 20, height: height/5, alignment: .center)
+                            .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
+                            .cornerRadius(15)
+                            .overlay(
+                                VStack{
+                                    HStack{
+                                        Text("7天的支出情况")
+                                            .padding(.leading,20)
+                                            .foregroundColor(Color.init("FontColor"))
+                                    }
+                                    .frame(width: width - 20,alignment: .leading)
+                                    .font(.system(size: 15))
+                                    .padding(.top,10)
+                                    
+                                    Spacer()
+                                    
+                                    HStack{
+                                        ForEach(getweekTime(),id: \.self){
+                                            
+                                            Text("\($0)")
+                                                .font(.system(size: 13))
+                                                .foregroundColor(Color.init("FontColor"))
+                                                .frame(width: (width-20)/8.3, alignment: .center)
+                                            
+                                        }
+                                    }
+                                    .frame(width: width - 20,alignment: .center)
+                                    .padding(.bottom,10)
+                                    
+                                }
+                                .frame(width: width - 20, height: height/5, alignment: .topLeading)
+                                .contentShape(Rectangle())
+                                .cornerRadius(15)
+                            )
+                            
+                            
+                       
+                        
+                        
+                    }.background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
+                    
                 
                 
             }
@@ -41,6 +95,7 @@ struct MyCenterView: View {
             .navigationBarHidden(true)
             .onAppear(){
                 self.appData.getMyCenterData()
+               
             }
             
             SettingButton(mycenterdata: mycenterdata, window: window)
@@ -90,7 +145,6 @@ struct UserAllMoney: View {
                     Divider().frame(width: 1, height: 50, alignment: .center)
                         .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
                 }
-                
                 
                 VStack{
                     Text(appData.EaringMoney)

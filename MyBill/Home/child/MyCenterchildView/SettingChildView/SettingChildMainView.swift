@@ -24,6 +24,8 @@ struct SettingChildMainView: View {
                 self.view = AnyView(BackgroundEdit(mycenterdata: self.mycenterdata))
             case "主题样式":
                 self.view = AnyView(StyleTheme(window: self.window))
+            case "关于":
+                self.view = AnyView(AboutView())
             default:
                 self.view = AnyView(EmptyView())
             }

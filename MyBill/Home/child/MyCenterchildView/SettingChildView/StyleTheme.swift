@@ -10,11 +10,9 @@ import SwiftUI
 
 struct StyleTheme: View {
     @State var changeModel = false
-    
     @State var window: UIWindow
     @Environment(\.presentationMode) var persentationMode
     @Environment(\.colorScheme) var colorScheme
-    
     var body: some View {
         ZStack(alignment:.topLeading){
             

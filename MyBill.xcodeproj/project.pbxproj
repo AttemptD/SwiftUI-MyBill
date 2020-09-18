@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		360C07FE24DFEB5200505860 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 360C07FD24DFEB5200505860 /* RealmSwift */; };
-		36203C452505CBF500C4C1E8 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 36203C442505CBF500C4C1E8 /* SwiftUICharts */; };
 		364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C24BA24D5A6F3001EBD47 /* SearchView.swift */; };
+		3654FEF82508BB0800CA2735 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3654FEF72508BB0800CA2735 /* AboutView.swift */; };
+		3654FEFA2508BD5F00CA2735 /* MyNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3654FEF92508BD5F00CA2735 /* MyNavigationBar.swift */; };
 		3656EBB524FF9C7F009A319D /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 3656EBB424FF9C7F009A319D /* SwiftUIPager */; };
 		365A3C4E24CACF1D001E2328 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365A3C4D24CACF1D001E2328 /* DetailView.swift */; };
 		365AC0BC24E76626009B822E /* DiyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AC0BB24E76626009B822E /* DiyShape.swift */; };
@@ -20,6 +21,7 @@
 		3687A3E524BD489D008A6194 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687A3E424BD489D008A6194 /* Charts */; };
 		368C8B6D2501E693009AC12E /* StyleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6C2501E693009AC12E /* StyleTheme.swift */; };
 		368C8B6F25022BE8009AC12E /* StyleTheme_animtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */; };
+		3694D060250F6D9B009D3030 /* WeekDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694D05F250F6D9B009D3030 /* WeekDetailView.swift */; };
 		369E34F324A9940100074C20 /* StatusBarLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F224A9940100074C20 /* StatusBarLight.swift */; };
 		369E34F824A9B12100074C20 /* SrcSysystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F724A9B12100074C20 /* SrcSysystem.swift */; };
 		369E350324A9E14A00074C20 /* RealmDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350224A9E14A00074C20 /* RealmDb.swift */; };
@@ -54,6 +56,7 @@
 		36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667EC24AB205D00985192 /* HomeAnimation.swift */; };
 		36B667ED24F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B667E324F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift */; };
 		36C5D93424D00AD20041D7E6 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 36C5D93324D00AD20041D7E6 /* SwiftyJSON */; };
+		36D5D65D250B1A44002833F0 /* chartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D5D65C250B1A44002833F0 /* chartView.swift */; };
 		36D6AB2024E5383C0071A60D /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D6AB1F24E5383C0071A60D /* imagePicker.swift */; };
 		36D6AB2224E53A2E0071A60D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D6AB2124E53A2E0071A60D /* Setting.swift */; };
 		36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB024B8418D000428E0 /* NewBuild_Update.swift */; };
@@ -85,6 +88,8 @@
 
 /* Begin PBXFileReference section */
 		364C24BA24D5A6F3001EBD47 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		3654FEF72508BB0800CA2735 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		3654FEF92508BD5F00CA2735 /* MyNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationBar.swift; sourceTree = "<group>"; };
 		365A3C4D24CACF1D001E2328 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		365AC0BB24E76626009B822E /* DiyShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiyShape.swift; sourceTree = "<group>"; };
 		365DF82B24F1EC950078C79E /* All_ViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = All_ViewAnimation.swift; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 		36825C3424AD71D1007134FA /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		368C8B6C2501E693009AC12E /* StyleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme.swift; sourceTree = "<group>"; };
 		368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme_animtion.swift; sourceTree = "<group>"; };
+		3694D05F250F6D9B009D3030 /* WeekDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDetailView.swift; sourceTree = "<group>"; };
 		369E34F224A9940100074C20 /* StatusBarLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarLight.swift; sourceTree = "<group>"; };
 		369E34F724A9B12100074C20 /* SrcSysystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SrcSysystem.swift; sourceTree = "<group>"; };
 		369E350224A9E14A00074C20 /* RealmDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDb.swift; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 		36B667E224F50F3800B37C91 /* ScrollDownHeaderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollDownHeaderBehavior.swift; sourceTree = "<group>"; };
 		36B667E324F50F3800B37C91 /* View+hideNavigationBarWithoutLosingSwipeBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+hideNavigationBarWithoutLosingSwipeBack.swift"; sourceTree = "<group>"; };
 		36B667EC24AB205D00985192 /* HomeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAnimation.swift; sourceTree = "<group>"; };
+		36D5D65C250B1A44002833F0 /* chartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chartView.swift; sourceTree = "<group>"; };
 		36D6AB1F24E5383C0071A60D /* imagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		36D6AB2124E53A2E0071A60D /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = MyBill/EncapsulationView/Setting.swift; sourceTree = SOURCE_ROOT; };
 		36F25DB024B8418D000428E0 /* NewBuild_Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuild_Update.swift; sourceTree = "<group>"; };
@@ -154,7 +161,6 @@
 				360C07FE24DFEB5200505860 /* RealmSwift in Frameworks */,
 				36A3566C24DFDAD50095EF86 /* CloudKit.framework in Frameworks */,
 				3656EBB524FF9C7F009A319D /* SwiftUIPager in Frameworks */,
-				36203C452505CBF500C4C1E8 /* SwiftUICharts in Frameworks */,
 				3687A3E524BD489D008A6194 /* Charts in Frameworks */,
 				36C5D93424D00AD20041D7E6 /* SwiftyJSON in Frameworks */,
 			);
@@ -180,6 +186,7 @@
 		369E34ED24A9767800074C20 /* EncapsulationView */ = {
 			isa = PBXGroup;
 			children = (
+				3654FEF92508BD5F00CA2735 /* MyNavigationBar.swift */,
 				36B667D924F50EF700B37C91 /* FancyScrollView */,
 				364C24BA24D5A6F3001EBD47 /* SearchView.swift */,
 				36825C3424AD71D1007134FA /* TrackableScrollView.swift */,
@@ -192,6 +199,7 @@
 				365AC0BB24E76626009B822E /* DiyShape.swift */,
 				365DF82B24F1EC950078C79E /* All_ViewAnimation.swift */,
 				368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */,
+				36D5D65C250B1A44002833F0 /* chartView.swift */,
 			);
 			path = EncapsulationView;
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 		369E350024A9DA0A00074C20 /* MyCenterchildView */ = {
 			isa = PBXGroup;
 			children = (
+				3694D05F250F6D9B009D3030 /* WeekDetailView.swift */,
 				36D6AB2124E53A2E0071A60D /* Setting.swift */,
 				36B0868C24FE124F0014E217 /* SettingChildView */,
 			);
@@ -250,6 +259,7 @@
 				36B0868D24FE12700014E217 /* SettingChildMainView.swift */,
 				36B0869124FE24EA0014E217 /* BackgroundEdit.swift */,
 				368C8B6C2501E693009AC12E /* StyleTheme.swift */,
+				3654FEF72508BB0800CA2735 /* AboutView.swift */,
 			);
 			path = SettingChildView;
 			sourceTree = "<group>";
@@ -392,7 +402,6 @@
 				36C5D93324D00AD20041D7E6 /* SwiftyJSON */,
 				360C07FD24DFEB5200505860 /* RealmSwift */,
 				3656EBB424FF9C7F009A319D /* SwiftUIPager */,
-				36203C442505CBF500C4C1E8 /* SwiftUICharts */,
 			);
 			productName = pageView;
 			productReference = 36B336DE24A0A72D00B780ED /* 小猪罐.app */;
@@ -441,7 +450,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Frank D";
 				TargetAttributes = {
 					36B336DD24A0A72D00B780ED = {
@@ -472,7 +481,6 @@
 				36C5D93224D00AD20041D7E6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				360C07FC24DFEB5200505860 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
-				36203C432505CBF500C4C1E8 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 36B336DF24A0A72D00B780ED /* Products */;
 			projectDirPath = "";
@@ -518,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				365AC0BC24E76626009B822E /* DiyShape.swift in Sources */,
+				3694D060250F6D9B009D3030 /* WeekDetailView.swift in Sources */,
 				368C8B6D2501E693009AC12E /* StyleTheme.swift in Sources */,
 				36F25DB724B85794000428E0 /* KeyboardUp.swift in Sources */,
 				36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */,
@@ -528,6 +537,7 @@
 				36B667E824F50F3800B37C91 /* AppleMusicStyleScrollView.swift in Sources */,
 				36B667ED24AB205D00985192 /* HomeAnimation.swift in Sources */,
 				36D6AB2024E5383C0071A60D /* imagePicker.swift in Sources */,
+				3654FEFA2508BD5F00CA2735 /* MyNavigationBar.swift in Sources */,
 				364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */,
 				36B667E924F50F3800B37C91 /* HeaderScrollView.swift in Sources */,
 				36B667E424F50F3800B37C91 /* FancyScrollView.swift in Sources */,
@@ -544,7 +554,9 @@
 				368C8B6F25022BE8009AC12E /* StyleTheme_animtion.swift in Sources */,
 				36B667E724F50F3800B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */,
 				365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */,
+				36D5D65D250B1A44002833F0 /* chartView.swift in Sources */,
 				36B667EA24F50F3800B37C91 /* HeaderScrollViewTitle.swift in Sources */,
+				3654FEF82508BB0800CA2735 /* AboutView.swift in Sources */,
 				36B0868B24FDEC4C0014E217 /* SettingModel.swift in Sources */,
 				36D6AB2224E53A2E0071A60D /* Setting.swift in Sources */,
 				36B0868E24FE12700014E217 /* SettingChildMainView.swift in Sources */,
@@ -637,6 +649,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -698,6 +711,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -910,14 +924,6 @@
 				minimumVersion = 5.3.3;
 			};
 		};
-		36203C432505CBF500C4C1E8 /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.4;
-			};
-		};
 		3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -949,11 +955,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 360C07FC24DFEB5200505860 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
-		};
-		36203C442505CBF500C4C1E8 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 36203C432505CBF500C4C1E8 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
 		};
 		3656EBB424FF9C7F009A319D /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;

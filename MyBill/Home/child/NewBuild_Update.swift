@@ -27,7 +27,7 @@ struct NewAddBillView: View {
         
         KeyboardHost{
             
-            NavigationView{
+            //NavigationView{
                 
                 ZStack(alignment:.top){
                     
@@ -105,8 +105,6 @@ struct NewAddBillView: View {
                                 
                             }.frame(width: width,alignment: .center)
                             .background(colorScheme == .dark ? Color.black: Color.init("MainCellSpacerColor"))
-
-                            
                             
                             ScrollView(showsIndicators:false){
                                 
@@ -206,10 +204,27 @@ struct NewAddBillView: View {
                                     
                                     
                                     Spacer().frame( height: 30)
+                                   
+
+                                   
+                                    if #available(iOS 14.0, *) {
+                                        DatePicker(selection: $time, in: ...Date(),displayedComponents:.date,label: { Text("选择时间")
+                                                    .font(.system(size: 13))
+                                                    .fontWeight(.light) })
+                                            .accentColor(Color.init("MainThemeColor"))
+                                            .datePickerStyle(DefaultDatePickerStyle())
+                                            
+                                            .padding(.leading,20)
+                                            .padding(.trailing,25)
+                                    } else {
+                                        // Fallback on earlier versions
+                                        DatePacker(title: "选择时间", date: $time, datetype: true)
+                                            .padding(.leading,20)
+                                            .padding(.trailing,25)
+                                    }
                                     
-                                    DatePacker(title: "选择时间", date: $time, datetype: true)
-                                        .padding(.leading,20)
-                                        .padding(.trailing,25)
+
+
                                     
                                     
                                     Spacer().frame( height: 30)
@@ -276,15 +291,15 @@ struct NewAddBillView: View {
                             
                             
                         }
-                        .background(colorScheme == .dark ? Color.black: Color.init("MainCellSpacerColor"))
+                        
                         
                         if showLine_doWhat != true && showLine_money != true{
                             Button(action: {
                                 if self.money != "" && self.select != ""{
                                     let Money :Double = Double(self.money)!
                                     
-                                    if self.OpenType == "新建"{
-                                        
+                                    switch self.OpenType {
+                                    case "新建":
                                         self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                         
                                         self.folderData.setFoloderBillData()
@@ -292,10 +307,8 @@ struct NewAddBillView: View {
                                         DispatchQueue.main.async {
                                             self.appData.NowData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                         }
-                                        
-                                        
-                                    }else{
-                                        
+                                       
+                                    default:
                                         if self.time == TimeTools().stringConvertDate(string: self.billData.time){
                                             
                                             self.appData.updataBillData(time: self.billData.time, money: Money, type: self.select, doWhat: self.doWhat)
@@ -313,9 +326,7 @@ struct NewAddBillView: View {
                                             self.folderData.setFoloderBillData()
                                             
                                         }
-                                        
                                     }
-                                    
                                     
                                     DispatchQueue.main.async {
                                         self.appData.refreshData()
@@ -356,13 +367,12 @@ struct NewAddBillView: View {
                     } .padding(.leading,30)
                         .frame(width: width,height:50,alignment: .leading)
                     
-                }
-                    //.background(colorScheme == .dark ? Color.black : Color.clear)
+                }.background(colorScheme == .dark ? Color.black: Color.init("MainCellSpacerColor"))
+                  
 
                 .buttonStyle(PlainButtonStyle())
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-            }
+                
+            //}
             .alert(isPresented: $showWarn) {
                 Alert(title: Text("提示"),
                       message: Text( self.select == "" ? "请选择账单类型":"请输入收入支出费用"),
@@ -370,22 +380,26 @@ struct NewAddBillView: View {
             }
             .onAppear(){
                 
+               
+                
                 if self.OpenType == "修改"{
                     
                     self.doWhat = self.billData.doWhat
                     self.money = String(self.billData.money)
                     
-                    if self.billData.type == "支出"{
-                        
+                    
+                    switch self.billData.type {
+                    case "支出":
                         self.showPay = true
                         self.showEarn = false
                         self.select = "支出"
-                        
-                    }else{
+                    default:
                         self.showPay = false
                         self.showEarn = true
                         self.select = "收入"
                     }
+                    
+                   
                     self.time = TimeTools().stringConvertDate(string: self.billData.time)
                 }
             }
@@ -396,7 +410,8 @@ struct NewAddBillView: View {
                 self.time = Date()
             }
             
-        }.edgesIgnoringSafeArea(.all)
+            
+        }.edgesIgnoringSafeArea(.bottom)
         
         
     }
