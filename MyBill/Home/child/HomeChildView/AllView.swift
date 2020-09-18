@@ -28,7 +28,13 @@ struct AllView: View {
             
             SearchBar_all(searchText: $searchText, folderData: folderData)
             
-            All_ViewAnimation().opacity(self.folderData.folderList.count > 0 ? 0:1)
+            Text("还没有账单哦，请添加一个吧 ！")
+                .offset(y: -height/4)
+                .font(.system(size: 15))
+                .frame(width: width-40, alignment: .center)
+                .padding(.top,height/2.5)
+                .opacity(self.folderData.folderList.count > 0 ? 0:1)
+            
             
             
         }

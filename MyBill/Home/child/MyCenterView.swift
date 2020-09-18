@@ -23,6 +23,7 @@ struct MyCenterView: View {
                             scrollUpHeaderBehavior: .parallax,
                             scrollDownHeaderBehavior: .offset,
                             cornerRadiusNub:15,
+                            showTitle:false,
                             header: {
                                 MyViewBackground(mycenterdata: mycenterdata)
                                 
@@ -31,9 +32,10 @@ struct MyCenterView: View {
             }){
                 
                     VStack(spacing:20){
+                        ScrollView{
                         UserAllMoney(appData: appData)
                         
-                        
+                        }
                        
                             
                             VStack{
@@ -41,6 +43,7 @@ struct MyCenterView: View {
                                 Chart(data:appData.weekData)
                                     .chartStyle( LineChartStyle(.quadCurve, lineColor: Color.init("MainThemeColor"), lineWidth: 2))
                                     .padding()
+                                    .padding(.bottom,20)
                                 
                                 
                             }
@@ -80,17 +83,18 @@ struct MyCenterView: View {
                             )
                             
                             
-                       
                         
                         
-                    }.background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
+                        
+                    }
+                    .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
                     
                 
                 
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
-            .edgesIgnoringSafeArea(.top)
+           
             .navigationBarTitle("我的",displayMode: .inline)
             .navigationBarHidden(true)
             .onAppear(){
