@@ -10,13 +10,15 @@ import SwiftUI
 struct NewAddBillView: View {
     @State var select = ""  //类型
     @State var money = ""  //钱
+   
     @State var time = Date()
     @State var doWhat = ""
     @State var showWarn = false
     @ObservedObject var appData : AppData
     @ObservedObject var folderData : FolderData
-    let billData : Model
+    @Binding var billData : Model
     @State var OpenType : String
+    @Binding var editMoney : String
     @State var showPay = true
     @State var showEarn = true
     @State var showLine_money = false
@@ -27,7 +29,7 @@ struct NewAddBillView: View {
         
         KeyboardHost{
             
-            //NavigationView{
+          
                 
                 ZStack(alignment:.top){
                     
@@ -45,6 +47,12 @@ struct NewAddBillView: View {
                                 
                                 if showLine_doWhat == true || showLine_money == true{
                                     Button(action: {
+                                        
+                                        if self.OpenType == "修改"{
+                                            self.money = self.editMoney
+                                            self.doWhat = self.billData.doWhat
+                                        }
+                                        
                                         if self.money != "" && self.select != ""{
                                             let Money :Double = Double(self.money)!
                                             
@@ -223,10 +231,6 @@ struct NewAddBillView: View {
                                             .padding(.trailing,25)
                                     }
                                     
-
-
-                                    
-                                    
                                     Spacer().frame( height: 30)
                                     
                                     
@@ -239,8 +243,10 @@ struct NewAddBillView: View {
                                             .padding(.bottom,10)
                                         
                                         HStack{
-                                            MyTextField(keyboardType: .decimalPad, text: $money, placeholder:  "请输入数字",showLine:$showLine_money)
-                                                .frame( height: 40)
+                                            
+                                            MyTextField(keyboardType: .decimalPad, text: OpenType == "新建" ? $money : $editMoney, placeholder:  "请输入数字",showLine:$showLine_money)
+                                                    .frame( height: 40)
+                                            
                                             
                                             
                                         }.overlay(
@@ -264,8 +270,11 @@ struct NewAddBillView: View {
                                             .padding(.bottom,10)
                                         
                                         HStack{
-                                            MyTextField(keyboardType: .default, text: $doWhat, placeholder:  "例如发红包/收红包", showLine:$showLine_doWhat)
+                                            
+                                            
+                                            MyTextField(keyboardType: .default, text: OpenType == "新建" ? $doWhat : self.$billData.doWhat, placeholder:  "例如发红包/收红包", showLine:$showLine_doWhat)
                                                 .frame( height: 40)
+                                            
                                             
                                             
                                         }.overlay(
@@ -295,10 +304,19 @@ struct NewAddBillView: View {
                         
                         if showLine_doWhat != true && showLine_money != true{
                             Button(action: {
+                                
+                                if self.OpenType == "修改"{
+                                    self.money = self.editMoney
+                                    self.doWhat = self.billData.doWhat
+                                }
+                               
+                                
                                 if self.money != "" && self.select != ""{
+                                    
                                     let Money :Double = Double(self.money)!
                                     
                                     switch self.OpenType {
+                                    
                                     case "新建":
                                         self.appData.setBillData(time: TimeTools().dataToTime(date: self.time, type: "yyyy年MM月dd日 \(TimeTools().getDay(value: 0, Timetype: "HH:mm:ss"))"), money: Money, type: self.select, doWhat: self.doWhat)
                                         
@@ -372,7 +390,7 @@ struct NewAddBillView: View {
 
                 .buttonStyle(PlainButtonStyle())
                 
-            //}
+          
             .alert(isPresented: $showWarn) {
                 Alert(title: Text("提示"),
                       message: Text( self.select == "" ? "请选择账单类型":"请输入收入支出费用"),
@@ -380,15 +398,12 @@ struct NewAddBillView: View {
             }
             .onAppear(){
                 
-               
+              
                 
-                if self.OpenType == "修改"{
-                    
-                    self.doWhat = self.billData.doWhat
-                    self.money = String(self.billData.money)
-                    
-                    
+                if self.OpenType == "修改" {
+                   
                     switch self.billData.type {
+                    
                     case "支出":
                         self.showPay = true
                         self.showEarn = false
@@ -399,15 +414,16 @@ struct NewAddBillView: View {
                         self.select = "收入"
                     }
                     
-                   
+                  
                     self.time = TimeTools().stringConvertDate(string: self.billData.time)
                 }
             }
             .onDisappear(){
                 self.doWhat = ""
                 self.money = ""
-                
                 self.time = Date()
+                
+               
             }
             
             
@@ -420,8 +436,4 @@ struct NewAddBillView: View {
 
 
 
-struct NewBuild_Update_Previews: PreviewProvider {
-    static var previews: some View {
-        NewAddBillView(appData: AppData(),  folderData: FolderData(),billData: Model(), OpenType: "")
-    }
-}
+

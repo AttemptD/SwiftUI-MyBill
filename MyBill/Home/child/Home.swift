@@ -109,8 +109,8 @@ struct HomeBackground: View {
 
 struct HomePersonInfo: View {
     @ObservedObject var appData : AppData
-       @ObservedObject var mycenterdata : MyInfoData
-       @Environment(\.colorScheme) var colorScheme
+    @ObservedObject var mycenterdata : MyInfoData
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack{
             Image(uiImage:ImageTranser().DataToImage(data: mycenterdata.headerIco))
@@ -177,6 +177,7 @@ struct HomePersonInfo: View {
 
 struct HomeContent: View {
     @State var billdata = Model()
+    @State var billdata_money = ""
     @State var updateBill = false
     @ObservedObject var appData : AppData
      @ObservedObject var folderData : FolderData
@@ -229,6 +230,7 @@ struct HomeContent: View {
                                 
                                 self.updateBill.toggle()
                                 self.billdata = item
+                                self.billdata_money = String(item.money)
                                 
                             }) {
                                 Text("修改")
@@ -283,7 +285,10 @@ struct HomeContent: View {
                 
             }.id(UUID())
                 .frame(width:width)
-            
+            .sheet(isPresented: self.$updateBill) {
+                
+                NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.$billdata ,OpenType: "修改",editMoney:self.$billdata_money)
+            }
             
             
         }

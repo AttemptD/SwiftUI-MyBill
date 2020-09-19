@@ -161,6 +161,7 @@ struct ChildContent: View {
     let item :Folder
     @State var updateBill = false
     @State var billdata = Model()
+    @State var billdata_money = ""
     @ObservedObject var folderData : FolderData
     @ObservedObject var appData : AppData
     @Environment(\.colorScheme) var colorScheme
@@ -213,6 +214,8 @@ struct ChildContent: View {
                             
                             self.updateBill.toggle()
                             self.billdata = child
+                            self.billdata_money = String(child.money)
+                           
                             
                         }) {
                             Text("修改")
@@ -262,7 +265,7 @@ struct ChildContent: View {
         
         .sheet(isPresented: self.$updateBill) {
             
-            NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.billdata ,OpenType: "修改")
+            NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.$billdata ,OpenType: "修改",editMoney:self.$billdata_money)
         }
     }
 }

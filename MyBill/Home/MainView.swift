@@ -12,12 +12,14 @@ struct MainView: View {
     @State var selection = 1
     @State var scrollViewContentOffset : CGFloat = 0
     @State var newAddBill = false
+    @State var billdata = Model()
     @ObservedObject var appData = AppData()
     @ObservedObject var folderData = FolderData()
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.colorScheme) var colorScheme
     @State var window: UIWindow
     let Title = ["钱记","收入","支出"]
+    @State var needData = "0"
     var body: some View {
         ZStack(alignment:.bottomTrailing){
             NavigationView{
@@ -69,7 +71,7 @@ struct MainView: View {
                 }
                 .accentColor(Color.init("MainThemeColor"))
                 .sheet(isPresented: self.$newAddBill) {
-                    NewAddBillView(appData:self.appData,folderData:self.folderData, billData: Model(), OpenType: "新建")
+                    NewAddBillView(appData:self.appData,folderData:self.folderData, billData: self.$billdata, OpenType: "新建",editMoney:self.$needData)
                 }
             }
             

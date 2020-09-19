@@ -44,6 +44,7 @@ struct MyCenterView: View {
                                     .chartStyle( LineChartStyle(.quadCurve, lineColor: Color.init("MainThemeColor"), lineWidth: 2))
                                     .padding()
                                     .padding(.bottom,20)
+                                    .animation(.easeIn)
                                 
                                 
                             }
