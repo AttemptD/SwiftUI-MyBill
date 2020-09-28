@@ -19,6 +19,14 @@
 		3676FDCC24D7AC0000B8B8DB /* FolderBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676FDCB24D7AC0000B8B8DB /* FolderBill.swift */; };
 		36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36825C3424AD71D1007134FA /* TrackableScrollView.swift */; };
 		3687A3E524BD489D008A6194 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687A3E424BD489D008A6194 /* Charts */; };
+		3687E3C8252019AC0032CBBE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3687E3C7252019AC0032CBBE /* WidgetKit.framework */; };
+		3687E3CA252019AC0032CBBE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3687E3C9252019AC0032CBBE /* SwiftUI.framework */; };
+		3687E3CD252019AC0032CBBE /* WeekBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3687E3CC252019AC0032CBBE /* WeekBill.swift */; };
+		3687E3D0252019AF0032CBBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3687E3CF252019AF0032CBBE /* Assets.xcassets */; };
+		3687E3D2252019AF0032CBBE /* WeekBill.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3687E3CE252019AC0032CBBE /* WeekBill.intentdefinition */; };
+		3687E3D3252019AF0032CBBE /* WeekBill.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3687E3CE252019AC0032CBBE /* WeekBill.intentdefinition */; };
+		3687E3D6252019AF0032CBBE /* WeekBillExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3687E3C6252019AC0032CBBE /* WeekBillExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3687E3EC2520302F0032CBBE /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3687E3EB2520302F0032CBBE /* SwiftUICharts */; };
 		368C8B6D2501E693009AC12E /* StyleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6C2501E693009AC12E /* StyleTheme.swift */; };
 		368C8B6F25022BE8009AC12E /* StyleTheme_animtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */; };
 		3694D060250F6D9B009D3030 /* WeekDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694D05F250F6D9B009D3030 /* WeekDetailView.swift */; };
@@ -70,6 +78,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3687E3D4252019AF0032CBBE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B336D624A0A72D00B780ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3687E3C5252019AC0032CBBE;
+			remoteInfo = WeekBillExtension;
+		};
 		36B336F824A0A72E00B780ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B336D624A0A72D00B780ED /* Project object */;
@@ -86,6 +101,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3687E3D7252019AF0032CBBE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3687E3D6252019AF0032CBBE /* WeekBillExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		364C24BA24D5A6F3001EBD47 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3654FEF72508BB0800CA2735 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -96,6 +125,13 @@
 		366E056024BC4D7E00AAA1DE /* AllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllView.swift; sourceTree = "<group>"; };
 		3676FDCB24D7AC0000B8B8DB /* FolderBill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderBill.swift; sourceTree = "<group>"; };
 		36825C3424AD71D1007134FA /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
+		3687E3C6252019AC0032CBBE /* WeekBillExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WeekBillExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3687E3C7252019AC0032CBBE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3687E3C9252019AC0032CBBE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3687E3CC252019AC0032CBBE /* WeekBill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekBill.swift; sourceTree = "<group>"; };
+		3687E3CE252019AC0032CBBE /* WeekBill.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WeekBill.intentdefinition; sourceTree = "<group>"; };
+		3687E3CF252019AF0032CBBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3687E3D1252019AF0032CBBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		368C8B6C2501E693009AC12E /* StyleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme.swift; sourceTree = "<group>"; };
 		368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme_animtion.swift; sourceTree = "<group>"; };
 		3694D05F250F6D9B009D3030 /* WeekDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDetailView.swift; sourceTree = "<group>"; };
@@ -154,6 +190,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3687E3C3252019AC0032CBBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3687E3EC2520302F0032CBBE /* SwiftUICharts in Frameworks */,
+				3687E3CA252019AC0032CBBE /* SwiftUI.framework in Frameworks */,
+				3687E3C8252019AC0032CBBE /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		36B336DB24A0A72D00B780ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +229,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3687E3CB252019AC0032CBBE /* WeekBill */ = {
+			isa = PBXGroup;
+			children = (
+				3687E3CC252019AC0032CBBE /* WeekBill.swift */,
+				3687E3CE252019AC0032CBBE /* WeekBill.intentdefinition */,
+				3687E3CF252019AF0032CBBE /* Assets.xcassets */,
+				3687E3D1252019AF0032CBBE /* Info.plist */,
+			);
+			path = WeekBill;
+			sourceTree = "<group>";
+		};
 		369E34ED24A9767800074C20 /* EncapsulationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +327,7 @@
 				36B336E024A0A72D00B780ED /* MyBill */,
 				36B336FA24A0A72E00B780ED /* pageViewTests */,
 				36B3370524A0A72E00B780ED /* pageViewUITests */,
+				3687E3CB252019AC0032CBBE /* WeekBill */,
 				36B336DF24A0A72D00B780ED /* Products */,
 				36F3EBD024CD5EF600CD8415 /* Frameworks */,
 			);
@@ -282,6 +340,7 @@
 				36B336DE24A0A72D00B780ED /* 小猪罐.app */,
 				36B336F724A0A72E00B780ED /* pageViewTests.xctest */,
 				36B3370224A0A72E00B780ED /* pageViewUITests.xctest */,
+				3687E3C6252019AC0032CBBE /* WeekBillExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -377,6 +436,8 @@
 			isa = PBXGroup;
 			children = (
 				36A3566B24DFDAD50095EF86 /* CloudKit.framework */,
+				3687E3C7252019AC0032CBBE /* WidgetKit.framework */,
+				3687E3C9252019AC0032CBBE /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -384,6 +445,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3687E3C5252019AC0032CBBE /* WeekBillExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3687E3DA252019AF0032CBBE /* Build configuration list for PBXNativeTarget "WeekBillExtension" */;
+			buildPhases = (
+				3687E3C2252019AC0032CBBE /* Sources */,
+				3687E3C3252019AC0032CBBE /* Frameworks */,
+				3687E3C4252019AC0032CBBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeekBillExtension;
+			packageProductDependencies = (
+				3687E3EB2520302F0032CBBE /* SwiftUICharts */,
+			);
+			productName = WeekBillExtension;
+			productReference = 3687E3C6252019AC0032CBBE /* WeekBillExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		36B336DD24A0A72D00B780ED /* MyBill */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36B3370B24A0A72E00B780ED /* Build configuration list for PBXNativeTarget "MyBill" */;
@@ -391,10 +472,12 @@
 				36B336DA24A0A72D00B780ED /* Sources */,
 				36B336DB24A0A72D00B780ED /* Frameworks */,
 				36B336DC24A0A72D00B780ED /* Resources */,
+				3687E3D7252019AF0032CBBE /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3687E3D5252019AF0032CBBE /* PBXTargetDependency */,
 			);
 			name = MyBill;
 			packageProductDependencies = (
@@ -449,10 +532,13 @@
 		36B336D624A0A72D00B780ED /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Frank D";
 				TargetAttributes = {
+					3687E3C5252019AC0032CBBE = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
 					36B336DD24A0A72D00B780ED = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -481,6 +567,7 @@
 				36C5D93224D00AD20041D7E6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				360C07FC24DFEB5200505860 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				3656EBB324FF9C7F009A319D /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				3687E3EA2520302F0032CBBE /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 36B336DF24A0A72D00B780ED /* Products */;
 			projectDirPath = "";
@@ -489,11 +576,20 @@
 				36B336DD24A0A72D00B780ED /* MyBill */,
 				36B336F624A0A72E00B780ED /* pageViewTests */,
 				36B3370124A0A72E00B780ED /* pageViewUITests */,
+				3687E3C5252019AC0032CBBE /* WeekBillExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3687E3C4252019AC0032CBBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3687E3D0252019AF0032CBBE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		36B336DC24A0A72D00B780ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -521,6 +617,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3687E3C2252019AC0032CBBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3687E3CD252019AC0032CBBE /* WeekBill.swift in Sources */,
+				3687E3D2252019AF0032CBBE /* WeekBill.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		36B336DA24A0A72D00B780ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -562,6 +667,7 @@
 				36B0868E24FE12700014E217 /* SettingChildMainView.swift in Sources */,
 				36B0869224FE24EA0014E217 /* BackgroundEdit.swift in Sources */,
 				36FC7E8624E5615300EF7F06 /* ImageTranser.swift in Sources */,
+				3687E3D3252019AF0032CBBE /* WeekBill.intentdefinition in Sources */,
 				36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */,
 				36B336E724A0A72D00B780ED /* pageView.xcdatamodeld in Sources */,
 				36B3371B24A0A74F00B780ED /* MainView.swift in Sources */,
@@ -597,6 +703,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3687E3D5252019AF0032CBBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3687E3C5252019AC0032CBBE /* WeekBillExtension */;
+			targetProxy = 3687E3D4252019AF0032CBBE /* PBXContainerItemProxy */;
+		};
 		36B336F924A0A72E00B780ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 36B336DD24A0A72D00B780ED /* MyBill */;
@@ -622,6 +733,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3687E3D8252019AF0032CBBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H2VUA2N5RN;
+				INFOPLIST_FILE = WeekBill/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = attempt.pig.save.WeekBill;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3687E3D9252019AF0032CBBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H2VUA2N5RN;
+				INFOPLIST_FILE = WeekBill/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = attempt.pig.save.WeekBill;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		36B3370924A0A72E00B780ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -743,6 +898,7 @@
 		36B3370C24A0A72E00B780ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MyBill/小猪罐.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -768,6 +924,7 @@
 		36B3370D24A0A72E00B780ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MyBill/小猪罐.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -877,6 +1034,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3687E3DA252019AF0032CBBE /* Build configuration list for PBXNativeTarget "WeekBillExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3687E3D8252019AF0032CBBE /* Debug */,
+				3687E3D9252019AF0032CBBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		36B336D924A0A72D00B780ED /* Build configuration list for PBXProject "MyBill" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -940,6 +1106,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		3687E3EA2520302F0032CBBE /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
 		36C5D93224D00AD20041D7E6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -965,6 +1139,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3687A3E324BD489D008A6194 /* XCRemoteSwiftPackageReference "swiftui-charts" */;
 			productName = Charts;
+		};
+		3687E3EB2520302F0032CBBE /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3687E3EA2520302F0032CBBE /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 		36C5D93324D00AD20041D7E6 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
