@@ -31,8 +31,8 @@ struct DatePacker: View {
             
             if self.isshow == true {
                 Setting(date: self.$date, type: self.$datetype)
-                    .frame(width: width, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                  
+                   
             }
             
         }

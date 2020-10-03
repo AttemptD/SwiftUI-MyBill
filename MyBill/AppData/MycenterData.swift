@@ -42,9 +42,9 @@ class MyInfoData:ObservableObject{
       
     }
     
-    func getMouthPieData() {
-        let mouthPieData = RealmDB().getDB().objects(Bill.self).filter(" blurTime <='\(TimeTools().getDay(value: 0, Timetype: "yyyy年MM月dd日"))' and blurTime >='\(TimeTools().getDay(value: -30, Timetype: "yyyy年MM月dd日"))' ")
-        
-        
-    }
+//    func getMouthPieData() {
+//        let mouthPieData = RealmDB().getDB().objects(Bill.self).filter(" blurTime <='\(TimeTools().getDay(value: 0, Timetype: "yyyy年MM月dd日"))' and blurTime >='\(TimeTools().getDay(value: -30, Timetype: "yyyy年MM月dd日"))' ")
+//        
+//        
+//    }
 }
