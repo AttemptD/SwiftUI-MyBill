@@ -53,13 +53,6 @@ struct WeekBillEntryView : View {
         }.frame(minWidth: 0,  maxWidth: .infinity, minHeight: 0,  maxHeight: .infinity, alignment: .top)
         .background(ContainerRelativeShape().fill(Color.init(.sRGB, red: 0.89, green: 0.89, blue: 0.89, opacity: 0.75)))
 
-      
-
-        
-       
-       
-       
-
     }
 }
 
@@ -70,9 +63,11 @@ struct WeekBill: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WeekBillEntryView(entry: entry)
+                
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
+        
         .supportedFamilies([.systemLarge,.systemMedium,.systemSmall])
     }
 }

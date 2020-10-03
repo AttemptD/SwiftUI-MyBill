@@ -32,61 +32,43 @@ struct MyCenterView: View {
             }){
                 
                     VStack(spacing:20){
-                        ScrollView{
+                        
                         UserAllMoney(appData: appData)
                         
-                        }
-                       
+                      
+                        WeekChartData(appData: appData)
+                        
+                        HStack{
                             
-                            VStack{
-                                
-                                Chart(data:appData.weekData)
-                                    .chartStyle( LineChartStyle(.quadCurve, lineColor: Color.init("MainThemeColor"), lineWidth: 2))
-                                    .padding()
-                                    .padding(.bottom,20)
-                                    .animation(.easeIn)
-                                
-                                
-                            }
-                            .frame(width: width - 20, height: height/5, alignment: .center)
-                            .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
-                            .cornerRadius(15)
-                            .overlay(
-                                VStack{
-                                    HStack{
-                                        Text("7天的支出情况")
-                                            .padding(.leading,20)
-                                            .foregroundColor(Color.init("FontColor"))
-                                    }
-                                    .frame(width: width - 20,alignment: .leading)
-                                    .font(.system(size: 15))
-                                    .padding(.top,10)
+                            
+                            VStack(spacing:12){
+                                Circle()
+                                    .rotation(.degrees(-90))
+                                    .trim(from:  0, to: 0.5)
+                                    .stroke(Color.yellow, lineWidth: 5)
                                     
-                                    Spacer()
+                                    .frame(width: 60, height: 60, alignment: .center)
+                                    .background(colorScheme == .dark ? Color.white :Color.init("MainCellSpacerColor"))
+                                    .cornerRadius(90)
+                                    .overlay(
+                                        Image(systemName: "paperplane.fill")
+                                            .resizable()
+                                            .frame(width: 25, height: 25, alignment: .center))
+                                
+                                VStack(spacing:5){
+                                Text("0.50")
                                     
-                                    HStack{
-                                        ForEach(getweekTime(),id: \.self){
-                                            
-                                            Text("\($0)")
-                                                .font(.system(size: 13))
-                                                .foregroundColor(Color.init("FontColor"))
-                                                .frame(width: (width-20)/8.3, alignment: .center)
-                                            
-                                        }
-                                    }
-                                    .frame(width: width - 20,alignment: .center)
-                                    .padding(.bottom,10)
-                                    
+                                Text("出行")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color.gray)
                                 }
-                                .frame(width: width - 20, height: height/5, alignment: .topLeading)
-                                .contentShape(Rectangle())
-                                .cornerRadius(15)
-                            )
+                            }
+                                
                             
-                            
-                        
-                        
-                        
+                        }.frame(width: width - 20, height: height/5, alignment: .center)
+                        .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
+                        .cornerRadius(15)
+                        .padding(.bottom,20)
                     }
                     .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
                     
@@ -221,5 +203,64 @@ struct SettingButton: View {
             
             
         }.buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct WeekChartData: View {
+    @ObservedObject var appData : AppData
+    @Environment(\.colorScheme) var colorScheme
+    @State var showWeekDataView = false
+    var body: some View {
+        VStack{
+            
+            Chart(data:appData.weekData)
+                .chartStyle( LineChartStyle(.quadCurve, lineColor: Color.init("MainThemeColor"), lineWidth: 2))
+                .padding()
+                .padding(.bottom,20)
+                .animation(.easeIn)
+            
+            
+        }
+        .frame(width: width - 20, height: height/5, alignment: .center)
+        .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
+        .cornerRadius(15)
+        .overlay(
+            VStack{
+                HStack{
+                    Text("7天的支出情况")
+                        .padding(.leading,20)
+                        .foregroundColor(Color.init("FontColor"))
+                }
+                .frame(width: width - 20,alignment: .leading)
+                .font(.system(size: 15))
+                .padding(.top,10)
+                
+                Spacer()
+                
+                HStack{
+                    ForEach(getweekTime(),id: \.self){
+                        
+                        Text("\($0)")
+                            .font(.system(size: 13))
+                            .foregroundColor(Color.init("FontColor"))
+                            .frame(width: (width-20)/8.3, alignment: .center)
+                        
+                    }
+                }
+                .frame(width: width - 20,alignment: .center)
+                .padding(.bottom,10)
+                
+            }
+            .frame(width: width - 20, height: height/5, alignment: .topLeading)
+            .contentShape(Rectangle())
+            .cornerRadius(15)
+        )
+        
+        .onTapGesture(count: 2, perform: {
+            showWeekDataView.toggle()
+        })
+        .sheet(isPresented: $showWeekDataView, content: {
+            EmptyView()
+        })
     }
 }
