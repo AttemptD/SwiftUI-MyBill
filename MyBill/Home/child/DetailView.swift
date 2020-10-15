@@ -12,6 +12,9 @@ struct DetailView: View {
     let billData : Model
     var body: some View {
         Text(billData.doWhat)
+        //haptic(type:.error)
+        
+            
         
     }
 }

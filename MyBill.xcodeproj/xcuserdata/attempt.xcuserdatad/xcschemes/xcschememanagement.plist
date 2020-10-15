@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>BillWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>GettingStarted (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -23,7 +28,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>4</integer>
 		</dict>
 		<key>MyBill.xcscheme_^#shared#^_</key>
 		<dict>
@@ -35,21 +40,21 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Playground (Playground) 2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>7</integer>
 		</dict>
 		<key>Playground (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>WeekBillExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -65,6 +70,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>小猪罐Extension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

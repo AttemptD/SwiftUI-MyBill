@@ -15,7 +15,7 @@ struct MyCenterView: View {
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.colorScheme) var colorScheme
     @State var window: UIWindow
-    let week = ["周一","周二","周三","周四","周五","周六","周日"]
+    
     var body: some View {
         ZStack(alignment:.topTrailing){
             FancyScrollView(title: "我的",
@@ -65,12 +65,14 @@ struct MyCenterView: View {
                             }
                                 
                             
-                        }.frame(width: width - 20, height: height/5, alignment: .center)
+                        }
+                        .frame(width: width - 20, height: height/5, alignment: .center)
                         .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
                         .cornerRadius(15)
                         .padding(.bottom,20)
                     }
                     .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
+                    
                     
                 
                 

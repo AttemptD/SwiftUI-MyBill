@@ -1,17 +1,18 @@
 //
-//  WeekBill.swift
-//  WeekBill
+//  BillWidget.swift
+//  BillWidget
 //
-//  Created by Attempt D on 2020/9/27.
+//  Created by Attempt D on 2020/10/9.
 //  Copyright © 2020 Frank D. All rights reserved.
 //
 
 import WidgetKit
 import SwiftUI
 import Intents
-import SwiftUICharts
+import Combine
 
 struct Provider: IntentTimelineProvider {
+    
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationIntent())
     }
@@ -40,41 +41,36 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    
 }
 
-struct WeekBillEntryView : View {
+struct BillWidgetEntryView : View {
     var entry: Provider.Entry
-    @Environment(\.widgetFamily) var family: WidgetFamily
-
+   
+   
     var body: some View {
-        HStack(alignment: .top, spacing: nil){
-            Text("35345")
-                .background(Color.yellow)
-        }.frame(minWidth: 0,  maxWidth: .infinity, minHeight: 0,  maxHeight: .infinity, alignment: .top)
-        .background(ContainerRelativeShape().fill(Color.init(.sRGB, red: 0.89, green: 0.89, blue: 0.89, opacity: 0.75)))
-
+        
+        Text(entry.date, style: .time)
     }
 }
 
 @main
-struct WeekBill: Widget {
-    let kind: String = "WeekBill"
+struct BillWidget: Widget {
+    let kind: String = "BillWidget"
+    
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            WeekBillEntryView(entry: entry)
-                
+            BillWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
-        
-        .supportedFamilies([.systemLarge,.systemMedium,.systemSmall])
     }
 }
 
-struct WeekBill_Previews: PreviewProvider {
+struct BillWidget_Previews: PreviewProvider {
     static var previews: some View {
-        WeekBillEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        BillWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
