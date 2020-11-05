@@ -9,27 +9,35 @@
 import UIKit
 import CoreData
 import RealmSwift
-//import IceCream
-//import CloudKit
+import IceCream
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
    
-    //var syncEngine: SyncEngine?
+    var syncEngine: SyncEngine?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        syncEngine = SyncEngine(objects: [
-//            SyncObject<Bill>(),
-//            SyncObject<FolderBill>()
-//
-//        ])
+        syncEngine = SyncEngine(objects: [
+            SyncObject<Bill>(),
+            SyncObject<FolderBill>()], databaseScope:.private)
+        
+        application.registerForRemoteNotifications()
         return true
     }
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        if let dict = userInfo as? [String: NSObject], let notification = CKNotification(fromRemoteNotificationDictionary: dict), let subscriptionID = notification.subscriptionID, IceCreamSubscription.allIDs.contains(subscriptionID) {
+            NotificationCenter.default.post(name: Notifications.cloudKitDataDidChangeRemotely.name, object: nil, userInfo: userInfo)
+            completionHandler(.newData)
+        }
+        
+    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

@@ -38,38 +38,38 @@ struct MyCenterView: View {
                       
                         WeekChartData(appData: appData)
                         
-                        HStack{
-                            
-                            
-                            VStack(spacing:12){
-                                Circle()
-                                    .rotation(.degrees(-90))
-                                    .trim(from:  0, to: 0.5)
-                                    .stroke(Color.yellow, lineWidth: 5)
-                                    
-                                    .frame(width: 60, height: 60, alignment: .center)
-                                    .background(colorScheme == .dark ? Color.white :Color.init("MainCellSpacerColor"))
-                                    .cornerRadius(90)
-                                    .overlay(
-                                        Image(systemName: "paperplane.fill")
-                                            .resizable()
-                                            .frame(width: 25, height: 25, alignment: .center))
-                                
-                                VStack(spacing:5){
-                                Text("0.50")
-                                    
-                                Text("出行")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color.gray)
-                                }
-                            }
-                                
-                            
-                        }
-                        .frame(width: width - 20, height: height/5, alignment: .center)
-                        .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
-                        .cornerRadius(15)
-                        .padding(.bottom,20)
+//                        HStack{
+//
+//
+//                            VStack(spacing:12){
+//                                Circle()
+//                                    .rotation(.degrees(-90))
+//                                    .trim(from:  0, to: 0.5)
+//                                    .stroke(Color.yellow, lineWidth: 5)
+//
+//                                    .frame(width: 60, height: 60, alignment: .center)
+//                                    .background(colorScheme == .dark ? Color.white :Color.init("MainCellSpacerColor"))
+//                                    .cornerRadius(90)
+//                                    .overlay(
+//                                        Image(systemName: "paperplane.fill")
+//                                            .resizable()
+//                                            .frame(width: 25, height: 25, alignment: .center))
+//
+//                                VStack(spacing:5){
+//                                Text("0.50")
+//
+//                                Text("出行")
+//                                    .font(.system(size: 12))
+//                                    .foregroundColor(Color.gray)
+//                                }
+//                            }
+//
+//
+//                        }
+//                        .frame(width: width - 20, height: height/5, alignment: .center)
+//                        .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
+//                        .cornerRadius(15)
+//                        .padding(.bottom,20)
                     }
                     .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
                     

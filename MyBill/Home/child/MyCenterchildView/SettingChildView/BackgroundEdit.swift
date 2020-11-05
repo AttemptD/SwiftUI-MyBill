@@ -71,7 +71,7 @@ struct Previews_Home: View {
                             .aspectRatio(contentMode: .fill):
                             Image(uiImage:(self.diybackgroundImage != nil ? diybackgroundImage : ImageTranser().DataToImage(data: mycenterdata.background)) ?? ImageTranser().DataToImage(data: mycenterdata.background))
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
+                            .aspectRatio(contentMode: .fill)
                             
         }) {
             
@@ -105,6 +105,7 @@ struct SelectImage_homeback: View {
                       id: \.self) {
                         
                         self.pageView("\($0)")
+                            
                         
                 }
                     
@@ -116,6 +117,8 @@ struct SelectImage_homeback: View {
                 
                 
             }.padding(.top,width/3)
+            
+           
             
             HStack(spacing:20){
                 Button(action: {
@@ -188,6 +191,7 @@ struct SelectImage_homeback: View {
                 .onTapGesture {
                     self.changeImage = true
                     self.seletImage = page
+                    
             }
             
             

@@ -14,8 +14,6 @@ struct SettingChildMainView: View {
     @State var view = AnyView(EmptyView())
     @State var window: UIWindow
     var body: some View {
-        
-        
         return view.onAppear(){
             switch self.settingModel.seleterName {
             case "资料修改":
@@ -29,8 +27,6 @@ struct SettingChildMainView: View {
             default:
                 self.view = AnyView(EmptyView())
             }
-            
-           
         }
        
     }
