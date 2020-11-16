@@ -21,6 +21,7 @@ struct SettingView: View {
                             headerHeight: 200,
                             scrollUpHeaderBehavior: .parallax,
                             scrollDownHeaderBehavior: .offset,
+                            cornerRadiusNub:15,
                             showTitle: true,
                             header: { Image(colorScheme == .dark ? "Setting_dark" : "Setting").resizable().scaledToFill() })
             {
@@ -59,15 +60,16 @@ struct SettingView: View {
                     .cornerRadius(15)
                     .shadow(radius: 5)
                 }
-                .frame(width: width,alignment: .center)
+               
                 .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
                 
                 
             }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .background(colorScheme == .dark ? Color.black : Color.init("SettingColor") )
-            .navigationBarTitle("")
+            .navigationBarTitle("设置")
             .navigationBarHidden(true)
-            .edgesIgnoringSafeArea(.all)
+        
             
             Button(action: {
                 self.persentationMode.wrappedValue.dismiss()

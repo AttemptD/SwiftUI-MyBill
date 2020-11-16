@@ -61,6 +61,12 @@ struct Home: View {
             .navigationBarTitle("主页").navigationBarHidden(true)
             .onAppear(){
                 self.appData.refreshData()
+                
+                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+                controller?.statusBarStyle = .lightContent
+                    
+                       
+                print("测试1")
              
         }
     }

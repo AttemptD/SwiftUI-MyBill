@@ -18,7 +18,7 @@ struct StyleTheme: View {
             
             
             StyleTheme_animtion()
-                .offset(y:-width/2.5)
+               .offset(y:-width/2.5)
             
             
             VStack(spacing:20){
@@ -135,9 +135,6 @@ struct StyleTheme: View {
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
             .navigationBarTitle("")
             .navigationBarHidden(true)
-        
-        
-        
     }
 }
 

@@ -35,11 +35,7 @@ struct MainView: View {
                             Text("主页")
                             
                     }.tag(1)
-                        .onAppear(){
-                            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-                            controller?.statusBarStyle = .lightContent
-                            
-                    }
+                        
                     
                     AllView(folderData:self.folderData,appData:self.appData).tabItem
                         {
@@ -47,12 +43,7 @@ struct MainView: View {
                                 .renderingMode(.template)
                             Text("账单")
                     }.tag(2)
-                        .onAppear(){
-                            if self.colorScheme != .dark{
-                                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-                                controller?.statusBarStyle = .darkContent
-                            }
-                    }
+                        
                     
                     MyCenterView(appData: self.appData,mycenterdata:self.mycenterdata,window: self.window).tabItem
                         {
@@ -62,11 +53,7 @@ struct MainView: View {
                             Text("我的")
                             
                     }.tag(3)
-                    .onAppear(){
-                            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-                            controller?.statusBarStyle = .lightContent
-                            
-                    }
+                   
                     
                 }
                 .accentColor(Color.init("MainThemeColor"))

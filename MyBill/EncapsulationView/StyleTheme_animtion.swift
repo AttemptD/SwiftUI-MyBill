@@ -75,7 +75,7 @@ struct StyleTheme_animtion: View {
                     .rotationEffect(.degrees(colorScheme == .dark  ? 180 : 60))
                     .opacity(colorScheme == .dark ? 0 : 1)
                     .animation(Animation.easeInOut(duration: 4))
-                    
+                   
                     
                 
                 
@@ -101,9 +101,8 @@ struct StyleTheme_animtion: View {
                 .opacity(1/2)
             Image(colorScheme == .dark ? "fan_l_dark":"fan_l")
                 .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
-                
-                .offset(x: -100, y: -80)
                 .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
+                .offset(x: -100, y: -80)
                 .opacity(1/2)
             
             
@@ -113,10 +112,13 @@ struct StyleTheme_animtion: View {
                 .offset(x: -60, y: -20)
                 .opacity(1/2)
             Image(colorScheme == .dark ? "fan_s_dark" : "fan_s")
+                
                 .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
-                .offset(x: -60, y: -40)
                 .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
+               
                 .opacity(1/2)
+                .offset(x: -60, y: -40)
+                .animation(.none)
                 .onAppear() {
                     self.rotateSmallFan.toggle()
             }

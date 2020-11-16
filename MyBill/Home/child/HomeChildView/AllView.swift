@@ -45,6 +45,9 @@ struct AllView: View {
         .onAppear(){
             
             self.folderData.transerBilltype(type:self.folderData.typeChange )
+           
+                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+                controller?.statusBarStyle =  colorScheme != .dark ?  .darkContent : .lightContent
             
             
         }

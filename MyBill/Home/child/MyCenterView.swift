@@ -84,7 +84,11 @@ struct MyCenterView: View {
             .navigationBarHidden(true)
             .onAppear(){
                 self.appData.getMyCenterData()
-               
+                
+                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+                controller?.statusBarStyle = .lightContent
+                
+                print("测试3")
             }
             
             SettingButton(mycenterdata: mycenterdata, window: window)
