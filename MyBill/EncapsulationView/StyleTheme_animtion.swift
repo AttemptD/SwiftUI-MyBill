@@ -111,17 +111,19 @@ struct StyleTheme_animtion: View {
             Image("stand_s")
                 .offset(x: -60, y: -20)
                 .opacity(1/2)
-            Image(colorScheme == .dark ? "fan_s_dark" : "fan_s")
-                
-                .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
-                .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
-               
-                .opacity(1/2)
-                .offset(x: -60, y: -40)
-                .animation(.none)
-                .onAppear() {
-                    self.rotateSmallFan.toggle()
+            
+            VStack{
+                Image(colorScheme == .dark ? "fan_s_dark" : "fan_s")
+                    
+                    .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
+                    .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
+                    .opacity(1/2)
+                    .onAppear() {
+                        self.rotateSmallFan.toggle()
+                    }
             }
+            .offset(x: -60, y: -40)
+            
             
             
             

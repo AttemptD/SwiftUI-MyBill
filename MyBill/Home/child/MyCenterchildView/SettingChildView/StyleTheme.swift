@@ -18,7 +18,8 @@ struct StyleTheme: View {
             
             
             StyleTheme_animtion()
-               .offset(y:-width/2.5)
+               .offset(y:-width/2.7)
+                .animation(.none)
             
             
             VStack(spacing:20){

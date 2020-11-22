@@ -44,11 +44,8 @@ struct AllView: View {
         .edgesIgnoringSafeArea(.top)
         .onAppear(){
             
-            self.folderData.transerBilltype(type:self.folderData.typeChange )
+            //self.folderData.transerBilltype(type:self.folderData.typeChange )
            
-                let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
-                controller?.statusBarStyle =  colorScheme != .dark ?  .darkContent : .lightContent
-            
             
         }
         
@@ -138,21 +135,17 @@ struct FileName: View {
                                 complexSuccess()
                             }
                            
-                          
                         }) {
                             isSelect.toggle()
+                            
                             if(isSelect){
-                               
                                 complexSuccess()
-                                
                             }else{
-                               
                                 complexSuccess1()
                             }
                                
                             
                         }
-                        
                         
                         Spacer()
                         
@@ -166,9 +159,7 @@ struct FileName: View {
                             Image(systemName: item.imagename)
                             
                         }
-                        
                         .frame(height: 55, alignment: .center)
-                        
                         .padding(.trailing,30)
                         .disabled(!item.haveData)
                         
@@ -349,12 +340,7 @@ struct ChildContent: View {
             }
             
         }
-        .onDelete(perform:
-            removeRows
-        )
         
-        .id(UUID())
-       
         .padding(.leading,80)
         
         .sheet(isPresented: self.$updateBill) {
@@ -362,9 +348,7 @@ struct ChildContent: View {
             NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.$billdata ,OpenType: "修改",editMoney:self.$billdata_money)
         }
     }
-    func removeRows(at offsets: IndexSet) {
-        item.folderBill.remove(atOffsets: offsets)
-    }
+   
 }
 
 struct SearchBar_all: View {
@@ -484,6 +468,19 @@ struct SearchBar_all: View {
                 withAnimation(.spring()){
                     if isSelect {
                         isSelect.toggle()
+                        for i in 0..<folderData.selectFolderList.count {
+                            RealmDB().deleteFolder(time: folderData.selectFolderList[i])
+                            
+                            RealmDB().deleteBuleTime(time: folderData.selectFolderList[i])
+                            
+                            for l in 0..<folderData.folderList.count {
+                                if folderData.folderList[l].folderTime == folderData.selectFolderList[i]  {
+                                    folderData.folderList.remove(at: l)
+                                    break
+                                   
+                                }
+                            }
+                        }
                     }else{
                         
                         self.cut = true
