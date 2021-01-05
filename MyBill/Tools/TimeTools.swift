@@ -26,6 +26,16 @@ class TimeTools {
         return date
     }
     
+    
+    func getMouth(value : Int,Timetype : String) ->String{
+        let calendar = Calendar.current
+        let twoDaysAgo = calendar.date(byAdding: .month, value: value, to: Date())!
+        let formatter = DateFormatter()
+        formatter.dateFormat = Timetype
+        let date = formatter.string(from: twoDaysAgo)
+        return date
+    }
+    
     func stringConvertDate(string:String) -> Date {
         let dateFormatter = DateFormatter.init()
         dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
@@ -49,4 +59,17 @@ func getweekTime() ->[String] {
         }
     }
     return week
+}
+func getMouthTime() ->[String] {
+    var mouth = [String]()
+    for i in 0 ..< 7{
+        if i == 0{
+            mouth.append("本月")
+        }else if -i == -1 {
+            mouth.append("上月")
+        }else{
+            mouth.append(TimeTools().getMouth(value: -i, Timetype: "MM月"))
+        }
+    }
+    return mouth
 }

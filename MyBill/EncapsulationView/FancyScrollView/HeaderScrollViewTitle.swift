@@ -5,7 +5,7 @@ struct HeaderScrollViewTitle: View {
     let height: CGFloat
     let largeTitle: Double
     @State var showTitle : Bool
-@Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
         let tinyTitleOpacity = 1 - min(largeTitle, 0.5) * 2
@@ -24,7 +24,7 @@ struct HeaderScrollViewTitle: View {
                 .padding(.bottom, 20)
                 .opacity(sqrt(largeTitleOpacity))
             }
-
+            
             ZStack {
                 HStack {
                     BackButton(color: .primary)

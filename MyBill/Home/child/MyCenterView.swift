@@ -15,7 +15,7 @@ struct MyCenterView: View {
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.colorScheme) var colorScheme
     @State var window: UIWindow
-    
+    @State var billType = "支出"
     var body: some View {
         ZStack(alignment:.topTrailing){
             FancyScrollView(title: "我的",
@@ -26,9 +26,6 @@ struct MyCenterView: View {
                             showTitle:false,
                             header: {
                                 MyViewBackground(mycenterdata: mycenterdata)
-                                
-                                
-                                
             }){
                 
                     VStack(spacing:20){
@@ -36,61 +33,32 @@ struct MyCenterView: View {
                         UserAllMoney(appData: appData)
                         
                       
-                        WeekChartData(appData: appData)
+                        WeekChartData(title: "7天的支出情况",appData: appData.weekData, time: getweekTime(), billType: $billType)
+                            .id(UUID())
                         
-//                        HStack{
-//
-//
-//                            VStack(spacing:12){
-//                                Circle()
-//                                    .rotation(.degrees(-90))
-//                                    .trim(from:  0, to: 0.5)
-//                                    .stroke(Color.yellow, lineWidth: 5)
-//
-//                                    .frame(width: 60, height: 60, alignment: .center)
-//                                    .background(colorScheme == .dark ? Color.white :Color.init("MainCellSpacerColor"))
-//                                    .cornerRadius(90)
-//                                    .overlay(
-//                                        Image(systemName: "paperplane.fill")
-//                                            .resizable()
-//                                            .frame(width: 25, height: 25, alignment: .center))
-//
-//                                VStack(spacing:5){
-//                                Text("0.50")
-//
-//                                Text("出行")
-//                                    .font(.system(size: 12))
-//                                    .foregroundColor(Color.gray)
-//                                }
-//                            }
-//
-//
-//                        }
-//                        .frame(width: width - 20, height: height/5, alignment: .center)
-//                        .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
-//                        .cornerRadius(15)
-//                        .padding(.bottom,20)
+                        WeekChartData(title: billType == "支出" ? "7月的支出情况" : "7月的收入情况",appData:billType == "支出" ? appData.mouthData : appData.mouthEarnData, time: getMouthTime(), billType: $billType)
+                            .id(UUID())
+                        
+
                     }
                     .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
                     
-                    
-                
-                
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
            
             .navigationBarTitle("我的",displayMode: .inline)
             .navigationBarHidden(true)
-            .onAppear(){
-                self.appData.getMyCenterData()
-                
             
-            }
             
             SettingButton(mycenterdata: mycenterdata, window: window)
             
             
+        }
+        .onAppear(){
+            self.appData.getMyCenterData()
+            
+        
         }
         
     }
@@ -171,7 +139,7 @@ struct MyViewBackground: View {
             .blur(radius: 5,opaque: true)
             .overlay(Color.init("MyCenterColor"))
             .overlay(
-                NavigationLink(destination: EmptyView(), isActive: $gotoEditView){
+                NavigationLink(destination: SetInfoView(mycenterdata: mycenterdata, openType: "修改"), isActive: $gotoEditView){
                     Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
                         .resizable()
                         .scaledToFill()
@@ -210,19 +178,22 @@ struct SettingButton: View {
 }
 
 struct WeekChartData: View {
-    @ObservedObject var appData : AppData
+   
+    @State var title : String
+    @State var appData : [Double]
+    @State var time : [String]
+    @Binding var billType : String
     @Environment(\.colorScheme) var colorScheme
     @State var showWeekDataView = false
     var body: some View {
         VStack{
             
-            Chart(data:appData.weekData)
+            Chart(data:appData)
                 .chartStyle( LineChartStyle(.quadCurve, lineColor: Color.init("MainThemeColor"), lineWidth: 2))
                 .padding()
                 .padding(.bottom,20)
                 .animation(.easeIn)
-            
-            
+               
         }
         .frame(width: width - 20, height: height/5, alignment: .center)
         .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
@@ -230,9 +201,32 @@ struct WeekChartData: View {
         .overlay(
             VStack{
                 HStack{
-                    Text("7天的支出情况")
+                    Text(title)
                         .padding(.leading,20)
                         .foregroundColor(Color.init("FontColor"))
+                    
+                    
+                        Spacer()
+                        
+                        Button(action: {
+                            
+                            if(billType == "支出"){
+                                billType = "收入"
+                                return
+                            }
+                            if(billType == "收入"){
+                                billType = "支出"
+                                return
+                            }
+                            
+                        }) {
+                            Text(billType)
+                        }
+                        .padding(.trailing,20)
+                        .disabled(title != "7天的支出情况" ? false : true)
+                        .opacity(title != "7天的支出情况" ? 1 : 0)
+                    
+                   
                 }
                 .frame(width: width - 20,alignment: .leading)
                 .font(.system(size: 15))
@@ -241,7 +235,7 @@ struct WeekChartData: View {
                 Spacer()
                 
                 HStack{
-                    ForEach(getweekTime(),id: \.self){
+                    ForEach(time,id: \.self){
                         
                         Text("\($0)")
                             .font(.system(size: 13))
@@ -259,11 +253,11 @@ struct WeekChartData: View {
             .cornerRadius(15)
         )
         
-        .onTapGesture(count: 2, perform: {
+        .onTapGesture(count: 1, perform: {
             showWeekDataView.toggle()
         })
         .sheet(isPresented: $showWeekDataView, content: {
-            EmptyView()
+            chartView_detail(appData:appData)
         })
     }
 }

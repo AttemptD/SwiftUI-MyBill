@@ -137,6 +137,7 @@ struct FileName: View {
                            
                         }) {
                             isSelect.toggle()
+                            folderData.selectFolderList.removeAll()
                             
                             if(isSelect){
                                 complexSuccess()
@@ -167,11 +168,9 @@ struct FileName: View {
                     }
                     
                     if item.haveData {
-                        if item.open {
-                          
-                            ChildContent(item: item, folderData: self.folderData, appData: self.appData)
-                            
-                        }
+                        ChildContent(item: item, folderData: self.folderData, appData: self.appData)
+                            .opacity(item.open ? 1:0)
+                            .frame(height:item.open ? nil:0)
                     }
                     
                 }
@@ -445,7 +444,7 @@ struct SearchBar_all: View {
                     }
                     Spacer()
                 }else{
-                    Image(systemName: isSelect ? "trash" : "arrow.right.arrow.left")
+                    Image(systemName: isSelect ? folderData.selectFolderList.count == 0 ? "multiply" : "trash" :  "arrow.right.arrow.left")
                         .foregroundColor(.white)
                 }
                 
@@ -468,6 +467,8 @@ struct SearchBar_all: View {
                 withAnimation(.spring()){
                     if isSelect {
                         isSelect.toggle()
+                        
+                        
                         for i in 0..<folderData.selectFolderList.count {
                             RealmDB().deleteFolder(time: folderData.selectFolderList[i])
                             

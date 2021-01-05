@@ -15,7 +15,7 @@ struct SetInfoView: View {
     @State var showtips = false
     @ObservedObject var mycenterdata : MyInfoData
     @Environment(\.presentationMode) var presentationMode
-     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) var colorScheme
     @State var openType : String
     var body: some View {
         

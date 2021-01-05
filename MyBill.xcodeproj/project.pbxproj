@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360B76F125931B4A00766D7B /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B76F025931B4A00766D7B /* SwiftUIView.swift */; };
 		364A89002553C318004E226E /* IceCream in Frameworks */ = {isa = PBXBuildFile; productRef = 364A88FF2553C318004E226E /* IceCream */; };
 		364C24BB24D5A6F3001EBD47 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C24BA24D5A6F3001EBD47 /* SearchView.swift */; };
 		3654FEF82508BB0800CA2735 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3654FEF72508BB0800CA2735 /* AboutView.swift */; };
@@ -22,6 +23,7 @@
 		368C8B6D2501E693009AC12E /* StyleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6C2501E693009AC12E /* StyleTheme.swift */; };
 		368C8B6F25022BE8009AC12E /* StyleTheme_animtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */; };
 		3694D060250F6D9B009D3030 /* WeekDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694D05F250F6D9B009D3030 /* WeekDetailView.swift */; };
+		369507212570E49D006CE04C /* chartView_detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369507202570E49D006CE04C /* chartView_detail.swift */; };
 		369E34F324A9940100074C20 /* StatusBarLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F224A9940100074C20 /* StatusBarLight.swift */; };
 		369E34F824A9B12100074C20 /* SrcSysystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E34F724A9B12100074C20 /* SrcSysystem.swift */; };
 		369E350324A9E14A00074C20 /* RealmDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E350224A9E14A00074C20 /* RealmDb.swift */; };
@@ -99,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		360B76F025931B4A00766D7B /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		364C24BA24D5A6F3001EBD47 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3654FEF72508BB0800CA2735 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		3654FEF92508BD5F00CA2735 /* MyNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationBar.swift; sourceTree = "<group>"; };
@@ -113,6 +116,7 @@
 		368C8B6C2501E693009AC12E /* StyleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme.swift; sourceTree = "<group>"; };
 		368C8B6E25022BE8009AC12E /* StyleTheme_animtion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTheme_animtion.swift; sourceTree = "<group>"; };
 		3694D05F250F6D9B009D3030 /* WeekDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDetailView.swift; sourceTree = "<group>"; };
+		369507202570E49D006CE04C /* chartView_detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chartView_detail.swift; sourceTree = "<group>"; };
 		369E34F224A9940100074C20 /* StatusBarLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarLight.swift; sourceTree = "<group>"; };
 		369E34F724A9B12100074C20 /* SrcSysystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SrcSysystem.swift; sourceTree = "<group>"; };
 		369E350224A9E14A00074C20 /* RealmDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDb.swift; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 				3694D05F250F6D9B009D3030 /* WeekDetailView.swift */,
 				36D6AB2124E53A2E0071A60D /* Setting.swift */,
 				36B0868C24FE124F0014E217 /* SettingChildView */,
+				369507202570E49D006CE04C /* chartView_detail.swift */,
 			);
 			path = MyCenterchildView;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				36B0869124FE24EA0014E217 /* BackgroundEdit.swift */,
 				368C8B6C2501E693009AC12E /* StyleTheme.swift */,
 				3654FEF72508BB0800CA2735 /* AboutView.swift */,
+				360B76F025931B4A00766D7B /* SwiftUIView.swift */,
 			);
 			path = SettingChildView;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 			files = (
 				365AC0BC24E76626009B822E /* DiyShape.swift in Sources */,
 				3694D060250F6D9B009D3030 /* WeekDetailView.swift in Sources */,
+				360B76F125931B4A00766D7B /* SwiftUIView.swift in Sources */,
 				368C8B6D2501E693009AC12E /* StyleTheme.swift in Sources */,
 				36F25DB724B85794000428E0 /* KeyboardUp.swift in Sources */,
 				36825C3524AD71D1007134FA /* TrackableScrollView.swift in Sources */,
@@ -568,6 +575,7 @@
 				36B667EC24F50F3800B37C91 /* ScrollDownHeaderBehavior.swift in Sources */,
 				368C8B6F25022BE8009AC12E /* StyleTheme_animtion.swift in Sources */,
 				36B667E724F50F3800B37C91 /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */,
+				369507212570E49D006CE04C /* chartView_detail.swift in Sources */,
 				365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */,
 				36D5D65D250B1A44002833F0 /* chartView.swift in Sources */,
 				36B667EA24F50F3800B37C91 /* HeaderScrollViewTitle.swift in Sources */,
