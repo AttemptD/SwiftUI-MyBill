@@ -35,7 +35,7 @@ struct MyCenterView: View {
                       
                         WeekChartData(title: "7天的支出情况",appData: appData.weekData, time: getweekTime(), billType: $billType)
                             .id(UUID())
-                        
+                          
                         WeekChartData(title: billType == "支出" ? "7月的支出情况" : "7月的收入情况",appData:billType == "支出" ? appData.mouthData : appData.mouthEarnData, time: getMouthTime(), billType: $billType)
                             .id(UUID())
                         
@@ -137,7 +137,6 @@ struct MyViewBackground: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .blur(radius: 5,opaque: true)
-            .overlay(Color.init("MyCenterColor"))
             .overlay(
                 NavigationLink(destination: SetInfoView(mycenterdata: mycenterdata, openType: "修改"), isActive: $gotoEditView){
                     Image(uiImage: ImageTranser().DataToImage(data: mycenterdata.headerIco))
@@ -234,16 +233,16 @@ struct WeekChartData: View {
                 
                 Spacer()
                 
-                HStack{
-                    ForEach(time,id: \.self){
-                        
-                        Text("\($0)")
-                            .font(.system(size: 13))
-                            .foregroundColor(Color.init("FontColor"))
-                            .frame(width: (width-20)/8.3, alignment: .center)
-                        
-                    }
+            HStack{
+                ForEach(time,id: \.self){
+                    
+                    Text("\($0)")
+                        .font(.system(size: 13))
+                        .foregroundColor(Color.init("FontColor"))
+                        .frame(width: (width-20)/8.3, alignment: .center)
+                    
                 }
+            }
                 .frame(width: width - 20,alignment: .center)
                 .padding(.bottom,10)
                 

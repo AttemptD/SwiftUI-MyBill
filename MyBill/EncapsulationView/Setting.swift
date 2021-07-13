@@ -33,6 +33,7 @@ struct SettingView: View {
                             ForEach(colorScheme == .dark ? setting.settingData_dark: setting.settingData){item in
                                 
                                 NavigationLink(destination:SettingChildMainView(settingModel: item,mycenterdata:self.mycenterdata,window: self.window)){
+                                    
                                     HStack{
                                         Image(item.seleterIcon)
                                             .resizable()

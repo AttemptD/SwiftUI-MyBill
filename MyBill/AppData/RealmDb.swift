@@ -9,8 +9,7 @@
 import Combine
 import Foundation
 import RealmSwift
-import IceCream
-import CloudKit
+
 
 class RealmDB {
     
@@ -181,32 +180,4 @@ class PersonInfo: Object {
     }
     
 }
-
-extension Bill:CKRecordConvertible{
-    var isDeleted: Bool {
-        false
-    }
-
-
-
-}
-
-extension Bill:CKRecordRecoverable{
-
-}
-
-extension FolderBill:CKRecordConvertible{
-    var isDeleted: Bool {
-        false
-    }
-
-
-
-
-}
-
-extension FolderBill:CKRecordRecoverable{
-
-}
-
 

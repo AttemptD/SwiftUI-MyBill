@@ -14,21 +14,25 @@ struct SettingChildMainView: View {
     @State var view = AnyView(EmptyView())
     @State var window: UIWindow
     var body: some View {
-        return view.onAppear(){
-            switch self.settingModel.seleterName {
-            case "资料修改":
-                self.view = AnyView(SetInfoView(mycenterdata: self.mycenterdata, openType: "修改"))
-            case "背景修改":
-                self.view = AnyView(BackgroundEdit(mycenterdata: self.mycenterdata))
-            case "主题样式":
-                self.view = AnyView(StyleTheme(window: self.window))
-            case "关于":
-                self.view = AnyView(AboutView())
-            default:
-                self.view = AnyView(EmptyView())
-            }
+        
+        if(self.settingModel.seleterName == "资料修改"){
+            SetInfoView(mycenterdata: self.mycenterdata, openType: "修改")
         }
-       
+        
+        if(self.settingModel.seleterName == "背景修改"){
+            BackgroundEdit(mycenterdata: self.mycenterdata)
+        }
+        
+        if(self.settingModel.seleterName == "主题样式"){
+            StyleTheme(window: self.window)
+        }
+        
+        if(self.settingModel.seleterName == "关于"){
+            AboutView()
+            
+            
+        }
+        
     }
 }
 
