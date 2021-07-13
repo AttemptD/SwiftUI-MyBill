@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SwiftUIPager
 
 struct BackgroundEdit: View {
     @ObservedObject var mycenterdata : MyInfoData
@@ -87,7 +86,7 @@ struct Previews_Home: View {
 }
 
 struct SelectImage_homeback: View {
-    @State var page = 0
+    @State var page:Page = .first()
     @State var showSeletImage = false
     @Binding var changeImage : Bool
     @Binding var seletImage :String
@@ -100,13 +99,14 @@ struct SelectImage_homeback: View {
         ZStack(alignment:.bottom){
             VStack{
                 
-                Pager(page: self.$page,
+               
+                
+                Pager(page: self.page,
                       data: self.data,
                       id: \.self) {
                         
                         self.pageView("\($0)")
                             
-                        
                 }
                     
                 .itemSpacing(-30)

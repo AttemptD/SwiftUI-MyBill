@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "Shapes",
-        "repositoryURL": "https://github.com/swift-extensions/shapes.git",
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa.git",
         "state": {
           "branch": null,
-          "revision": "4181f01df194e5ee0c5937cc567ec97d16ef7362",
-          "version": "0.1.0"
+          "revision": "77658519b13388c098a7624a94491738f8bb2983",
+          "version": "10.10.0"
+        }
+      },
+      {
+        "package": "RealmDatabase",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "95da0df7815d7cbaff14ed5e8b73fe4c2a992816",
+          "version": "11.0.4"
         }
       },
       {
@@ -15,17 +24,17 @@
         "repositoryURL": "https://github.com/spacenation/swiftui-charts.git",
         "state": {
           "branch": null,
-          "revision": "71eb769830dc70fd065debb47326eb01b6589e9d",
-          "version": "0.1.0"
+          "revision": "0b66e5c2326e954efdcc94a9eeb699e2f2ae80a2",
+          "version": "1.0.0"
         }
       },
       {
-        "package": "SwiftUIPager",
-        "repositoryURL": "https://github.com/fermoya/SwiftUIPager.git",
+        "package": "Shapes",
+        "repositoryURL": "https://github.com/swift-extensions/swiftui-shapes.git",
         "state": {
           "branch": null,
-          "revision": "fed09a8b753bfdb63f1edf7f328e58599cc97d89",
-          "version": "1.14.2"
+          "revision": "c58b15c37eae9bd20525c6daa93a06a689ca75cb",
+          "version": "1.1.0"
         }
       },
       {
@@ -36,24 +45,7 @@
           "revision": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
           "version": "5.0.1"
         }
-      },
-{
-        "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-cocoa",
-        "state": {
-          "branch": null,
-          "revision": "fa43b8e2909334c79f233ce472332c136ca108da",
-          "version": "4.4.1"
-        }
-      },
-      {
-        "package": "RealmCore",
-        "repositoryURL": "https://github.com/realm/realm-core",
-        "state": {
-          "branch": null,
-          "revision": "35662ff940e340bf630ad1d1d88acfc7af18bee6",
-          "version": "5.23.8"
-        }
+      }
     ]
   },
   "version": 1
