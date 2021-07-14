@@ -58,7 +58,9 @@ struct MyCenterView: View {
         .onAppear(){
             self.appData.getMyCenterData()
             
-        
+            let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
+            controller?.statusBarStyle = .lightContent
+            
         }
         
     }

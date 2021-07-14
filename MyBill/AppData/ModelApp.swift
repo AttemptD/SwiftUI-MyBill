@@ -12,6 +12,7 @@ import Combine
 class Model: Identifiable {
     var id: Int = 0
     var money = 0.0
+    var isSelect = false
     var type = ""
     var time = ""
     var blurTime = ""
@@ -59,14 +60,13 @@ class AppData: ObservableObject {
         billData.type = type
         billData.money = money
         billData.time = time
+        billData.isSelect = false
         billData.blurTime = String(time.prefix(11))
         
         if String(time.prefix(11)) == "\(TimeTools().getDay(value: 0, Timetype: "yyyy年MM月dd日"))"{
             self.TodayBill.append(billData)
         }
     }
-    
-    
     
     func refreshData() {
         
@@ -90,6 +90,7 @@ class AppData: ObservableObject {
         billData.type = type
         billData.money = money
         billData.time = time
+        billData.isSelect = false
         billData.blurTime = String(time.prefix(11))
         billData.blurMouth = String(time.prefix(8))
       
@@ -102,9 +103,15 @@ class AppData: ObservableObject {
         billData.type = type
         billData.money = money
         billData.time = time
+        billData.isSelect = false
         billData.blurTime = String(time.prefix(11))
         billData.blurMouth = String(time.prefix(8))
         RealmDB().update(model: billData)
+    }
+    
+    func changeStatus(item:Model)  {
+        objectWillChange.send()
+        item.isSelect.toggle()
     }
     
     //所有账单
@@ -120,6 +127,7 @@ class AppData: ObservableObject {
             billData.money = Bills.money
             billData.type = Bills.type
             billData.time = Bills.time
+            billData.isSelect = Bills.isSelect
             billData.blurTime = Bills.blurTime
             billData.blurMouth = Bills.blurMouth
           
@@ -154,6 +162,7 @@ class AppData: ObservableObject {
             todayData.doWhat = today.doWhat
             todayData.money = today.money
             todayData.type = today.type
+            todayData.isSelect = today.isSelect
             todayData.time = today.time
             
             if  self.TodayBill.count == todayBill.count-1{
@@ -199,6 +208,7 @@ class AppData: ObservableObject {
                 billData.money = bill_ten.money
                 billData.type = bill_ten.type
                 billData.time = bill_ten.time
+                billData.isSelect = bill_ten.isSelect
                 billData.blurTime = bill_ten.blurTime
                 billData.blurMouth = bill_ten.blurMouth
                 
@@ -221,6 +231,7 @@ class AppData: ObservableObject {
                 billData.doWhat = Bills.doWhat
                 billData.money = Bills.money
                 billData.type = Bills.type
+                billData.isSelect = Bills.isSelect
                 billData.time = Bills.time
                 billData.blurTime = String(Bills.time.prefix(11))
                 if Double(self.Bill_ten.count).truncatingRemainder(dividingBy: 2) == 0{

@@ -86,6 +86,8 @@ struct SettingView: View {
             
         }.onAppear(){
             
+           
+            
             if self.colorScheme != .dark{
                 let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
                 controller?.statusBarStyle = .darkContent

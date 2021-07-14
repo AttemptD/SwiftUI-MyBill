@@ -85,7 +85,6 @@ struct StyleTheme_animtion: View {
                     .rotationEffect(.degrees(220))
                     .opacity(colorScheme == .dark ? 1:0)
                     .foregroundColor(colorScheme == .dark ? .yellow : .white)
-                    
                     .offset(x: 110, y: colorScheme == .dark ? -200:0)
                     .animation(Animation.easeInOut(duration: 4))
                 
@@ -112,17 +111,17 @@ struct StyleTheme_animtion: View {
                 .offset(x: -60, y: -20)
                 .opacity(1/2)
             
-            VStack{
-                Image(colorScheme == .dark ? "fan_s_dark" : "fan_s")
-                    
-                    .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
-                    .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
-                    .opacity(1/2)
-                    .onAppear() {
-                        self.rotateSmallFan.toggle()
-                    }
-            }
-            .offset(x: -60, y: -40)
+            
+            Image(colorScheme == .dark ? "fan_s_dark" : "fan_s")
+                .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
+                .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
+                .offset(x: -60, y: -40)
+                .opacity(1/2)
+                .onAppear() {
+                    self.rotateSmallFan.toggle()
+                }
+            
+            
             
             
             

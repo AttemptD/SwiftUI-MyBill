@@ -42,14 +42,6 @@ struct AllView: View {
         .navigationBarTitle("账单")
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
-        .onAppear(){
-            
-            //self.folderData.transerBilltype(type:self.folderData.typeChange )
-           
-            
-        }
-        
-        
     }
 }
 
@@ -58,9 +50,11 @@ struct FileName: View {
     @ObservedObject var appData : AppData
     @Binding var searchText : String
     @State var searchBar = true
+    @State var scaleEffect = false
     @Binding var isSelect : Bool
     @State private var engine: CHHapticEngine?
     @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         
         VStack {
@@ -74,8 +68,6 @@ struct FileName: View {
                             folderData.select(folder:item)
                         }) {
                             Image(systemName:  item.isSelect ? "checkmark.seal.fill" :"checkmark.seal")
-                                
-                               
                         }
                         .opacity(isSelect ? 1:0)
                         .padding(.leading,10)
@@ -97,11 +89,9 @@ struct FileName: View {
                             
                         }
                         .frame(width:item.open ? 55 : width - 100,height: 55, alignment: item.open ? .center:.leading)
-                        
                         .foregroundColor(.white)
                         .background(Color.init("MainThemeColor"))
                         .cornerRadius(15)
-                        
                         .overlay(
                             ZStack{
                                 Chart(data:item.lineData)
@@ -118,6 +108,7 @@ struct FileName: View {
                                 
                             }
                         )
+                        
                         .onTapGesture{
                             withAnimation(.spring()){
                                 if item.haveData {
@@ -126,6 +117,8 @@ struct FileName: View {
                                 
                             }
                         }
+                        .scaleEffect( scaleEffect ? 0.6 : 1.0)
+                     
 
                         .onLongPressGesture(minimumDuration:0.5,pressing: { inProgress in
                             print("In progress: \(inProgress)!")
@@ -133,6 +126,10 @@ struct FileName: View {
                             if(inProgress){
                                 prepareHaptics()
                                 complexSuccess()
+                            }
+                            
+                            withAnimation(.easeIn(duration: scaleEffect ? 0.5 : 1)){
+                                scaleEffect = inProgress
                             }
                            
                         }) {
@@ -145,7 +142,6 @@ struct FileName: View {
                                 complexSuccess1()
                             }
                                
-                            
                         }
                         
                         Spacer()
@@ -163,8 +159,6 @@ struct FileName: View {
                         .frame(height: 55, alignment: .center)
                         .padding(.trailing,30)
                         .disabled(!item.haveData)
-                        
-                        
                     }
                     
                     if item.haveData {
@@ -175,12 +169,11 @@ struct FileName: View {
                     
                 }
                 .frame(width: width, height:item.open ? .none : 65, alignment: .leading)
-                
-                
             }
         }
         
     }
+    
     func prepareHaptics() {
       
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
@@ -213,6 +206,7 @@ struct FileName: View {
             print("Failed to play pattern: \(error.localizedDescription).")
         }
     }
+    
     func complexSuccess1() {
         // 确保设备支持触控反馈
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
@@ -287,7 +281,6 @@ struct ChildContent: View {
                     }
                     .frame(width: width-140, height: 70, alignment: .leading)
                     .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") :Color.init("AllViewCircle"))
-                    .cornerRadius(15)
                     .contextMenu(){
                         Button(action: {
 
@@ -332,6 +325,7 @@ struct ChildContent: View {
                         }
 
                     }
+                    .cornerRadius(15)
                     
                 }
                 .frame(height: 100)
@@ -339,11 +333,8 @@ struct ChildContent: View {
             }
             
         }
-        
         .padding(.leading,80)
-        
         .sheet(isPresented: self.$updateBill) {
-            
             NewAddBillView(appData:self.appData,folderData: self.folderData ,billData:self.$billdata ,OpenType: "修改",editMoney:self.$billdata_money)
         }
     }
@@ -376,7 +367,8 @@ struct SearchBar_all: View {
                 
                 
                 
-            }.frame(width: cut == false ?  width-100 : width/9 , height: width/9)
+            }
+            .frame(width: cut == false ?  width-100 : width/9 , height: width/9)
             .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark") :Color.init("AllViewCircle"))
             .cornerRadius(90)
             .padding(.top,height >= 812 ? 54 : 30)

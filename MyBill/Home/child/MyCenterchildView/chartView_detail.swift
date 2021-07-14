@@ -15,11 +15,26 @@ struct chartView_detail: View {
     @Environment(\.presentationMode) var persentationMode
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
-
-        ZStack(alignment:.top){
-            ScrollView{
+        
+        VStack(alignment:.center){
+            
+            HStack{
                 
-                Spacer().frame(height:50)
+                Button(action: {
+                    self.persentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "chevron.down")
+                        .scaleEffect(1.2)
+                        .foregroundColor(colorScheme == .dark ? .white :.black)
+                        .padding(.leading,20)
+                }
+                
+                Text("我的")
+            }
+            .frame(width: width, alignment: .leading)
+            .padding(.top,20)
+            
+            ScrollView{
                 
                 HStack{
                     Text("详情面板")
@@ -27,31 +42,13 @@ struct chartView_detail: View {
                 }
                 .padding(.leading,20)
                 .frame(width: width, alignment: .leading)
-               
                 
                 
             }
-            HStack{
-                
-                Button(action: {
-                    self.persentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                        .scaleEffect(1.2)
-                        .foregroundColor(colorScheme == .dark ? .white :.black)
-                        .padding(.leading,20)
-                       
-                    
-                }
-               
-                Text("我的")
-                
-                  
-                
-            }.frame(width: width, alignment: .leading)
+            
         }
         
-      
+        
         
     }
 }
@@ -60,6 +57,6 @@ struct chartView_detail_Previews: PreviewProvider {
     static var previews: some View {
         chartView_detail(appData: [1,2,3,4,5])
             .padding(4.0)
-            .previewDevice("iPhone 8")
+            .previewDevice("iPhone 11pro")
     }
 }

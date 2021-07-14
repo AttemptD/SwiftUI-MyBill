@@ -13,7 +13,9 @@ import SwiftUI
 struct Home: View {
     @State var scrollViewContentOffset : CGFloat = 0
     @State private var scale: CGFloat = 1.0
+    @State var isDelete = false
     @State var barTitle = "主页"
+    @State var selectList = [Model]()
     @ObservedObject var appData : AppData
     @ObservedObject var folderData : FolderData
     @ObservedObject var mycenterdata : MyInfoData
@@ -29,7 +31,7 @@ struct Home: View {
                             HomeBackground(appData:appData,mycenterdata:mycenterdata)
                             
                             
-        }) {
+                        }) {
             VStack{
                 HomePersonInfo(appData:appData,mycenterdata:mycenterdata)
                 
@@ -41,30 +43,85 @@ struct Home: View {
                     Spacer()
                     Button(action: {
                         
+                        if selectList.count == 0 {
+                            isDelete.toggle()
+                        }else{
+                            
+                            withAnimation(.easeOut){
+                                DispatchQueue.main.async {
+                                    
+                                    for i in 0..<selectList.count{
+                                        
+                                        let child = selectList[i]
+                                        if self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 {
+                                            RealmDB().deleteFolder(time: child.blurTime)
+                                        }
+                                        
+                                        if(self.appData.TodayBill.count != 0){
+                                            
+                                            for t in 0..<appData.TodayBill.count{
+                                                
+                                                let todayBill = appData.TodayBill[t]
+                                                
+                                                if(child.time == todayBill.time){
+                                                    appData.TodayBill.remove(at: t)
+                                                    break
+                                                }
+                                                
+                                            }
+                                            
+                                        }else{
+                                           
+                                            for b in 0..<appData.Bill_ten.count{
+                                                
+                                                let bill_ten = appData.Bill_ten[b]
+                                                
+                                                if(child.time == bill_ten.time){
+                                                    appData.Bill_ten.remove(at: b)
+                                                    break
+                                                }
+                                                
+                                            }
+                                            
+                                        }
+                                        
+                                        RealmDB().delete(time: child.time)
+                                        
+                                        self.appData.refreshData()
+                                        self.folderData.setFoloderBillData()
+                                    }
+                                    
+                                   
+                                }
+                                isDelete.toggle()
+                            }
+                            
+                        }
+                        
+                       
+                        
                     }) {
-                        Image(systemName: "ellipsis")
+                        Image(systemName:selectList.count == 0 ? isDelete ? "arrow.uturn.left" : "ellipsis" : "trash")
                             .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
                     }
-                } .frame(width: width-60,  alignment: .center)
-                    .offset(x:0,y:-height/12)
-                    .animation(.none)
+                }
+                .frame(width: width-60,  alignment: .center)
+                .offset(x:0,y:-height/12)
+                .animation(.none)
                 
                 
-                HomeContent(appData: appData,folderData:folderData)
+                HomeContent(isDelete: $isDelete,selectList:$selectList ,appData: appData,folderData:folderData)
                 
                 
             }
             .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
             
-        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
-            .navigationBarTitle("主页").navigationBarHidden(true)
-            .onAppear(){
-                self.appData.refreshData()
-                
-                       
-              
-             
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
+        .navigationBarTitle("主页").navigationBarHidden(true)
+        .onAppear(){
+            self.appData.refreshData()
         }
     }
 }
@@ -103,10 +160,10 @@ struct HomeBackground: View {
                     .foregroundColor(.black)
                     
                 }
-                    
+                
                 .frame(width: width-60, height: height/3.5,alignment: .center)
                 
-        )
+            )
     }
 }
 
@@ -182,114 +239,132 @@ struct HomeContent: View {
     @State var billdata = Model()
     @State var billdata_money = ""
     @State var updateBill = false
+    @Binding var isDelete : Bool
+    @Binding var selectList : [Model]
     @ObservedObject var appData : AppData
-     @ObservedObject var folderData : FolderData
+    @ObservedObject var folderData : FolderData
     @Environment(\.colorScheme) var colorScheme
+   
     var body: some View {
         ScrollView {
             ForEach(appData.TodayBill.count != 0 ? appData.TodayBill : appData.Bill_ten){item in
                 
-                ZStack(alignment:.topLeading){
-                    HStack{
-                        VStack{
-                            HStack{
-                                if item.type == "收入"{
+                
+                HStack{
+                    VStack{
+                        HStack{
+                            
+                            if !isDelete{
+                                Image(item.type == "收入" ? "收入" : "支出")
+                                    .resizable()
+                                    .frame(width:35,height:35)
+                                    .foregroundColor(item.type == "收入" ? .orange : .gray)
+                                
+                            }else{
+                                Button(action: {
+                                    appData.changeStatus(item: item)
                                     
-                                    Image("收入")
-                                        .resizable()
-                                        .frame(width:35,height:35)
-                                        .foregroundColor(.orange)
-                                }else{
-                                    Image("支出")
-                                        .resizable()
-                                        .frame(width:35,height:35)
-                                        .foregroundColor(.gray)
-                                }
-                                Spacer()
-                                Text(item.doWhat)
-                                    .font(.system(size:16))
-                            }.padding(.horizontal,10)
-                            .shadow(radius: 0)
-                            
-                            Text("\(transer(value:item.money))元")
-                                .font(.system(size: 20))
-                                .fontWeight(.heavy)
-                                .padding(.bottom,15)
-                                
-                                .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
-                            
-                            Text(item.blurTime)
-                                .foregroundColor(.gray)
-                                .fontWeight(.light)
-                                .font(.system(size:14))
-                            
-                        }
-                        .frame(width: (width-60)/2-10,height:  (width-60)/2-25, alignment: .center)
-                        .background(self.colorScheme == .dark ?  Color.init("MainCellSpacerColor_dark") :Color.white)
-                        .cornerRadius(10)
-                        .contextMenu(){
-                            Button(action: {
-                                
-                                self.updateBill.toggle()
-                                self.billdata = item
-                                self.billdata_money = String(item.money)
-                                
-                            }) {
-                                Text("修改")
-                                Image(systemName: "pencil")
-                            }
-                            
-                            
-                            Button(action: {
-                                
-                                
-                                withAnimation(.easeOut){
-                                    DispatchQueue.main.async {
+                                    if item.isSelect {
+                                        selectList.append(item)
+                                    }else{
                                         
-                                        if self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 {
-                                            RealmDB().deleteFolder(time: item.blurTime)
-                                        }
-                                        
-                                        if(self.appData.TodayBill.count != 0){
-                                            self.appData.TodayBill.remove(at: item.id)
-                                        }else{
-                                            self.appData.Bill_ten.remove(at:item.id)
+                                        for i in 0..<selectList.count {
+                                            let child = selectList[i]
                                             
+                                            if(item.time == child.time){
+                                                selectList.remove(at: i)
+                                                break
+                                            }
                                         }
-                                        
-                                        RealmDB().delete(time: item.time)
-                                        
-                                        self.appData.refreshData()
-                                        self.folderData.setFoloderBillData()
+                                       
                                     }
+                                   
+                                    
+                                }) {
+                                    Image(systemName: "checkmark.circle")
+                                        .resizable()
+                                        .frame(width:30,height:30)
+                                        .foregroundColor(item.isSelect ? .orange : .gray)
                                 }
-                                
-                            }) {
-                                Text("删除")
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
                             }
                             
-                        }
-                        .offset(y: item.lastOne ? -27:0)
+                           
+                            Spacer()
+                            Text(item.doWhat)
+                                .font(.system(size:16))
+                        }.padding(.horizontal,10)
+                        .shadow(radius: 0)
+                        
+                        Text("\(transer(value:item.money))元")
+                            .font(.system(size: 20))
+                            .fontWeight(.heavy)
+                            .padding(.bottom,15)
+                            
+                            .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
+                        
+                        Text(item.blurTime)
+                            .foregroundColor(.gray)
+                            .fontWeight(.light)
+                            .font(.system(size:14))
                         
                     }
-                    .frame(width: width-60, height: forHeight(isBool: item.lastOne), alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
-                    .offset(y:item.left ? 0 : -20)
-                    .shadow(radius: 3)
-                    .animation(.none)
-                    .padding(.bottom, item.lastOne ? -60 : -80)
-                    
-//                        Button(action: {
-//
-//                        }) {
-//                            Image(systemName:"checkmark.circle.fill")
-//                        }.padding(.top,15)
+                    .frame(width: (width-60)/2-10,height:  (width-60)/2-25, alignment: .center)
+                    .background(self.colorScheme == .dark ?  Color.init("MainCellSpacerColor_dark") :Color.white)
+                    .cornerRadius(10)
+                    .contextMenu(){
+                        Button(action: {
+                            
+                            self.updateBill.toggle()
+                            self.billdata = item
+                            self.billdata_money = String(item.money)
+                            
+                        }) {
+                            Text("修改")
+                            Image(systemName: "pencil")
+                        }
+                        
+                        
+                        Button(action: {
+                            
+                            
+                            withAnimation(.easeOut){
+                                DispatchQueue.main.async {
+                                    
+                                    if self.appData.TodayBill.count == 1 || self.appData.Bill_ten.count == 1 {
+                                        RealmDB().deleteFolder(time: item.blurTime)
+                                    }
+                                    
+                                    if(self.appData.TodayBill.count != 0){
+                                        self.appData.TodayBill.remove(at: item.id)
+                                    }else{
+                                        self.appData.Bill_ten.remove(at:item.id)
+                                        
+                                    }
+                                    
+                                    RealmDB().delete(time: item.time)
+                                    
+                                    self.appData.refreshData()
+                                    self.folderData.setFoloderBillData()
+                                }
+                            }
+                            
+                        }) {
+                            Text("删除")
+                            Image(systemName: "trash")
+                                .foregroundColor(.red)
+                        }
+                        
+                    }
+                    .offset(y: item.lastOne ? -27:0)
                     
                 }
-                    
+                .frame(width: width-60, height: forHeight(isBool: item.lastOne), alignment:Double(item.id).truncatingRemainder(dividingBy: 2) == 0 ? .leading:.trailing)
+                .offset(y:item.left ? 0 : -20)
+                .shadow(radius: 3)
+                .animation(.none)
+                .padding(.bottom, item.lastOne ? -60 : -80)
             }
-           
+            
             .frame(width:width)
             .sheet(isPresented: self.$updateBill) {
                 

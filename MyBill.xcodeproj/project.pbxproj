@@ -78,6 +78,7 @@
 		36DB6B10269D3BD300F73390 /* PagerContent+Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB6AFC269D3BD300F73390 /* PagerContent+Buildable.swift */; };
 		36DB6B11269D3BD300F73390 /* PagerContent+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB6AFD269D3BD300F73390 /* PagerContent+Helper.swift */; };
 		36DB6B12269D3BD300F73390 /* PagerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB6AFE269D3BD300F73390 /* PagerContent.swift */; };
+		36F0F575269E73BB002AAE3C /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 36F0F574269E73BB002AAE3C /* SwiftUIX */; };
 		36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB024B8418D000428E0 /* NewBuild_Update.swift */; };
 		36F25DB324B85033000428E0 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB224B85033000428E0 /* DatePicker.swift */; };
 		36F25DB524B854AC000428E0 /* TimeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB424B854AC000428E0 /* TimeTools.swift */; };
@@ -215,6 +216,7 @@
 				364C66E6269D32560078C3DC /* RealmSwift in Frameworks */,
 				364C66E9269D332E0078C3DC /* Charts in Frameworks */,
 				36C9F9E1269D29A40053C48A /* SwiftyJSON in Frameworks */,
+				36F0F575269E73BB002AAE3C /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +503,7 @@
 				36C9F9E0269D29A40053C48A /* SwiftyJSON */,
 				364C66E5269D32560078C3DC /* RealmSwift */,
 				364C66E8269D332E0078C3DC /* Charts */,
+				36F0F574269E73BB002AAE3C /* SwiftUIX */,
 			);
 			productName = pageView;
 			productReference = 36B336DE24A0A72D00B780ED /* 小猪罐.app */;
@@ -579,6 +582,7 @@
 				36C9F9DF269D29A40053C48A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				364C66E4269D32560078C3DC /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				364C66E7269D332E0078C3DC /* XCRemoteSwiftPackageReference "swiftui-charts" */,
+				36F0F573269E73BB002AAE3C /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 36B336DF24A0A72D00B780ED /* Products */;
 			projectDirPath = "";
@@ -1062,6 +1066,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		36F0F573269E73BB002AAE3C /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1079,6 +1091,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 36C9F9DF269D29A40053C48A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		36F0F574269E73BB002AAE3C /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36F0F573269E73BB002AAE3C /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

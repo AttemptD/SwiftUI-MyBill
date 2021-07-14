@@ -32,6 +32,7 @@ class RealmDB {
         data.doWhat = model.doWhat
         data.time = model.time
         data.type = model.type
+        data.isSelect = model.isSelect
         data.blurTime = model.blurTime
         data.blurMouth = model.blurMouth
         
@@ -90,6 +91,7 @@ class RealmDB {
         data.doWhat = model.doWhat
         data.time = model.time
         data.type = model.type
+        data.isSelect = model.isSelect
         data.blurTime = model.blurTime
         
         let defaultRealm = self.getDB()
@@ -135,6 +137,7 @@ class Bill: Object {
     @objc dynamic var money = 0.0
     @objc dynamic var type = ""
     @objc dynamic var time = ""
+    @objc dynamic var isSelect = false
     @objc dynamic var doWhat = ""
     @objc dynamic var blurTime = ""
     @objc dynamic var blurMouth = ""
