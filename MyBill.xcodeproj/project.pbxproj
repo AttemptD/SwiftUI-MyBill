@@ -882,7 +882,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = attempt.pig;
+				PRODUCT_BUNDLE_IDENTIFIER = little.pig;
 				PRODUCT_NAME = "小猪罐";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -909,7 +909,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = attempt.pig;
+				PRODUCT_BUNDLE_IDENTIFIER = little.pig;
 				PRODUCT_NAME = "小猪罐";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
