@@ -78,6 +78,7 @@
 		36DB6B10269D3BD300F73390 /* PagerContent+Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB6AFC269D3BD300F73390 /* PagerContent+Buildable.swift */; };
 		36DB6B11269D3BD300F73390 /* PagerContent+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB6AFD269D3BD300F73390 /* PagerContent+Helper.swift */; };
 		36DB6B12269D3BD300F73390 /* PagerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB6AFE269D3BD300F73390 /* PagerContent.swift */; };
+		36E70C2226A6B673000BF30A /* ChartTagle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E70C2126A6B673000BF30A /* ChartTagle.swift */; };
 		36F0F575269E73BB002AAE3C /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 36F0F574269E73BB002AAE3C /* SwiftUIX */; };
 		36F25DB124B8418D000428E0 /* NewBuild_Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB024B8418D000428E0 /* NewBuild_Update.swift */; };
 		36F25DB324B85033000428E0 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F25DB224B85033000428E0 /* DatePicker.swift */; };
@@ -198,6 +199,7 @@
 		36DB6AFC269D3BD300F73390 /* PagerContent+Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PagerContent+Buildable.swift"; sourceTree = "<group>"; };
 		36DB6AFD269D3BD300F73390 /* PagerContent+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PagerContent+Helper.swift"; sourceTree = "<group>"; };
 		36DB6AFE269D3BD300F73390 /* PagerContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerContent.swift; sourceTree = "<group>"; };
+		36E70C2126A6B673000BF30A /* ChartTagle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTagle.swift; sourceTree = "<group>"; };
 		36F25DB024B8418D000428E0 /* NewBuild_Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuild_Update.swift; sourceTree = "<group>"; };
 		36F25DB224B85033000428E0 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		36F25DB424B854AC000428E0 /* TimeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTools.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				369E350024A9DA0A00074C20 /* MyCenterchildView */,
 				365A3C4D24CACF1D001E2328 /* DetailView.swift */,
 				36F25DB024B8418D000428E0 /* NewBuild_Update.swift */,
+				36E70C2126A6B673000BF30A /* ChartTagle.swift */,
 			);
 			path = child;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				369507212570E49D006CE04C /* chartView_detail.swift in Sources */,
 				365DF82C24F1EC950078C79E /* All_ViewAnimation.swift in Sources */,
 				36D5D65D250B1A44002833F0 /* chartView.swift in Sources */,
+				36E70C2226A6B673000BF30A /* ChartTagle.swift in Sources */,
 				36DB6B0C269D3BD300F73390 /* PageTransition.swift in Sources */,
 				36DB6B08269D3BD300F73390 /* PagingAnimation.swift in Sources */,
 				36B667EA24F50F3800B37C91 /* HeaderScrollViewTitle.swift in Sources */,

@@ -42,6 +42,16 @@ struct AllView: View {
         .navigationBarTitle("账单")
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
+        .onAppear(){
+            
+            withAnimation(.spring()){
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    folderData.transerBilltype(type: folderData.typeChange)
+                }
+            }
+            
+            
+        }
     }
 }
 
@@ -117,7 +127,7 @@ struct FileName: View {
                                 
                             }
                         }
-                        .scaleEffect( scaleEffect ? 0.6 : 1.0)
+                        .scaleEffect( scaleEffect ? 0.7 : 1.0)
                      
 
                         .onLongPressGesture(minimumDuration:0.5,pressing: { inProgress in
@@ -134,8 +144,7 @@ struct FileName: View {
                            
                         }) {
                             isSelect.toggle()
-                            folderData.selectFolderList.removeAll()
-                            
+                            folderData.select(folder:item)
                             if(isSelect){
                                 complexSuccess()
                             }else{

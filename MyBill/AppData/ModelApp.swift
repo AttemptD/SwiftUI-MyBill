@@ -24,6 +24,12 @@ class Model: Identifiable {
     
 }
 
+class week: Identifiable {
+    var id : Int = 0
+    var money : Double = 0.0
+    var isSelect : Bool = false
+}
+
 class AppData: ObservableObject {
     
     @Published var BillDatas = [Model]()
@@ -38,9 +44,9 @@ class AppData: ObservableObject {
     @Published var TodayEarning : Double = 0
     
     @Published var Bill_ten = [Model]()
-    @Published var weekData = [Double]()
-    @Published var mouthData = [Double]()
-    @Published var mouthEarnData = [Double]()
+    @Published var weekData = [week]()
+    @Published var mouthData = [week]()
+    @Published var mouthEarnData = [week]()
     
     
     init() {
@@ -71,7 +77,6 @@ class AppData: ObservableObject {
     func refreshData() {
         
         objectWillChange.send()
-        
         
         self.TodayBill.removeAll()
         self.Bill_ten.removeAll()
@@ -254,30 +259,29 @@ class AppData: ObservableObject {
     func getWeekData()  {
         objectWillChange.send()
         self.weekData.removeAll()
-        
+        var allBill = 0.0
         for i in 0 ..< 7 {
-            
             let bill :Double = RealmDB().getDB().objects(Bill.self)
                 .filter("blurTime == '\(TimeTools().getDay(value: -i, Timetype: "yyyy年MM月dd日"))' AND type == '支出' ")
                 .sum(ofProperty: "money")
-
             
-            if bill > 0 &&  bill <= 1{
-                self.weekData.append(bill/15)
-            }else if bill > 1 && bill <= 100{
-                self.weekData.append(bill/150)
-            }else if bill > 100 && bill <= 1000{
-                self.weekData.append(bill/1500)
-            }else if bill > 1000 && bill <= 10000{
-                self.weekData.append(bill/15000)
-            }else if bill > 10000 && bill <= 100000{
-                self.weekData.append(bill/150000)
-            }else if bill == 0{
-                self.weekData.append(0)
-            }
+            allBill+=bill
+        }
+        
+        for i in 0 ..< 7 {
+            let bill :Double = RealmDB().getDB().objects(Bill.self)
+                .filter("blurTime == '\(TimeTools().getDay(value: -i, Timetype: "yyyy年MM月dd日"))' AND type == '支出' ")
+                .sum(ofProperty: "money")
+            
+            let weekdata = week()
+            
+            weekdata.isSelect = i == 0 ? true : false
+            weekdata.money = (bill/allBill)*100
+            weekdata.id = i
+            
+            weekData.append(weekdata)
             
            
-         
         }
       
     }
@@ -287,32 +291,30 @@ class AppData: ObservableObject {
         objectWillChange.send()
         
         self.mouthData.removeAll()
+        var allBill = 0.0
         
         for i in 0 ..< 7 {
-            
+            let bill :Double = RealmDB().getDB().objects(Bill.self)
+                .filter("blurMouth == '\(TimeTools().getMouth(value: -i, Timetype: "yyyy年MM月"))' AND type == '支出' ")
+                .sum(ofProperty: "money")
+            allBill += bill
+
+        }
+        
+        for i in 0 ..< 7 {
             let bill :Double = RealmDB().getDB().objects(Bill.self)
                 .filter("blurMouth == '\(TimeTools().getMouth(value: -i, Timetype: "yyyy年MM月"))' AND type == '支出' ")
                 .sum(ofProperty: "money")
             
-           
+            let weekdata = week()
             
+            weekdata.isSelect = i == 0 ? true : false
+            weekdata.money = (bill/allBill)*100
+            weekdata.id = i
             
-            if bill > 0 &&  bill <= 1{
-                self.mouthData.append(bill/15)
-            }else if bill > 1 && bill <= 100{
-                self.mouthData.append(bill/150)
-            }else if bill > 100 && bill <= 1000{
-                self.mouthData.append(bill/1500)
-            }else if bill > 1000 && bill <= 10000{
-                self.mouthData.append(bill/15000)
-            }else if bill > 10000 && bill <= 100000{
-                self.mouthData.append(bill/150000)
-            }else if bill == 0{
-                self.mouthData.append(0)
-            }
+            mouthData.append(weekdata)
             
            
-         
         }
       
     }
@@ -323,32 +325,29 @@ class AppData: ObservableObject {
         objectWillChange.send()
         
         self.mouthEarnData.removeAll()
+        var allBill = 0.0
         
         for i in 0 ..< 7 {
             
             let bill :Double = RealmDB().getDB().objects(Bill.self)
                 .filter("blurMouth == '\(TimeTools().getMouth(value: -i, Timetype: "yyyy年MM月"))' AND type == '收入' ")
                 .sum(ofProperty: "money")
+            allBill += bill
+
+        }
+        for i in 0 ..< 7 {
             
-           
+            let bill :Double = RealmDB().getDB().objects(Bill.self)
+                .filter("blurMouth == '\(TimeTools().getMouth(value: -i, Timetype: "yyyy年MM月"))' AND type == '收入' ")
+                .sum(ofProperty: "money")
             
+            let weekdata = week()
             
-            if bill > 0 &&  bill <= 1{
-                self.mouthEarnData.append(bill/15)
-            }else if bill > 1 && bill <= 100{
-                self.mouthEarnData.append(bill/150)
-            }else if bill > 100 && bill <= 1000{
-                self.mouthEarnData.append(bill/1500)
-            }else if bill > 1000 && bill <= 10000{
-                self.mouthEarnData.append(bill/15000)
-            }else if bill > 10000 && bill <= 100000{
-                self.mouthEarnData.append(bill/150000)
-            }else if bill == 0{
-                self.mouthEarnData.append(0)
-            }
+            weekdata.isSelect = i == 0 ? true : false
+            weekdata.money = (bill/allBill)*100
+            weekdata.id = i
             
-           
-         
+            mouthEarnData.append(weekdata)
         }
       
     }

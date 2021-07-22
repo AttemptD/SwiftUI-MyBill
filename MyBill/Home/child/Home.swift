@@ -91,7 +91,7 @@ struct Home: View {
                                         self.folderData.setFoloderBillData()
                                     }
                                     
-                                   
+                                    selectList.removeAll()
                                 }
                                 isDelete.toggle()
                             }
@@ -195,6 +195,8 @@ struct HomePersonInfo: View {
                             .font(.system(size: 16))
                             .bold()
                             .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
+                            .frame(width: 70, height: 30, alignment: .leading)
+                            
                         Text("收入")
                             .font(.system(size: 11))
                             .fontWeight(.thin)
@@ -205,20 +207,21 @@ struct HomePersonInfo: View {
                 Spacer()
                 
                 HStack{
-                    Image(colorScheme == .dark ? "支出-1_dark":"支出-1")
-                        .resizable()
-                        .frame(width: 35, height: 35)
-                    
-                    VStack(alignment:.leading){
+                    VStack(alignment:.trailing){
                         Text("\(transer(value: appData.TodayPay))元")
                             .font(.system(size: 16))
                             .bold()
                             .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
+                            .frame(width: 70, height: 30, alignment: .trailing)
+                        
                         Text("支出")
                             .font(.system(size: 11))
                             .fontWeight(.thin)
                         
                     }
+                    Image(colorScheme == .dark ? "支出_dark":"支出-1")
+                        .resizable()
+                        .frame(width: 35, height: 35)
                 }
             }
             .padding(.horizontal,width/10)
@@ -298,10 +301,12 @@ struct HomeContent: View {
                         Text("\(transer(value:item.money))元")
                             .font(.system(size: 20))
                             .fontWeight(.heavy)
-                            .padding(.bottom,15)
-                            
                             .foregroundColor(self.colorScheme == .dark ? Color.gray:Color.init("FontColor"))
-                        
+                            .padding(.horizontal,15)
+                            .frame(width:(width-60)/2-10,height:40)
+                            .padding(.bottom,10)
+                            
+                            .minimumScaleFactor(0.3)
                         Text(item.blurTime)
                             .foregroundColor(.gray)
                             .fontWeight(.light)

@@ -38,47 +38,31 @@ struct SetInfoView: View {
                     .cornerRadius(90)
                     .clipped()
                     .overlay(
-                        
-                        
                         HStack{
                             Image(systemName: "camera.fill")
                                 .resizable()
                                 .frame(width: 14, height: 12)
                                 .foregroundColor(.white)
                             
-                            
                         }.frame(width: 68, height: 20, alignment: .center)
-                            .background(DiyShape(tl: 0, tr: 0, bl: 360, br: 360).fill(colorScheme == .dark ? Color.init("HeaderIconBack_dark") : Color.init("HeaderIconBack")) )
-                            .padding(.top,60)
-                        
-                        
-                        
-                )
-                    
+                        .background(DiyShape(tl: 0, tr: 0, bl: 360, br: 360).fill(colorScheme == .dark ? Color.init("HeaderIconBack_dark") : Color.init("HeaderIconBack")) )
+                        .padding(.top,60)
+                    )
                     .onTapGesture {
                         self.selectImage.toggle()
-                }
+                    }
                 Spacer().frame(height:20)
                 
                 HStack{
-                    
-                    if openType == "新建"{
-                        TextField("设置一个用户名呗", text: $username)
+                    TextField( openType == "新建" ? "设置一个用户名呗" : "修改用户名", text: $username)
                         .padding(.leading,10)
                         .frame( height: 40)
-                    }else{
-                        TextField("修改用户名", text: $username)
-                        .padding(.leading,10)
-                        .frame( height: 40)
-                    }
-                    
-                    
                     
                 }
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.init("MainThemeColor"), lineWidth: 1 )
-                        
+                    
                 ).padding(.trailing,40)
                 
             }
@@ -88,23 +72,21 @@ struct SetInfoView: View {
                 ImagePicker(image: self.$header, isPresented: self.$selectImage)
             }
             
-            
-            
             Button(action: {
-               
+                
                 if self.username == ""{
                     self.showtips.toggle()
                 }else{
                     if self.openType == "新建"{
-                         self.mycenterdata.ToMain.toggle()
+                        self.mycenterdata.ToMain.toggle()
                     }else{
-                         self.presentationMode.wrappedValue.dismiss()
+                        self.presentationMode.wrappedValue.dismiss()
                     }
-               
-                RealmDB().insertMyInfo(header: ImageTranser().ImageToData(image: self.header ??  UIImage(named:"MyImageBack")!),
-                                       background: self.openType == "修改" ? self.mycenterdata.background :
-                    ImageTranser().ImageToData(image: UIImage.init(named: "background")!),
-                                       name: self.username)
+                    
+                    RealmDB().insertMyInfo(header: ImageTranser().ImageToData(image: self.header ??  UIImage(named:"MyImageBack")!),
+                                           background: self.openType == "修改" ? self.mycenterdata.background :
+                                            ImageTranser().ImageToData(image: UIImage.init(named: "background")!),
+                                           name: self.username)
                     
                     DispatchQueue.main.async {
                         self.mycenterdata.getMyInfo()
@@ -114,31 +96,32 @@ struct SetInfoView: View {
                 Text(openType == "修改" ? "完成":  "进入主页")
                     .foregroundColor(.white)
                 
-            }.frame(width: 120, height: 45, alignment: .center)
-                .background(Color.init("MainThemeColor"))
-                .cornerRadius(15)
-                .padding(.bottom,60)
-            
+            }
+            .frame(width: 120, height: 45, alignment: .center)
+            .background(Color.init("MainThemeColor"))
+            .cornerRadius(15)
+            .padding(.bottom,60)
             .alert(isPresented: $showtips) {
                 Alert(title: Text("提示"),
                       message: Text( "请设置一个用户名哦"),
                       dismissButton: .default(Text("我知道了")))
             }
             
-        }.onAppear(){
+        }
+        .onAppear(){
             if self.openType == "修改"{
                 self.username = self.mycenterdata.name
                 self.header = ImageTranser().DataToImage(data: self.mycenterdata.headerIco) 
             }
             
-           if self.colorScheme != .dark{
+            if self.colorScheme != .dark{
                 let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
                 controller?.statusBarStyle = .darkContent
             }
             
         }
-    .navigationBarTitle("")
-    .navigationBarHidden(true)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 

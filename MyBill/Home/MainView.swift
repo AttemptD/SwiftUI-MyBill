@@ -24,8 +24,6 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment:.bottomTrailing){
             NavigationView{
-                
-                
               
                 if #available(iOS 14.0, *) {
                     TabView(selection: $selection) {
@@ -77,7 +75,6 @@ struct MainView: View {
                         case 3:
                             let controller = UIApplication.shared.windows[0].rootViewController as? MyHontingController
                             controller?.statusBarStyle = .lightContent
-                            
                             
                         default:
                             break

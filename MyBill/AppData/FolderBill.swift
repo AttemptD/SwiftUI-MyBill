@@ -25,7 +25,7 @@ class Folder: Identifiable {
 class FolderData: ObservableObject {
     
     @Published var folderList = [Folder]()
-    @Published var typeChange = ""
+    @Published var typeChange = "全部"
     
     @Published var selectFolderList = [String]()
     
@@ -48,7 +48,7 @@ class FolderData: ObservableObject {
         
         self.folderList.removeAll()
        
-        if type  != ""{
+        if type != ""{
             if type == "全部"{
                 self.getFolderBillData()
             }else{

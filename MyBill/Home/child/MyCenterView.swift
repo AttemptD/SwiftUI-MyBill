@@ -7,8 +7,6 @@
 //
 
 import SwiftUI
-import Charts
-
 
 struct MyCenterView: View {
     @ObservedObject var appData : AppData
@@ -33,12 +31,11 @@ struct MyCenterView: View {
                         UserAllMoney(appData: appData)
                         
                       
-                        WeekChartData(title: "7天的支出情况",appData: appData.weekData, time: getweekTime(), billType: $billType)
+                        ChartTagle(appData: appData.weekData, time: getweekTime())
                             .id(UUID())
                           
-                        WeekChartData(title: billType == "支出" ? "7月的支出情况" : "7月的收入情况",appData:billType == "支出" ? appData.mouthData : appData.mouthEarnData, time: getMouthTime(), billType: $billType)
-                            .id(UUID())
-                        
+                        ChartTagle(appData:billType == "支出" ? appData.mouthData : appData.mouthEarnData, time: getMouthTime())
+                            .id(UUID())                       
 
                     }
                     .background(colorScheme == .dark ? Color.black : Color.init("MainCellSpacerColor"))
@@ -77,7 +74,9 @@ struct UserAllMoney: View {
                 VStack{
                     Text(appData.AllMony)
                         .font(.system(size: 25))
-                        .frame(width:(width-40)/4)
+                        .frame(width:(width-40)/4,height: 30)
+                        .minimumScaleFactor(0.3)
+                       
                     Text("全部")
                         .font(.system(size: 15))
                         .fontWeight(.thin)
@@ -94,7 +93,8 @@ struct UserAllMoney: View {
                 VStack{
                     Text(appData.PayMoney)
                         .font(.system(size: 25))
-                        .frame(width:(width-40)/4)
+                        .frame(width:(width-40)/4,height: 30)
+                        .minimumScaleFactor(0.3)
                     Text("支出")
                         .font(.system(size: 15))
                         .fontWeight(.thin)
@@ -109,7 +109,9 @@ struct UserAllMoney: View {
                 VStack{
                     Text(appData.EaringMoney)
                         .font(.system(size: 25))
-                        .frame(width:(width-40)/4)
+                        .frame(width:(width-40)/4,height: 30)
+                        .minimumScaleFactor(0.3)
+                        
                     Text("收入")
                         .font(.system(size: 15))
                         .fontWeight(.thin)
@@ -178,87 +180,4 @@ struct SettingButton: View {
     }
 }
 
-struct WeekChartData: View {
-   
-    @State var title : String
-    @State var appData : [Double]
-    @State var time : [String]
-    @Binding var billType : String
-    @Environment(\.colorScheme) var colorScheme
-    @State var showWeekDataView = false
-    var body: some View {
-        VStack{
-            
-            Chart(data:appData)
-                .chartStyle( LineChartStyle(.quadCurve, lineColor: Color.init("MainThemeColor"), lineWidth: 2))
-                .padding()
-                .padding(.bottom,20)
-                .animation(.easeIn)
-               
-        }
-        .frame(width: width - 20, height: height/5, alignment: .center)
-        .background(self.colorScheme == .dark ? Color.init("MainCellSpacerColor_dark")  :Color.white)
-        .cornerRadius(15)
-        .overlay(
-            VStack{
-                HStack{
-                    Text(title)
-                        .padding(.leading,20)
-                        .foregroundColor(Color.init("FontColor"))
-                    
-                    
-                        Spacer()
-                        
-                        Button(action: {
-                            
-                            if(billType == "支出"){
-                                billType = "收入"
-                                return
-                            }
-                            if(billType == "收入"){
-                                billType = "支出"
-                                return
-                            }
-                            
-                        }) {
-                            Text(billType)
-                        }
-                        .padding(.trailing,20)
-                        .disabled(title != "7天的支出情况" ? false : true)
-                        .opacity(title != "7天的支出情况" ? 1 : 0)
-                    
-                   
-                }
-                .frame(width: width - 20,alignment: .leading)
-                .font(.system(size: 15))
-                .padding(.top,10)
-                
-                Spacer()
-                
-            HStack{
-                ForEach(time,id: \.self){
-                    
-                    Text("\($0)")
-                        .font(.system(size: 13))
-                        .foregroundColor(Color.init("FontColor"))
-                        .frame(width: (width-20)/8.3, alignment: .center)
-                    
-                }
-            }
-                .frame(width: width - 20,alignment: .center)
-                .padding(.bottom,10)
-                
-            }
-            .frame(width: width - 20, height: height/5, alignment: .topLeading)
-            .contentShape(Rectangle())
-            .cornerRadius(15)
-        )
-        
-        .onTapGesture(count: 1, perform: {
-            showWeekDataView.toggle()
-        })
-        .sheet(isPresented: $showWeekDataView, content: {
-            chartView_detail(appData:appData)
-        })
-    }
-}
+
