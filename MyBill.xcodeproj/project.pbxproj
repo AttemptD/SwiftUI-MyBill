@@ -1075,7 +1075,7 @@
 			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.7;
+				minimumVersion = 0.1.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

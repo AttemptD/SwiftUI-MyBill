@@ -98,11 +98,13 @@ struct StyleTheme_animtion: View {
             Image("stand_l")
                 .offset(x: -100, y: -40)
                 .opacity(1/2)
+            
             Image(colorScheme == .dark ? "fan_l_dark":"fan_l")
-                .rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
-                .animation(Animation.easeInOut(duration: 4*4).repeatForever(autoreverses: false))
+                //.rotationEffect(.degrees(rotateSmallFan ? 360*4 : 0))
                 .offset(x: -100, y: -80)
                 .opacity(1/2)
+                .animation(Animation.easeInOut(duration: 4*4))
+
             
             
             
@@ -120,12 +122,6 @@ struct StyleTheme_animtion: View {
                 .onAppear() {
                     self.rotateSmallFan.toggle()
                 }
-            
-            
-            
-            
-            
-            
         }
        
         

@@ -14,12 +14,10 @@ struct StyleTheme: View {
     @Environment(\.presentationMode) var persentationMode
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        ZStack(alignment:.topLeading){
+        VStack(alignment:.leading){
             
             
             StyleTheme_animtion()
-               .offset(y:-width/2.7)
-                .animation(.none)
             
             
             VStack(spacing:20){
@@ -116,8 +114,7 @@ struct StyleTheme: View {
                 
                
             }.frame(width: width, alignment: .center)
-                .offset(y:width/1.5)
-            
+                
             
             Button(action: {
                 self.persentationMode.wrappedValue.dismiss()

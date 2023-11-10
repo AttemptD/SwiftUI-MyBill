@@ -1,61 +1,59 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-cocoa.git",
-        "state": {
-          "branch": null,
-          "revision": "77658519b13388c098a7624a94491738f8bb2983",
-          "version": "10.10.0"
-        }
-      },
-      {
-        "package": "RealmDatabase",
-        "repositoryURL": "https://github.com/realm/realm-core",
-        "state": {
-          "branch": null,
-          "revision": "95da0df7815d7cbaff14ed5e8b73fe4c2a992816",
-          "version": "11.0.4"
-        }
-      },
-      {
-        "package": "Charts",
-        "repositoryURL": "https://github.com/spacenation/swiftui-charts.git",
-        "state": {
-          "branch": null,
-          "revision": "0b66e5c2326e954efdcc94a9eeb699e2f2ae80a2",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "Shapes",
-        "repositoryURL": "https://github.com/swift-extensions/swiftui-shapes.git",
-        "state": {
-          "branch": null,
-          "revision": "c58b15c37eae9bd20525c6daa93a06a689ca75cb",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "SwiftUIX",
-        "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX.git",
-        "state": {
-          "branch": null,
-          "revision": "5837e88eca8e05fa70c82c6aaecfc59bf7e81bfd",
-          "version": "0.0.7"
-        }
-      },
-      {
-        "package": "SwiftyJSON",
-        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
-        "state": {
-          "branch": null,
-          "revision": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
-          "version": "5.0.1"
-        }
+  "pins" : [
+    {
+      "identity" : "realm-cocoa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-cocoa.git",
+      "state" : {
+        "revision" : "77658519b13388c098a7624a94491738f8bb2983",
+        "version" : "10.10.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core",
+      "state" : {
+        "revision" : "95da0df7815d7cbaff14ed5e8b73fe4c2a992816",
+        "version" : "11.0.4"
+      }
+    },
+    {
+      "identity" : "swiftui-charts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/spacenation/swiftui-charts.git",
+      "state" : {
+        "revision" : "0b66e5c2326e954efdcc94a9eeb699e2f2ae80a2",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swiftui-shapes",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swift-extensions/swiftui-shapes.git",
+      "state" : {
+        "revision" : "c58b15c37eae9bd20525c6daa93a06a689ca75cb",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "swiftuix",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftUIX/SwiftUIX.git",
+      "state" : {
+        "revision" : "1b8b443b61b8b37fafb06c1abad9b6be244c9de9",
+        "version" : "0.1.4"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",
+      "state" : {
+        "revision" : "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "version" : "5.0.1"
+      }
+    }
+  ],
+  "version" : 2
 }
